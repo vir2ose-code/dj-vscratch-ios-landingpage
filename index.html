@@ -341,10 +341,28 @@
 
     @media (max-width: 900px) {
       .carousel-container { height: 280px; }
+      .carousel-slide { width: 80%; }
+      .carousel-slide.prev {
+        transform: translate(calc(-50% - 40%), -50%) translateZ(-75px) rotateY(16deg) scale(0.72);
+        opacity: 0.35;
+      }
+      .carousel-slide.next {
+        transform: translate(calc(-50% + 40%), -50%) translateZ(-75px) rotateY(-16deg) scale(0.72);
+        opacity: 0.35;
+      }
     }
 
     @media (max-width: 600px) {
       .carousel-container { height: 200px; }
+      .carousel-slide { width: 88%; }
+      .carousel-slide.prev {
+        transform: translate(calc(-50% - 24%), -50%) translateZ(-60px) scale(0.68);
+        opacity: 0.2;
+      }
+      .carousel-slide.next {
+        transform: translate(calc(-50% + 24%), -50%) translateZ(-60px) scale(0.68);
+        opacity: 0.2;
+      }
     }
 
     .carousel-track {
@@ -359,6 +377,8 @@
 
     .carousel-slide {
       position: absolute;
+      top: 50%;
+      left: 50%;
       width: 55%;
       max-width: 680px;
       min-width: 280px;
@@ -384,7 +404,7 @@
     }
 
     .carousel-slide.active {
-      transform: translateX(0) translateZ(25px) scale(1);
+      transform: translate(-50%, -50%) translateZ(25px) scale(1);
       opacity: 1;
       filter: brightness(1);
       z-index: 20;
@@ -393,21 +413,21 @@
     }
 
     .carousel-slide.prev {
-      transform: translateX(-56%) translateZ(-95px) rotateY(18deg) scale(0.8);
+      transform: translate(calc(-50% - 56%), -50%) translateZ(-95px) rotateY(18deg) scale(0.8);
       opacity: 0.45;
       filter: brightness(0.6) blur(1px);
       z-index: 10;
     }
 
     .carousel-slide.next {
-      transform: translateX(56%) translateZ(-95px) rotateY(-18deg) scale(0.8);
+      transform: translate(calc(-50% + 56%), -50%) translateZ(-95px) rotateY(-18deg) scale(0.8);
       opacity: 0.45;
       filter: brightness(0.6) blur(1px);
       z-index: 10;
     }
 
     .carousel-slide.hidden {
-      transform: translateX(0) translateZ(-250px) scale(0.6);
+      transform: translate(-50%, -50%) translateZ(-250px) scale(0.6);
       opacity: 0;
       pointer-events: none;
       z-index: 0;
@@ -581,21 +601,54 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, rgba(197, 160, 89, 0.12) 0%, rgba(0,0,0,0.8) 75%);
-      padding: 16px;
-      border: 1px solid var(--border-subtle);
+      background: transparent;
+      padding: 0;
+      border: 1.5px solid var(--border-gold);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.85), 0 0 30px rgba(197, 160, 89, 0.14);
     }
 
     .box-mockup-img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
-      border-radius: var(--radius-sm);
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.95));
+      display: block;
+      border-radius: var(--radius-md);
       transition: transform 0.4s ease;
     }
 
     .box-showcase-visual:hover .box-mockup-img {
-      transform: scale(1.03) translateY(-4px);
+      transform: scale(1.02);
+    }
+
+    /* Layout Optimization Callout Banner */
+    .layout-callout-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(197, 160, 89, 0.08);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-sm);
+      padding: 13px 18px;
+      margin: 18px 0 22px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .layout-callout-icon {
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .layout-callout-text {
+      color: var(--text-main);
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    .layout-callout-text strong {
+      color: var(--gold-bright);
+      font-weight: 600;
     }
 
     .box-showcase-content h2 {
@@ -1156,9 +1209,18 @@
 
     .support-card h2 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      font-size: clamp(0.95rem, 1.7vw, 1.35rem);
+      letter-spacing: 1.5px;
       margin-bottom: 12px;
       color: #fff;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .support-card h2 {
+        white-space: normal;
+        font-size: 1.15rem;
+      }
     }
 
     .support-card p {
@@ -1353,10 +1415,6 @@
 
       <!-- Hero Headline Content -->
       <div class="hero-content">
-        <div class="hero-badge">
-          <div class="pulse-dot"></div>
-          <span data-i18n="hero_badge">iOS &amp; iPadOS 17+ Edition</span>
-        </div>
 
         <!-- 50% smaller headline as requested -->
         <h1 class="hero-title">DJ V-SCRATCH LIVE</h1>
@@ -1431,6 +1489,10 @@
           </div>
           <div class="hero-pill-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-i18n="pill_layout">OPTIMIERT FÜR 11" IPAD &amp; SMARTPHONE</span>
+          </div>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
             <span data-i18n="pill_hardware">STANDALONE HARDWARE-KONSOLE</span>
           </div>
           <div class="hero-pill-item">
@@ -1456,6 +1518,14 @@
           <p data-i18n="box_desc">
             Keine monatlichen Abo-Gebühren. Volle Hardware- und Touch-Freiheit. Mit einem einzigen Kauf im Apple App Store steht Ihnen die komplette DJ V-SCRATCH LIVE Studio-Suite sowohl auf dem iPad als auch auf dem iPhone uneingeschränkt zur Verfügung.
           </p>
+          <div class="layout-callout-box">
+            <div class="layout-callout-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            </div>
+            <div class="layout-callout-text" data-i18n="layout_opt_text">
+              <strong>Optimiertes Layout:</strong> Maßgeschneidert für das 11"-Displayformat und Standard-Smartphones; skaliert nahtlos auf alle iPad- &amp; iPhone-Größen.
+            </div>
+          </div>
           <ul class="flagship-bullets">
             <li><span class="bullet-diamond">◆</span> <span data-i18n="box_b1">Universal Purchase: Ein Lizenz-Erwerb für alle Ihre iOS &amp; iPadOS Geräte</span></li>
             <li><span class="bullet-diamond">◆</span> <span data-i18n="box_b2">100% Offline-fähig: Volle Audio-Engine ohne permanente Internetverbindung</span></li>
@@ -1767,6 +1837,8 @@
         box_badge: 'UNIVERSAL PURCHASE · KEIN ABONNEMENT',
         box_title: 'Einmal kaufen. Für immer besitzen. Auf iPad & iPhone.',
         box_desc: 'Keine monatlichen Abo-Gebühren. Volle Hardware- und Touch-Freiheit. Mit einem einzigen Kauf im Apple App Store steht Ihnen die komplette DJ V-SCRATCH LIVE Studio-Suite sowohl auf dem iPad als auch auf dem iPhone uneingeschränkt zur Verfügung.',
+      layout_opt_text: '<strong>Optimiertes Layout:</strong> Maßgeschneidert für das 11"-Displayformat und Standard-Smartphones; skaliert nahtlos auf alle iPad- & iPhone-Größen.',
+      pill_layout: 'OPTIMIERT FÜR 11" IPAD & SMARTPHONE',
         box_b1: 'Universal Purchase: Ein Lizenz-Erwerb für alle Ihre iOS & iPadOS Geräte',
         box_b2: '100% Offline-fähig: Volle Audio-Engine ohne permanente Internetverbindung',
         box_b3: 'Inklusive aller Performance-Module: Dual-Deck, V-Chopper & V-SPH3RE 3D',
@@ -1848,6 +1920,8 @@
         box_badge: 'UNIVERSAL PURCHASE · NO SUBSCRIPTION',
         box_title: 'Buy once. Own forever. On iPad & iPhone.',
         box_desc: 'No monthly subscriptions. Full hardware and touch freedom. With a single purchase on the Apple App Store, the entire DJ V-SCRATCH LIVE studio suite is yours across both iPad and iPhone.',
+        layout_opt_text: '<strong>Optimized Layout:</strong> Tailored for 11" iPad precision and standard iPhone ergonomics; dynamically scales across all supported devices.',
+        pill_layout: 'OPTIMIZED FOR 11" IPAD & SMARTPHONE',
         box_b1: 'Universal Purchase: One license for all your iOS & iPadOS devices',
         box_b2: '100% Offline Capable: Full audio engine without mandatory internet connectivity',
         box_b3: 'Includes all performance suites: Dual-Deck, V-Chopper & V-SPH3RE 3D',
