@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy / Datenschutzerklärung - DJ V-SCRATCH LIVE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+        :root {
+            --bg-dark: #030305;
+            --bg-card: rgba(18, 18, 24, 0.94);
+            --cyan-glow: #00D4FF;
+            --gold-accent: #beb376;
+            --text-main: #ECEFF1;
+            --text-muted: #94A3B8;
+            --border-color: rgba(157, 146, 87, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px 80px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(157, 146, 87, 0.12);\n            backdrop-filter: blur(16px);
+            position: relative;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #beb376;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+            color: #FFFFFF;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn:hover {
+            color: #FFFFFF;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #beb376, #9d9257);
+            color: #030305;
+            box-shadow: 0 0 12px rgba(157, 146, 87, 0.5);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #FFFFFF 30%, #cdc495 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: var(--gold-accent);
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        a {
+            color: #beb376;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-row">
+            <a href="index.html" class="back-link" data-i18n="back_link">&larr; Return to Home / Zurück zur Startseite</a>
+            <div class="lang-switch">
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('de')">EN</button>
+                <button class="lang-btn active" id="btn-de" onclick="setLanguage('de')">DE</button>
+                <button class="lang-btn" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+            </div>
+        </div>
+
+        <h1 data-i18n="title">Privacy Policy</h1>
+
+        <h2 data-i18n="sec1_title">1. Overview of Data Protection</h2>
+        <p data-i18n="sec1_content">
+            The following notes provide a simple overview of what happens to your personal information when you visit our website. Personal data is any data with which you could be personally identified.
+        </p>
+
+        <h2 data-i18n="sec2_title">2. Controller (Verantwortliche Stelle)</h2>
+        <p data-i18n="sec2_content">
+            The responsible entity for data processing on this website under GDPR / DSGVO is:<br>
+            <strong>vir2oseSOUND Hannover</strong><br>
+            Waldemar Krucinski (Dipl. Audio Engineer HOFA)<br>
+            Hannover, Germany<br>
+            E-Mail: <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a>
+        </p>
+
+        <h2 data-i18n="sec3_title">3. Merchant of Record & Payment Processing (Paddle)</h2>
+        <p data-i18n="sec3_content">
+            Our order process is conducted by our online reseller & Merchant of Record <strong>Paddle.com Inc. / Paddle Payments Limited</strong> (Judd House, 18-29 Mora Street, London, EC1V 8BT, UK). Paddle is the Merchant of Record for all our orders. When you purchase a license for DJ V-SCRATCH LIVE, your payment data, billing address, and transaction details are collected and processed directly by Paddle according to their own privacy standards and PCI-DSS compliance.<br><br>
+            Review Paddle's Privacy Policy at: <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">https://www.paddle.com/legal/privacy</a>.
+        </p>
+
+        <h2 data-i18n="sec4_title">4. Server Logs & Technical Hosting</h2>
+        <p data-i18n="sec4_content">
+            When accessing our website, technical connection data is automatically collected by our host (GitHub Pages). This includes browser type, operating system, referrer URL, IP address, and time of the server request. This data is processed based on Art. 6 (1) (f) GDPR to ensure stable and secure site operations.
+        </p>
+
+        <h2 data-i18n="sec5_title">5. Your Rights (GDPR / DSGVO / RODO)</h2>
+        <p data-i18n="sec5_content">
+            You have the right at any time to receive free information about the origin, recipient, and purpose of your stored personal data, and to request correction, blocking, or deletion (Art. 15–18 GDPR). You can contact us at any time at: <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a>.
+        </p>
+
+        <div class="footer-note">
+            &copy; 2026 <strong>vir2oseSOUND Hannover</strong> • Waldemar Krucinski. <span data-i18n="rights">All rights reserved.</span>
+        </div>
+    </div>
+
+    <script>
+        const i18n = {
+            en: {
+                back_link: "← Return to Home",
+                title: "Privacy Policy",
+                sec1_title: "1. Overview of Data Protection",
+                sec1_content: "The following notes provide a simple overview of what happens to your personal information when you visit our website. Personal data is any data with which you could be personally identified.",
+                sec2_title: "2. Controller (Verantwortliche Stelle)",
+                sec2_content: "The responsible entity for data processing on this website under GDPR / DSGVO is:<br><strong>vir2oseSOUND Hannover</strong><br>Waldemar Krucinski (Dipl. Audio Engineer HOFA)<br>Hannover, Germany<br>E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>",
+                sec3_title: "3. Merchant of Record & Payment Processing (Paddle)",
+                sec3_content: "Our order process is conducted by our online reseller & Merchant of Record <strong>Paddle.com Inc. / Paddle Payments Limited</strong> (Judd House, 18-29 Mora Street, London, EC1V 8BT, UK). Paddle is the Merchant of Record for all our orders. When you purchase a license for DJ V-SCRATCH LIVE, your payment data, billing address, and transaction details are collected and processed directly by Paddle according to their own privacy standards and PCI-DSS compliance.<br><br>Review Paddle's Privacy Policy at: <a href='https://www.paddle.com/legal/privacy' target='_blank' rel='noopener'>https://www.paddle.com/legal/privacy</a>.",
+                sec4_title: "4. Server Logs & Technical Hosting",
+                sec4_content: "When accessing our website, technical connection data is automatically collected by our host (GitHub Pages). This includes browser type, operating system, referrer URL, IP address, and time of the server request. This data is processed based on Art. 6 (1) (f) GDPR to ensure stable and secure site operations.",
+                sec5_title: "5. Your Rights (GDPR / DSGVO / RODO)",
+                sec5_content: "You have the right at any time to receive free information about the origin, recipient, and purpose of your stored personal data, and to request correction, blocking, or deletion (Art. 15–18 GDPR). You can contact us at any time at: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>.",
+                rights: "All rights reserved."
+            },
+            de: {
+                back_link: "← Zurück zur Startseite",
+                title: "Datenschutzerklärung",
+                sec1_title: "1. Datenschutz auf einen Blick",
+                sec1_content: "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.",
+                sec2_title: "2. Verantwortliche Stelle",
+                sec2_content: "Verantwortliche Stelle für die Datenverarbeitung auf dieser Website nach DSGVO ist:<br><strong>vir2oseSOUND Hannover</strong><br>Waldemar Krucinski (Dipl. Audio Engineer HOFA)<br>Hannover, Deutschland<br>E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>",
+                sec3_title: "3. Hosting und Zahlungsabwicklung (Paddle Merchant of Record)",
+                sec3_content: "Wir nutzen für den Verkauf unserer Software den Zahlungsdienstleister und Merchant of Record <strong>Paddle</strong> (Paddle.com Inc. / Paddle Payments Limited, London, UK). Wenn Sie den Checkout aufrufen oder einen Kauf tätigen, werden Zahlungs- und Kundendaten direkt von Paddle erhoben und verarbeitet.<br><br>Die Datenschutzerklärung von Paddle finden Sie unter: <a href='https://www.paddle.com/legal/privacy' target='_blank' rel='noopener'>https://www.paddle.com/legal/privacy</a>.",
+                sec4_title: "4. Erfassung von Daten auf unserer Website",
+                sec4_content: "Beim Besuch unserer Website werden automatisch technische Server-Log-Daten (z.B. IP-Adresse, Browsertyp, Betriebssystem, Uhrzeit) durch unseren Webhoster erfasst. Dies dient ausschließlich der technischen Bereitstellung und Absicherung der Seite (Art. 6 Abs. 1 lit. f DSGVO).",
+                sec5_title: "5. Ihre Rechte",
+                sec5_content: "Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Kontaktieren Sie uns jederzeit unter: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>.",
+                rights: "Alle Rechte vorbehalten."
+            },
+            pl: {
+                back_link: "← Powrót do strony głównej",
+                title: "Polityka Prywatności",
+                sec1_title: "1. Ochrona danych w skrócie",
+                sec1_content: "Poniższe informacje stanowią prosty przegląd tego, co dzieje się z Twoimi danymi osobowymi podczas odwiedzania naszej strony internetowej. Dane osobowe to wszelkie dane, za pomocą których można Cię zidentyfikować.",
+                sec2_title: "2. Administrator danych (RODO)",
+                sec2_content: "Administratorem danych osobowych w rozumieniu RODO na tej stronie jest:<br><strong>vir2oseSOUND Hannover</strong><br>Waldemar Kruciński (Dipl. Audio Engineer HOFA)<br>Hannover, Niemcy<br>E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>",
+                sec3_title: "3. Płatności i pośrednik handlowy (Paddle Merchant of Record)",
+                sec3_content: "Do sprzedaży i rozliczania naszego oprogramowania korzystamy z autoryzowanego pośrednika handlowego (Merchant of Record) <strong>Paddle</strong> (Paddle.com Inc. / Paddle Payments Limited, Londyn, Wielka Brytania). Podczas realizacji zakupu dane płatnicze i adresowe są gromadzone i przetwarzane bezpośrednio przez firmę Paddle zgodnie z najwyższymi standardami bezpieczeństwa PCI-DSS.<br><br>Polityka prywatności firmy Paddle znajduje się pod adresem: <a href='https://www.paddle.com/legal/privacy' target='_blank' rel='noopener'>https://www.paddle.com/legal/privacy</a>.",
+                sec4_title: "4. Zbieranie danych technicznych na stronie",
+                sec4_content: "Podczas wizyty na stronie serwer automatycznie zapisuje ogólne dane techniczne (typ przeglądarki, system operacyjny, adres IP, data i godzina zapytania). Służy to wyłącznie prawidłowemu i bezpiecznemu funkcjonowaniu witryny (art. 6 ust. 1 lit. f RODO).",
+                sec5_title: "5. Twoje prawa (RODO / GDPR)",
+                sec5_content: "W każdej chwili masz prawo do bezpłatnego uzyskania informacji o swoich przechowywanych danych osobowych, ich pochodzeniu, odbiorcach i celu przetwarzania, a także prawo do sprostowania, zablokowania lub usunięcia tych danych. Skontaktuj się z nami pod adresem: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>.",
+                rights: "Wszelkie prawa zastrzeżone."
+            }
+        };
+
+        function setLanguage(lang) {
+            if (!i18n[lang]) lang = 'en';
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) activeBtn.classList.add('active');
+            try { localStorage.setItem('vchannel_lang', lang); } catch (e) {}
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            let savedLang = 'en';
+            try {
+                const stored = localStorage.getItem('vchannel_lang');
+                if (stored && i18n[stored]) savedLang = stored;
+            } catch (e) {}
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprint / Impressum - DJ V-SCRATCH LIVE 1.0</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+        :root {
+            --bg-dark: #030305;
+            --bg-card: rgba(18, 18, 24, 0.94);
+            --cyan-glow: #00D4FF;
+            --gold-accent: #beb376;
+            --text-main: #ECEFF1;
+            --text-muted: #94A3B8;
+            --border-color: rgba(157, 146, 87, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px 80px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(157, 146, 87, 0.12);\n            backdrop-filter: blur(16px);
+            position: relative;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #beb376;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+            color: #FFFFFF;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn:hover {
+            color: #FFFFFF;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #beb376, #9d9257);
+            color: #030305;
+            box-shadow: 0 0 12px rgba(157, 146, 87, 0.5);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #FFFFFF 30%, #cdc495 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: var(--gold-accent);
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        a {
+            color: #beb376;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-row">
+            <a href="index.html" class="back-link" data-i18n="back_link">&larr; Return to Home / Zurück zur Startseite</a>
+            <div class="lang-switch">
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('de')">EN</button>
+                <button class="lang-btn active" id="btn-de" onclick="setLanguage('de')">DE</button>
+                <button class="lang-btn" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+            </div>
+        </div>
+
+        <h1 data-i18n="title">Imprint / Legal Notice</h1>
+
+        <h2 data-i18n="sec1_title">Information pursuant to § 5 TMG</h2>
+        <p data-i18n="sec1_content">
+            <strong>vir2oseSOUND Hannover</strong><br>
+            Owner: <strong>Waldemar Krucinski</strong><br>
+            Dipl. Audio Engineer HOFA<br>
+            Hannover, Germany
+        </p>
+
+        <h2 data-i18n="sec2_title">Contact</h2>
+        <p data-i18n="sec2_content">
+            E-Mail: <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a><br>
+            Website: <a href="https://ios.waldemar-krucinski.com">https://ios.waldemar-krucinski.com</a>
+        </p>
+
+        <h2 data-i18n="sec3_title">Responsible for Content (§ 55 Abs. 2 RStV)</h2>
+        <p data-i18n="sec3_content">
+            Waldemar Krucinski<br>
+            Hannover, Germany
+        </p>
+
+        <h2 data-i18n="sec4_title">Merchant of Record & Payment Processing</h2>
+        <p data-i18n="sec4_content">
+            The sale and billing of digital software licenses on this website is conducted by our authorized Merchant of Record:<br>
+            <strong>Paddle.com Inc. / Paddle Payments Limited</strong><br>
+            Judd House, 18-29 Mora Street, London, EC1V 8BT, United Kingdom.<br>
+            Paddle is the contracting party for customer orders, handling checkout, order fulfillment, invoicing, and global digital tax compliance.
+        </p>
+
+        <h2 data-i18n="sec5_title">EU Online Dispute Resolution</h2>
+        <p data-i18n="sec5_content">
+            The European Commission provides a platform for online dispute resolution (ODR):<br>
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.<br>
+            Our e-mail address can be found above. We are not obliged or willing to participate in dispute resolution proceedings before a consumer arbitration board.
+        </p>
+
+        <div class="footer-note">
+            &copy; 2026 <strong>vir2oseSOUND Hannover</strong> • Waldemar Krucinski. <span data-i18n="rights">All rights reserved.</span>
+        </div>
+    </div>
+
+    <script>
+        const i18n = {
+            en: {
+                back_link: "← Return to Home",
+                title: "Imprint / Legal Notice",
+                sec1_title: "Information pursuant to § 5 TMG",
+                sec1_content: "<strong>vir2oseSOUND Hannover</strong><br>Owner: <strong>Waldemar Krucinski</strong><br>Dipl. Audio Engineer HOFA<br>Hannover, Germany",
+                sec2_title: "Contact",
+                sec2_content: "E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a><br>Website: <a href='https://ios.waldemar-krucinski.com'>https://ios.waldemar-krucinski.com</a>",
+                sec3_title: "Responsible for Content (§ 55 Abs. 2 RStV)",
+                sec3_content: "Waldemar Krucinski<br>Hannover, Germany",
+                sec4_title: "Merchant of Record & Payment Processing",
+                sec4_content: "The sale and billing of digital software licenses on this website is conducted by our authorized Merchant of Record:<br><strong>Paddle.com Inc. / Paddle Payments Limited</strong><br>Judd House, 18-29 Mora Street, London, EC1V 8BT, United Kingdom.<br>Paddle is the contracting party for customer orders, handling checkout, order fulfillment, invoicing, and global digital tax compliance.",
+                sec5_title: "EU Online Dispute Resolution",
+                sec5_content: "The European Commission provides a platform for online dispute resolution (ODR):<br><a href='https://ec.europa.eu/consumers/odr/' target='_blank' rel='noopener'>https://ec.europa.eu/consumers/odr/</a>.<br>Our e-mail address can be found above. We are not obliged or willing to participate in dispute resolution proceedings before a consumer arbitration board.",
+                rights: "All rights reserved."
+            },
+            de: {
+                back_link: "← Zurück zur Startseite",
+                title: "Impressum",
+                sec1_title: "Angaben gemäß § 5 TMG",
+                sec1_content: "<strong>vir2oseSOUND Hannover</strong><br>Inhaber: <strong>Waldemar Krucinski</strong><br>Dipl. Audio Engineer HOFA<br>Hannover, Deutschland",
+                sec2_title: "Kontakt",
+                sec2_content: "E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a><br>Website: <a href='https://ios.waldemar-krucinski.com'>https://ios.waldemar-krucinski.com</a>",
+                sec3_title: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+                sec3_content: "Waldemar Krucinski<br>Hannover, Deutschland",
+                sec4_title: "Merchant of Record & Zahlungsabwicklung",
+                sec4_content: "Der Verkauf und die Abrechnung digitaler Lizenzen über diese Website erfolgt über unseren autorisierten Merchant of Record (Wiederverkäufer):<br><strong>Paddle.com Inc. / Paddle Payments Limited</strong><br>Judd House, 18-29 Mora Street, London, EC1V 8BT, United Kingdom.<br>Paddle ist der offizielle Vertragspartner für Kundenbestellungen und übernimmt Rechnungsstellung, Zahlungsabwicklung und weltweite digitale Steuer-Compliance.",
+                sec5_title: "Hinweis auf EU-Streitschlichtung",
+                sec5_content: "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br><a href='https://ec.europa.eu/consumers/odr/' target='_blank' rel='noopener'>https://ec.europa.eu/consumers/odr/</a>.<br>Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht verpflichtet oder bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+                rights: "Alle Rechte vorbehalten."
+            },
+            pl: {
+                back_link: "← Powrót do strony głównej",
+                title: "Impressum / Informacje Prawne",
+                sec1_title: "Informacje zgodnie z § 5 TMG",
+                sec1_content: "<strong>vir2oseSOUND Hannover</strong><br>Właściciel: <strong>Waldemar Kruciński</strong><br>Dipl. Audio Engineer HOFA<br>Hannover, Niemcy",
+                sec2_title: "Kontakt",
+                sec2_content: "E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a><br>Strona WWW: <a href='https://ios.waldemar-krucinski.com'>https://ios.waldemar-krucinski.com</a>",
+                sec3_title: "Osoba odpowiedzialna za treść (§ 55 ust. 2 RStV)",
+                sec3_content: "Waldemar Kruciński<br>Hannover, Niemcy",
+                sec4_title: "Pośrednik płatności & Merchant of Record",
+                sec4_content: "Sprzedaż i rozliczanie cyfrowych licencji na oprogramowanie na tej stronie jest realizowane przez naszego autoryzowanego pośrednika handlowego (Merchant of Record):<br><strong>Paddle.com Inc. / Paddle Payments Limited</strong><br>Judd House, 18-29 Mora Street, London, EC1V 8BT, Wielka Brytania.<br>Paddle jest oficjalną stroną umowy dla zamówień klientów, odpowiada za realizację płatności, fakturowanie oraz globalne rozliczenia podatków cyfrowych (VAT).",
+                sec5_title: "Rozstrzyganie sporów konsumenckich EU",
+                sec5_content: "Komisja Europejska udostępnia platformę internetowego rozstrzygania sporów (ODR):<br><a href='https://ec.europa.eu/consumers/odr/' target='_blank' rel='noopener'>https://ec.europa.eu/consumers/odr/</a>.<br>Nasz adres e-mail znajduje się powyżej. Nie jesteśmy zobowiązani ani chętni do udziału w postępowaniach przed konsumenckim sądem polubownym.",
+                rights: "Wszelkie prawa zastrzeżone."
+            }
+        };
+
+        function setLanguage(lang) {
+            if (!i18n[lang]) lang = 'en';
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) activeBtn.classList.add('active');
+            try { localStorage.setItem('vchannel_lang', lang); } catch (e) {}
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            let savedLang = 'en';
+            try {
+                const stored = localStorage.getItem('vchannel_lang');
+                if (stored && i18n[stored]) savedLang = stored;
+            } catch (e) {}
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
