@@ -475,60 +475,52 @@
       width: 40px;
     }
 
-    /* PILLS / ARGUMENTS IN ONE HORIZONTAL ROW UNDER CAROUSEL (screen 3) */
+    /* PILLS / ARGUMENTS IN ONE HORIZONTAL ROW UNDER CAROUSEL (screen 1 & 3: CENTERED + GOLDEN DOTS) */
     .hero-pills {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      gap: 12px;
-      margin: 20px auto 6px;
+      flex-wrap: wrap;
+      gap: 7px 10px;
+      margin: 18px auto 6px;
       position: relative;
       z-index: 10;
-      max-width: 100%;
-      overflow-x: auto;
-      padding: 6px 12px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .hero-pills::-webkit-scrollbar { display: none; }
-
-    @media (max-width: 860px) {
-      .hero-pills {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+      max-width: 940px;
+      padding: 0 16px;
     }
 
     .hero-pill-item {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      background: rgba(10, 14, 22, 0.85);
-      border: 1px solid rgba(197, 160, 89, 0.35);
+      gap: 6px;
+      background: rgba(14, 18, 26, 0.82);
+      border: 1px solid rgba(197, 160, 89, 0.32);
       border-radius: 999px;
-      padding: 7px 16px;
-      font-size: 0.74rem;
+      padding: 5px 12px;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.7px;
       color: #e2e8f0;
       white-space: nowrap;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
       backdrop-filter: blur(10px);
       transition: all 0.25s ease;
-    }
-
-    .hero-pill-item svg {
-      color: var(--cyan-accent);
-      flex-shrink: 0;
     }
 
     .hero-pill-item:hover {
       border-color: var(--gold-primary);
       box-shadow: 0 0 16px var(--gold-glow);
       transform: translateY(-1px);
+    }
+
+    .pill-gold-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      box-shadow: 0 0 8px var(--gold-glow);
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     /* UNIVERSAL EDITION 3D BOX SHOWCASE SECTION (Screen 4) */
@@ -1344,7 +1336,7 @@
       <img src="assets/vir2ose_sound_logo.png" alt="vir2oseSOUND" class="brand-logo-custom">
     </a>
     <nav>
-      <a href="#showcase" data-i18n="nav_showcase">3D Showcase</a>
+      <a href="#vsph3re" data-i18n="nav_showcase">3D Showcase</a>
       <a href="#edition" data-i18n="nav_edition">Edition</a>
       <a href="#features" data-i18n="nav_features">Funktionen</a>
       <a href="#workflow" data-i18n="nav_workflow">Workflow</a>
@@ -1357,6 +1349,8 @@
         <button type="button" class="lang-btn active" id="btnLangDe" onclick="setLang('de')">DE</button>
         <span class="lang-sep">|</span>
         <button type="button" class="lang-btn" id="btnLangEn" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">|</span>
+        <button type="button" class="lang-btn" id="btnLangPl" onclick="setLang('pl')">PL</button>
       </div>
 
       <a href="#download" class="btn-nav-appstore">
@@ -1448,23 +1442,23 @@
 
         <div class="hero-pills">
           <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span class="pill-gold-dot"></span>
             <span data-i18n="pill_no_sub">KEIN ABONNEMENT</span>
           </div>
           <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span class="pill-gold-dot"></span>
             <span data-i18n="pill_dsp">&lt; 5MS COREAUDIO DSP</span>
           </div>
           <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span class="pill-gold-dot"></span>
             <span data-i18n="pill_layout">OPTIMIERT FÜR 11" IPAD &amp; SMARTPHONE</span>
           </div>
           <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span class="pill-gold-dot"></span>
             <span data-i18n="pill_hardware">STANDALONE HARDWARE-KONSOLE</span>
           </div>
           <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span class="pill-gold-dot"></span>
             <span data-i18n="pill_midi">USB- &amp; MIDI-CONTROLLER READY</span>
           </div>
         </div>
@@ -1568,7 +1562,7 @@
       </div>
 
       <!-- Card 3: V-SPH3RE 3D Binaural Matrix (Screen 5: PROMINENTLY BROUGHT TO THE FRONT) -->
-      <div class="flagship-card">
+      <div class="flagship-card" id="vsph3re" style="scroll-margin-top: 90px;">
         <div class="flagship-img zoomable" onclick="openZoomModal('assets/screen_vsph3re.png', 'V-SPH3RE 3D Binaural Matrix', 'Pionierhafte räumliche 3D-Klangpositionierung mit physikalischer HRTF-Echtzeitfilterung.')">
           <img src="assets/screen_vsph3re.png" alt="V-SPH3RE 3D Binaural Studio Matrix" loading="lazy">
           <div class="zoom-hint">🔍</div>
@@ -1953,6 +1947,89 @@
         footer_refund: 'Refund Policy',
         footer_reseller: 'Authorized Reseller & Merchant of Record: Paddle.com Market Ltd. · Buy it once, own it forever.',
         footer_copy: '© 2026 Waldemar Krucinski | vir2oseSOUND. All rights reserved.'
+      },
+      pl: {
+        nav_showcase: '3D V-SPH3RE',
+        nav_edition: 'Edycja',
+        nav_features: 'Funkcje',
+        nav_workflow: 'Workflow',
+        nav_specs: 'Specyfikacja',
+        nav_support: 'Wsparcie',
+        nav_studio: 'Studio',
+        hero_badge: 'Edycja iOS & iPadOS 17+',
+        hero_subtitle: 'Autentyczny turntablizm z dwoma deckami, spektralne fale HD, V-Chopper Loop Slicer i matryca binauralna V-SPH3RE 3D — stworzone w natywnym C++ na iPada i iPhone’a.',
+        pill_no_sub: 'BEZ SUBSKRYPCJI',
+        pill_dsp: '< 5MS COREAUDIO DSP',
+        pill_layout: 'OPTYMALIZACJA NA IPAD 11" I SMARTFONY',
+        pill_hardware: 'SAMODZIELNA KONSOLA SPRZĘTOWA',
+        pill_midi: 'OBSŁUGA KONTROLERÓW USB I MIDI',
+        box_badge: 'UNIVERSAL PURCHASE · BEZ SUBSKRYPCJI',
+        box_title: 'Kup raz. Posiadaj na zawsze. Na iPadzie i iPhonie.',
+        box_desc: 'Brak comiesięcznych opłat subskrypcyjnych. Pełna swoboda sprzętowa i dotykowa. Przy jednorazowym zakupie w Apple App Store otrzymujesz kompletny pakiet studyjny DJ V-SCRATCH LIVE zarówno na iPada, jak i na iPhone’a bez żadnych ograniczeń.',
+        layout_opt_text: '<strong>Zoptymalizowany układ:</strong> Precyzyjnie dopasowany do formatu 11" i standardowych smartfonów; płynnie skaluje się na wszystkie rozmiary iPada i iPhone’a.',
+        box_b1: 'Universal Purchase: Jedna licencja na wszystkie Twoje urządzenia iOS & iPadOS',
+        box_b2: '100% Offline: Pełny silnik audio bez konieczności stałego połączenia z internetem',
+        box_b3: 'Wszystkie moduły w zestawie: Dual-Deck, V-Chopper oraz V-SPH3RE 3D',
+        box_b4: 'Bezpłatne aktualizacje i optymalizacja pod Apple Silicon DSP',
+        appstore_badge_sub: 'Pobierz w',
+        flagship_tag: 'VIR2OSESOUND FLAGSHIP',
+        flagship_title: 'Serce Nowoczesnego Turntablizmu',
+        flagship_desc: 'Stworzone od podstaw dla bezstratnego scratchingu winylowego, precyzyjnego miksowania beatów i natychmiastowej dotykowej kontroli na iPadzie i iPhonie.',
+        c1_tag: 'SILNIK DUAL DECK',
+        c1_title: 'DJ V-SCRATCH LIVE 1.0',
+        c1_desc: 'Ultra-realistyczna emulacja winylu z interaktywnym opuszczaniem igły, wielopunktowym cueingiem, detekcją BPM w czasie rzeczywistym, 3-pasmowym izolatorem studyjnym EQ oraz dotykowym trybem dotykowym.',
+        c1_b1: 'Fizyczny silnik scratchingu o wysokiej rozdzielczości',
+        c1_b2: 'Pady wydajnościowe: Hot Cue, Loop, Roll, Slicer',
+        c1_b3: 'Dedykowany dotykowy tryb dla tabletów i smartfonów',
+        c1_b4: 'Przetwarzanie CoreAudio o ultra-niskim opóźnieniu (< 1.4ms)',
+        c2_tag: 'SAMPLE & SLICE',
+        c2_title: 'Silnik sampli V-CHOPPER',
+        c2_desc: 'Cięcie, randomizacja i ponowne wyzwalanie pętli w czasie rzeczywistym. Natychmiastowa detekcja transjentów idealnie synchronizuje każdy chop z głównym rytmem.',
+        c2_b1: 'Automatyczne cięcie beatów wg siatki i transjentów',
+        c2_b2: 'Randomizer i rearanżacja do remiksowania na żywo',
+        c2_b3: 'Płynny scrubbing fal dźwiękowych bez zakłóceń',
+        c3_tag: 'DŹWIĘK PRZESTRZENNY & BINAURALNY',
+        c3_title: 'Matryca Binauralna V-SPH3RE 3D',
+        c3_desc: 'Pionierskie pozycjonowanie dźwięku 3D z algorytmami HRTF w czasie rzeczywistym. Umieść wirtualne gramofony w sferycznej przestrzeni akustycznej 360° dla niesamowitej głębi na słuchawkach i monitorach.',
+        c3_b1: 'Binauralna przestrzenność HRTF w czasie rzeczywistym dla wszystkich słuchawek',
+        c3_b2: 'Interaktywne pozycjonowanie sferyczne 360° za pomocą gestów dotykowych',
+        c3_b3: 'Dedykowana matryca kontroli azymutu, elewacji i odległości',
+        c3_b4: 'Bezstratny 64-bitowy silnik renderowania sceny dźwiękowej float',
+        tools_tag: 'ROZSZERZENIA PAKIETU',
+        tools_title: 'Zaprojektowane dla Pełnego Przepływu Pracy',
+        tools_desc: 'Każde narzędzie w pakiecie vir2oseSOUND zostało starannie dopracowane pod kątem czytelności i niezawodnej pracy na scenie.',
+        t1_title: 'Precyzyjny Mikser Centralny',
+        t1_desc: 'Precyzyjne krzywe crossfadera, wskaźniki wysterowania LED VU, odsłuch na słuchawkach i studyjna regulacja wzmocnienia.',
+        t2_title: 'Spektralny Zoom Fali Dźwiękowej',
+        t2_desc: 'Wielokolorowy podział częstotliwości fali audio pokazujący bas, werbel i wokal z dokładnością do pojedynczej próbki.',
+        t3_title: 'Szybka Biblioteka & Playlisty',
+        t3_desc: 'Błyskawiczne wyszukiwanie bazy audio, inteligentne foldery, sortowanie BPM, tonacja Camelot i ładowanie utworów drag-and-drop.',
+        t4_title: 'Okno Wideo Dual-Monitor',
+        t4_desc: 'Odłączane pełnoekranowe okno projektora do wizualizacji klubowych, zewnętrznych monitorów HDMI/USB-C i miksowania wideo.',
+        t5_title: 'Autorski Design vir2ose',
+        t5_desc: 'Mistrzowsko wykonane przez Waldemara Krucińskiego. Złote detale, ciemny obsydianowy interfejs i precyzyjna niemiecka inżynieria audio.',
+        t6_title: 'V-STREAM Cloud & Local Hub',
+        t6_desc: 'Buforowanie lokalnej biblioteki audio i strumieniowanie z chmury z natychmiastowym ładowaniem, kalkulacją BPM i miksowaniem harmonicznym.',
+        specs_title: 'Inżynieria Jakości Studyjnej i Niezawodności',
+        specs_desc: 'Zarówno podczas występów na żywo w klubach, jak i w podróży, DJ V-SCRATCH LIVE wykorzystuje pełną moc Apple Silicon (M1/M2/M3/M4 oraz seria A Bionic) z 64-bitową precyzją zmiennoprzecinkową.',
+        specs_b1: '<strong>CoreAudio DSP:</strong> Konfiguracja bufora do 64 próbek (~1.4ms roundtrip).',
+        specs_b2: '<strong>Dwa Ergonomiczne Układy:</strong> Pełna konsola iPad Studio (2048x1080) i iPhone Pocket Live panoramiczny.',
+        specs_b3: '<strong>Swoboda Formatów Audio:</strong> Natywne odtwarzanie WAV, AIFF, FLAC, MP3 i AAC do 192 kHz / 32-bit float.',
+        spec_lbl_arch: 'Architektura docelowa',
+        spec_lbl_audio: 'Silnik audio',
+        spec_lbl_dev: 'Obsługiwane urządzenia',
+        spec_lbl_os: 'Minimalny system',
+        spec_val_os: 'iOS / iPadOS 17.5 lub nowszy',
+        spec_lbl_sub: 'Model licencyjny',
+        spec_val_sub: '100% Wieczysta (Bez subskrypcji)',
+        sup_title: 'Wsparcie Studyjne & Oficjalne Zapytania',
+        sup_desc: 'Masz pytania dotyczące kompatybilności, mapowania kontrolerów lub nowych funkcji? Napisz bezpośrednio do naszego laboratorium audio:',
+        footer_imprint: 'Impressum / Informacje prawne',
+        footer_privacy: 'Polityka Prywatności',
+        footer_terms: 'Regulamin & Licencja',
+        footer_refund: 'Zasady Zwrotów',
+        footer_reseller: 'Autoryzowany Sprzedawca & Merchant of Record: Paddle.com Market Ltd. · Kup raz, posiadaj na zawsze.',
+        footer_copy: '© 2026 Waldemar Krucinski | vir2oseSOUND. Wszelkie prawa zastrzeżone.'
       }
     };
 
@@ -1966,6 +2043,11 @@
         { title: 'V-CHOPPER LOOP SLICER', desc: 'Real-time slicing, instant beat jumps, and stutter FX for dynamic live remixing.' },
         { title: 'DUAL-DECK TURNTABLISM', desc: 'Spectral HD Waveform Display, ultra-low latency jogwheels, and 64-bit DSP mixer.' },
         { title: 'V-SPH3RE 3D BINAURAL MATRIX', desc: 'Immersive 3D spatial soundstage with real-time binaural filtering for headphones and monitors.' }
+      ],
+      pl: [
+        { title: 'V-CHOPPER LOOP SLICER', desc: 'Cięcie w czasie rzeczywistym, beat-jumpy i instant stutter FX do dynamicznych remiksów na żywo.' },
+        { title: 'DUAL-DECK TURNTABLISM', desc: 'Spektralny wyświetlacz fal HD, ultra-niskie opóźnienie jogwheels i 64-bitowy mikser DSP.' },
+        { title: 'V-SPH3RE 3D BINAURAL MATRIX', desc: 'Immersyjna sferyczna scena dźwiękowa 3D z filtracją binauralną w czasie rzeczywistym dla słuchawek i monitorów.' }
       ]
     };
 
@@ -1978,8 +2060,10 @@
       document.documentElement.lang = lang;
       const btnDe = document.getElementById('btnLangDe');
       const btnEn = document.getElementById('btnLangEn');
+      const btnPl = document.getElementById('btnLangPl');
       if (btnDe) btnDe.classList.toggle('active', lang === 'de');
       if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+      if (btnPl) btnPl.classList.toggle('active', lang === 'pl');
 
       const dict = translations[lang] || translations.de;
       document.querySelectorAll('[data-i18n]').forEach(el => {
