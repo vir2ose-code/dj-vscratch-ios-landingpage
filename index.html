@@ -322,7 +322,7 @@
       z-index: 10;
       width: 100%;
       max-width: 1240px;
-      margin: 4px auto 0;
+      margin: 8px auto 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -331,68 +331,47 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      height: 380px;
-      perspective: 1200px;
       display: flex;
       align-items: center;
       justify-content: center;
       user-select: none;
+      padding: 0 10px;
     }
 
-    @media (max-width: 900px) {
-      .carousel-container { height: 280px; }
-      .carousel-slide { width: 80%; }
-      .carousel-slide.prev {
-        transform: translate(calc(-50% - 40%), -50%) translateZ(-75px) rotateY(16deg) scale(0.72);
-        opacity: 0.35;
-      }
-      .carousel-slide.next {
-        transform: translate(calc(-50% + 40%), -50%) translateZ(-75px) rotateY(-16deg) scale(0.72);
-        opacity: 0.35;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .carousel-container { height: 200px; }
-      .carousel-slide { width: 88%; }
-      .carousel-slide.prev {
-        transform: translate(calc(-50% - 24%), -50%) translateZ(-60px) scale(0.68);
-        opacity: 0.2;
-      }
-      .carousel-slide.next {
-        transform: translate(calc(-50% + 24%), -50%) translateZ(-60px) scale(0.68);
-        opacity: 0.2;
-      }
+    /* 25% LARGER: max-width 860px (was 680px), aspect-ratio 2556/1179 zero-crop */
+    .carousel-viewport {
+      position: relative;
+      width: 76%;
+      max-width: 860px;
+      min-width: 280px;
+      aspect-ratio: 2556 / 1179;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-gold);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.92), 0 0 35px var(--gold-glow);
+      background: #000;
+      margin: 0 auto;
     }
 
     .carousel-track {
-      position: relative;
-      width: 100%;
-      height: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transform-style: preserve-3d;
+      width: 300%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.3, 1);
+      will-change: transform;
     }
 
     .carousel-slide {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 55%;
-      max-width: 680px;
-      min-width: 280px;
-      aspect-ratio: 2556 / 1179;
-      border-radius: var(--radius-md);
-      overflow: hidden;
+      flex: 0 0 33.333333%;
+      width: 33.333333%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      transition: transform 0.65s cubic-bezier(0.2, 0.9, 0.3, 1),
-                  opacity 0.65s ease,
-                  filter 0.65s ease,
-                  box-shadow 0.65s ease;
-      background: rgba(0, 0, 0, 0.95);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      overflow: hidden;
+      background: #050608;
     }
 
     .carousel-slide img {
@@ -401,53 +380,28 @@
       object-fit: contain;
       display: block;
       pointer-events: none;
+      transition: transform 0.4s ease;
     }
 
-    .carousel-slide.active {
-      transform: translate(-50%, -50%) translateZ(25px) scale(1);
-      opacity: 1;
-      filter: brightness(1);
-      z-index: 20;
-      border-color: var(--gold-primary);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.92), 0 0 32px var(--gold-glow);
-    }
-
-    .carousel-slide.prev {
-      transform: translate(calc(-50% - 56%), -50%) translateZ(-95px) rotateY(18deg) scale(0.8);
-      opacity: 0.45;
-      filter: brightness(0.6) blur(1px);
-      z-index: 10;
-    }
-
-    .carousel-slide.next {
-      transform: translate(calc(-50% + 56%), -50%) translateZ(-95px) rotateY(-18deg) scale(0.8);
-      opacity: 0.45;
-      filter: brightness(0.6) blur(1px);
-      z-index: 10;
-    }
-
-    .carousel-slide.hidden {
-      transform: translate(-50%, -50%) translateZ(-250px) scale(0.6);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 0;
+    .carousel-slide:hover img {
+      transform: scale(1.02);
     }
 
     .carousel-nav-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: rgba(14, 18, 26, 0.85);
+      background: rgba(14, 18, 26, 0.9);
       border: 1.5px solid var(--border-gold);
       color: var(--gold-bright);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 30;
+      z-index: 25;
       backdrop-filter: blur(12px);
       transition: all 0.25s ease;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
@@ -463,24 +417,37 @@
     .carousel-nav-btn.prev-btn { left: 4%; }
     .carousel-nav-btn.next-btn { right: 4%; }
 
+    @media (max-width: 1100px) {
+      .carousel-viewport { width: 84%; }
+      .carousel-nav-btn.prev-btn { left: 1.5%; }
+      .carousel-nav-btn.next-btn { right: 1.5%; }
+    }
+
+    @media (max-width: 768px) {
+      .carousel-viewport { width: 92%; }
+      .carousel-nav-btn { width: 38px; height: 38px; }
+      .carousel-nav-btn.prev-btn { left: 0%; }
+      .carousel-nav-btn.next-btn { right: 0%; }
+    }
+
     .carousel-caption {
-      margin-top: 12px;
+      margin-top: 14px;
       text-align: center;
-      max-width: 600px;
-      min-height: 50px;
+      max-width: 650px;
+      min-height: 52px;
     }
 
     .carousel-caption-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.02rem;
+      font-size: 1.08rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 4px;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
     }
 
     .carousel-caption-desc {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       line-height: 1.5;
     }
@@ -488,7 +455,7 @@
     .carousel-dots {
       display: flex;
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 12px;
       justify-content: center;
     }
 
@@ -1434,27 +1401,29 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
 
-          <!-- 3D Slide Track with NEW Graphics from Assets_iOS_iPhone/Graphic -->
-          <div class="carousel-track">
-            
-            <!-- Slide 0: V-Chopper -->
-            <div class="carousel-slide prev zoomable" data-index="0" onclick="handleSlideClick(0)">
-              <img src="assets/screen_vchopper.png" alt="DJ V-SCRATCH LIVE - V-Chopper iOS Performance Suite">
-              <div class="zoom-hint">🔍</div>
-            </div>
+          <!-- Centered Viewport: 25% Larger, Max-Width 860px (Aspect Ratio 2556/1179) -->
+          <div class="carousel-viewport" id="carouselViewport">
+            <div class="carousel-track" id="carouselTrack">
+              
+              <!-- Slide 0: V-Chopper -->
+              <div class="carousel-slide zoomable" data-index="0" onclick="handleSlideClick(0)">
+                <img src="assets/screen_vchopper.png" alt="DJ V-SCRATCH LIVE - V-Chopper iOS Performance Suite">
+                <div class="zoom-hint">🔍</div>
+              </div>
 
-            <!-- Slide 1: Dual Deck (Center / Default) -->
-            <div class="carousel-slide active zoomable" data-index="1" onclick="handleSlideClick(1)">
-              <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck iOS Turntable Console">
-              <div class="zoom-hint">🔍</div>
-            </div>
+              <!-- Slide 1: Dual Deck (Center / Default) -->
+              <div class="carousel-slide zoomable" data-index="1" onclick="handleSlideClick(1)">
+                <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck iOS Turntable Console">
+                <div class="zoom-hint">🔍</div>
+              </div>
 
-            <!-- Slide 2: V-Sph3re 3D -->
-            <div class="carousel-slide next zoomable" data-index="2" onclick="handleSlideClick(2)">
-              <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Binaural iOS Studio Matrix">
-              <div class="zoom-hint">🔍</div>
-            </div>
+              <!-- Slide 2: V-Sph3re 3D -->
+              <div class="carousel-slide zoomable" data-index="2" onclick="handleSlideClick(2)">
+                <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Binaural iOS Studio Matrix">
+                <div class="zoom-hint">🔍</div>
+              </div>
 
+            </div>
           </div>
 
           <!-- Next Button -->
@@ -1477,7 +1446,6 @@
           <button class="carousel-dot" data-dot="2" aria-label="Slide 3"></button>
         </div>
 
-        <!-- PILLS / ARGUMENTS IN ONE HORIZONTAL ROW UNDER CAROUSEL (screen 3) -->
         <div class="hero-pills">
           <div class="hero-pill-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -2058,7 +2026,8 @@
       if (e.key === 'Escape') closeZoomModalDirect();
     });
 
-    // 3D CAROUSEL CONTROLLER
+    // RETINA CAROUSEL CONTROLLER (ABSOLUTELY CENTERED + 25% LARGER)
+    const track = document.getElementById('carouselTrack');
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const dots = Array.from(document.querySelectorAll('.carousel-dot'));
     const prevBtn = document.getElementById('prevBtn');
@@ -2066,20 +2035,16 @@
     const captionTitle = document.getElementById('captionTitle');
     const captionDesc = document.getElementById('captionDesc');
 
-    let currentIndex = 1; // Center Dual Deck
+    let currentIndex = 1; // Default to Center Dual Deck
     let autoPlayTimer = null;
 
     function handleSlideClick(idx) {
-      if (idx === currentIndex) {
-        const slide = slides[idx];
-        const img = slide.querySelector('img');
-        const caps = slideCaptions[currentLang] || slideCaptions.de;
-        const info = caps[idx] || {};
-        openZoomModal(img.src, info.title, info.desc);
-      } else {
-        updateCarousel(idx);
-        startAutoPlay();
-      }
+      const slide = slides[idx];
+      if (!slide) return;
+      const img = slide.querySelector('img');
+      const caps = slideCaptions[currentLang] || slideCaptions.de;
+      const info = caps[idx] || {};
+      openZoomModal(img.src, info.title, info.desc);
     }
 
     function updateCaption() {
@@ -2094,18 +2059,9 @@
       const total = slides.length;
       currentIndex = (newIndex + total) % total;
 
-      slides.forEach((slide, idx) => {
-        slide.classList.remove('active', 'prev', 'next', 'hidden');
-        if (idx === currentIndex) {
-          slide.classList.add('active');
-        } else if (idx === (currentIndex - 1 + total) % total) {
-          slide.classList.add('prev');
-        } else if (idx === (currentIndex + 1) % total) {
-          slide.classList.add('next');
-        } else {
-          slide.classList.add('hidden');
-        }
-      });
+      if (track) {
+        track.style.transform = `translateX(-${currentIndex * 33.333333}%)`;
+      }
 
       dots.forEach((dot, idx) => {
         dot.classList.toggle('active', idx === currentIndex);
@@ -2139,25 +2095,26 @@
       });
     });
 
-    // Touch Swipe Gestures on Carousel
-    const carouselEl = document.getElementById('carousel');
-    if (carouselEl) {
-      let touchStartX = 0;
-      let touchEndX = 0;
-      carouselEl.addEventListener('touchstart', e => {
+    // Touch Swipe Gestures on Carousel Viewport
+    const viewportEl = document.getElementById('carouselViewport');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (viewportEl) {
+      viewportEl.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
         stopAutoPlay();
       }, { passive: true });
 
-      carouselEl.addEventListener('touchend', e => {
+      viewportEl.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchStartX - touchEndX > 50) nextSlide();
-        if (touchEndX - touchStartX > 50) prevSlide();
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) nextSlide();
+          else prevSlide();
+        }
         startAutoPlay();
       }, { passive: true });
-
-      carouselEl.addEventListener('mouseenter', stopAutoPlay);
-      carouselEl.addEventListener('mouseleave', startAutoPlay);
     }
 
     // DYNAMIC BACKGROUND VIDEO SCROLL CROSSFADE
