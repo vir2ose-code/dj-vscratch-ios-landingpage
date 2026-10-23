@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions / AGB & Lizenz - DJ V-SCRATCH LIVE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+        :root {
+            --bg-dark: #030305;
+            --bg-card: rgba(18, 18, 24, 0.94);
+            --cyan-glow: #00D4FF;
+            --gold-accent: #beb376;
+            --text-main: #ECEFF1;
+            --text-muted: #94A3B8;
+            --border-color: rgba(157, 146, 87, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px 80px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(157, 146, 87, 0.12);\n            backdrop-filter: blur(16px);
+            position: relative;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #beb376;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+            color: #FFFFFF;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn:hover {
+            color: #FFFFFF;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #beb376, #9d9257);
+            color: #030305;
+            box-shadow: 0 0 12px rgba(157, 146, 87, 0.5);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #FFFFFF 30%, #cdc495 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: var(--gold-accent);
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        a {
+            color: #beb376;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-row">
+            <a href="index.html" class="back-link" data-i18n="back_link">&larr; Return to Home / Zurück zur Startseite</a>
+            <div class="lang-switch">
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('de')">EN</button>
+                <button class="lang-btn active" id="btn-de" onclick="setLanguage('de')">DE</button>
+                <button class="lang-btn" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+            </div>
+        </div>
+
+        <h1 data-i18n="title">Terms & Conditions / General Terms</h1>
+
+        <h2 data-i18n="sec1_title">1. Scope & Contracting Partner</h2>
+        <p data-i18n="sec1_content">
+            These General Terms and Conditions govern the purchase and licensing of the digital audio workstation software <strong>DJ V-SCRATCH LIVE 1.0</strong>.<br><br>
+            Our order process is conducted by our online reseller & Merchant of Record <strong>Paddle.com Inc. / Paddle Payments Limited</strong> (Judd House, 18-29 Mora Street, London, EC1V 8BT, United Kingdom). Paddle is the Merchant of Record for all orders placed through this website. When placing an order, the contract of sale is concluded directly with Paddle according to the <a href="https://www.paddle.com/legal/checkout-buyer-terms" target="_blank" rel="noopener">Paddle Checkout Buyer Terms</a>.
+        </p>
+
+        <h2 data-i18n="sec2_title">2. Product Description & Delivery</h2>
+        <p data-i18n="sec2_content">
+            The software product is a digital download package comprising the standalone DAW application <strong>DJ V-SCRATCH LIVE 1.0</strong>, integrated 3D spatial engines, and DSP effects suites as described on our website. Upon successful payment, license keys and download links are delivered digitally via email immediately through Paddle.
+        </p>
+
+        <h2 data-i18n="sec3_title">3. Pricing & Digital Taxes</h2>
+        <p data-i18n="sec3_content">
+            All listed prices are displayed in your local currency where supported and include applicable statutory sales taxes / VAT automatically calculated and remitted by Paddle based on your geographic location.
+        </p>
+
+        <h2 data-i18n="sec4_title">4. Free Trial & Refund Policy</h2>
+        <p data-i18n="sec4_content">
+            <strong>14-Day Free Evaluation:</strong> We provide a fully functional, unrestricted 14-day free trial so that you can evaluate and experience the performance, audio quality, and hardware compatibility of DJ V-SCRATCH LIVE on your system before making a purchase.<br><br>
+            <strong>Refunds:</strong> If you experience technical defects or unresolved incompatibilities with your licensed copy, refund requests are governed by Paddle's Buyer Terms. Please reach out to our technical support team at <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a> or directly to Paddle's buyer support (<a href="https://paddle.net" target="_blank" rel="noopener">paddle.net</a>).
+        </p>
+
+        <h2 data-i18n="sec5_title">5. Grant of License</h2>
+        <p data-i18n="sec5_content">
+            Purchasing a <strong>Lifetime License</strong> grants you a perpetual, non-exclusive, personal license to install and activate the software on your personal computer systems. Reverse engineering, unauthorized resale, or mass redistribution of license keys is prohibited.
+        </p>
+
+        <h2 data-i18n="sec6_title">6. Customer Support & Inquiries</h2>
+        <p data-i18n="sec6_content">
+            For product questions, technical inquiries, or MIDI/DSP controller setup support, please contact:<br>
+            <strong>vir2oseSOUND Hannover</strong><br>
+            Waldemar Krucinski (Dipl. Audio Engineer HOFA)<br>
+            E-Mail: <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a>
+        </p>
+
+        <div class="footer-note">
+            &copy; 2026 <strong>vir2oseSOUND Hannover</strong> • Waldemar Krucinski. <span data-i18n="rights">All rights reserved.</span>
+        </div>
+    </div>
+
+    <script>
+        const i18n = {
+            en: {
+                back_link: "← Return to Home",
+                title: "Terms & Conditions / General Terms",
+                sec1_title: "1. Scope & Contracting Partner",
+                sec1_content: "These General Terms and Conditions govern the purchase and licensing of the digital audio workstation software <strong>DJ V-SCRATCH LIVE 1.0</strong>.<br><br>Our order process is conducted by our online reseller & Merchant of Record <strong>Paddle.com Inc. / Paddle Payments Limited</strong> (Judd House, 18-29 Mora Street, London, EC1V 8BT, United Kingdom). Paddle is the Merchant of Record for all orders placed through this website. When placing an order, the contract of sale is concluded directly with Paddle according to the <a href='https://www.paddle.com/legal/checkout-buyer-terms' target='_blank' rel='noopener'>Paddle Checkout Buyer Terms</a>.",
+                sec2_title: "2. Product Description & Delivery",
+                sec2_content: "The software product is a digital download package comprising the standalone DAW application <strong>DJ V-SCRATCH LIVE 1.0</strong>, integrated 3D spatial engines, and DSP effects suites as described on our website. Upon successful payment, license keys and download links are delivered digitally via email immediately through Paddle.",
+                sec3_title: "3. Pricing & Digital Taxes",
+                sec3_content: "All listed prices are displayed in your local currency where supported and include applicable statutory sales taxes / VAT automatically calculated and remitted by Paddle based on your geographic location.",
+                sec4_title: "4. Free Trial & Refund Policy",
+                sec4_content: "<strong>14-Day Free Evaluation:</strong> We provide a fully functional, unrestricted 14-day free trial so that you can evaluate and experience the performance, audio quality, and hardware compatibility of DJ V-SCRATCH LIVE on your system before making a purchase.<br><br><strong>Refunds:</strong> If you experience technical defects or unresolved incompatibilities with your licensed copy, refund requests are governed by Paddle's Buyer Terms. Please reach out to our technical support team at <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a> or directly to Paddle's buyer support (<a href='https://paddle.net' target='_blank' rel='noopener'>paddle.net</a>).",
+                sec5_title: "5. Grant of License",
+                sec5_content: "Purchasing a <strong>Lifetime License</strong> grants you a perpetual, non-exclusive, personal license to install and activate the software on your personal computer systems. Reverse engineering, unauthorized resale, or mass redistribution of license keys is prohibited.",
+                sec6_title: "6. Customer Support & Inquiries",
+                sec6_content: "For product questions, technical inquiries, or MIDI/DSP controller setup support, please contact:<br><strong>vir2oseSOUND Hannover</strong><br>Waldemar Krucinski (Dipl. Audio Engineer HOFA)<br>E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>",
+                rights: "All rights reserved."
+            },
+            de: {
+                back_link: "← Zurück zur Startseite",
+                title: "Allgemeine Geschäftsbedingungen & Lizenzbestimmungen",
+                sec1_title: "1. Geltungsbereich und Vertragspartner",
+                sec1_content: "Diese Allgemeinen Geschäfts- und Lizenzbedingungen gelten für den Erwerb und die Nutzung der digitalen Audio-Workstation <strong>DJ V-SCRATCH LIVE 1.0</strong>.<br><br>Vertragspartner und offizieller Wiederverkäufer (Merchant of Record) für alle Käufe über diese Website ist <strong>Paddle</strong> (Paddle.com Inc. / Paddle Payments Limited, London, UK). Der Vertrag kommt nach den <a href='https://www.paddle.com/legal/checkout-buyer-terms' target='_blank' rel='noopener'>Paddle Checkout Buyer Terms</a> zustande.",
+                sec2_title: "2. Produkt und Bereitstellung",
+                sec2_content: "Das Produkt umfasst eine digitale Einzellizenz für die eigenständige DAW-Software <strong>DJ V-SCRATCH LIVE 1.0</strong> inklusive 3D Immersive Audio, DSP Suite und V-SCRATCH. Der Lizenzschlüssel und Downloadlink werden nach Abschluss der Zahlung unmittelbar digital per E-Mail durch Paddle bereitgestellt.",
+                sec3_title: "3. Preise und Steuern",
+                sec3_content: "Alle genannten Preise verstehen sich inklusive der anfallenden gesetzlichen Steuern und Mehrwertsteuern (VAT), die weltweit automatisch durch Paddle berechnet und abgeführt werden.",
+                sec4_title: "4. Testphase & Rückgaberecht",
+                sec4_content: "<strong>14-Tage kostenlose Testversion:</strong> Wir stellen eine uneingeschränkte 14-tägige Testversion bereit, damit Sie das System, die Performance und die Klangqualität vor einem Kauf unverbindlich prüfen können.<br><br><strong>Rückerstattungen:</strong> Rückerstattungen richten sich nach den Bestimmungen unseres Zahlungsdienstleisters Paddle. Bei Problemen steht Ihnen unser Support unter <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a> oder Paddle direkt (<a href='https://paddle.net' target='_blank' rel='noopener'>paddle.net</a>) zur Verfügung.",
+                sec5_title: "5. Lizenzumfang",
+                sec5_content: "Mit dem Kauf einer <strong>Lifetime License</strong> erhalten Sie ein dauerhaftes, nicht-exklusives Recht zur Installation und Nutzung auf Ihren persönlichen Computern. Ein Weiterverkauf oder die Veröffentlichung von Lizenzschlüsseln ist untersagt.",
+                sec6_title: "6. Kundensupport",
+                sec6_content: "Bei technischen Fragen oder Anregungen wenden Sie sich bitte an:<br><strong>vir2oseSOUND Hannover</strong><br>Waldemar Krucinski (Dipl. Audio Engineer HOFA)<br>E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>",
+                rights: "Alle Rechte vorbehalten."
+            },
+            pl: {
+                back_link: "← Powrót do strony głównej",
+                title: "Regulamin i Warunki Licencyjne",
+                sec1_title: "1. Zakres obowiązywania i strona umowy",
+                sec1_content: "Niniejszy regulamin określa zasady zakupu i licencjonowania cyfrowej stacji roboczej <strong>DJ V-SCRATCH LIVE 1.0</strong>.<br><br>Oficjalnym sprzedawcą i pośrednikiem handlowym (Merchant of Record) dla wszystkich transakcji w tym serwisie jest firma <strong>Paddle</strong> (Paddle.com Inc. / Paddle Payments Limited, Londyn, Wielka Brytania). Umowa zakupu zawierana jest bezpośrednio z firmą Paddle zgodnie z <a href='https://www.paddle.com/legal/checkout-buyer-terms' target='_blank' rel='noopener'>Regulaminem Kupującego Paddle (Buyer Terms)</a>.",
+                sec2_title: "2. Opis produktu i dostawa",
+                sec2_content: "Produkt stanowi cyfrowy pakiet oprogramowania DAW <strong>DJ V-SCRATCH LIVE 1.0</strong> z natywnym dźwiękiem immersyjnym 3D, pakietem wtyczek vir2ose DSP oraz sekwencerem perkusyjnym BeatCloud. Po opłaceniu zamówienia klucz licencyjny oraz łącza do pobrania instalatorów są wysyłane automatycznie na adres e-mail klienta przez firmę Paddle.",
+                sec3_title: "3. Ceny i podatki cyfrowe (VAT)",
+                sec3_content: "Wszystkie podane ceny zawierają należne podatki od towarów i usług (VAT), które są automatycznie naliczane i rozliczane przez firmę Paddle zgodnie z krajem kupującego.",
+                sec4_title: "4. Wersja próbna i polityka zwrotów",
+                sec4_content: "<strong>14-dniowy bezpłatny okres testowy:</strong> Udostępniamy w pełni funkcjonalną, bezpłatną 14-dniową wersję próbną (Free Trial), aby każdy użytkownik mógł dokładnie przetestować kompatybilność, stabilność i brzmienie przed zakupem.<br><br><strong>Zwroty:</strong> Reklamacje i wnioski o zwrot środków są rozpatrywane zgodnie z regulaminem kupującego firmy Paddle. W przypadku problemów technicznych zapraszamy do kontaktu z naszym wsparciem pod adresem <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a> lub bezpośrednio przez <a href='https://paddle.net' target='_blank' rel='noopener'>paddle.net</a>.",
+                sec5_title: "5. Udzielenie licencji",
+                sec5_content: "Zakup licencji <strong>Signature Lifetime VIP</strong> uprawnia do bezterminowego, osobistego korzystania z oprogramowania na własnych stacjach roboczych. Odsprzedaż lub publiczne udostępnianie kluczy licencyjnych jest zabronione.",
+                sec6_title: "6. Wsparcie klienta",
+                sec6_content: "W sprawach technicznych i konfiguracji sprzętu prosimy o kontakt:<br><strong>vir2oseSOUND Hannover</strong><br>Waldemar Kruciński (Dipl. Audio Engineer HOFA)<br>E-Mail: <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>",
+                rights: "Wszelkie prawa zastrzeżone."
+            }
+        };
+
+        function setLanguage(lang) {
+            if (!i18n[lang]) lang = 'en';
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) activeBtn.classList.add('active');
+            try { localStorage.setItem('vchannel_lang', lang); } catch (e) {}
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            let savedLang = 'en';
+            try {
+                const stored = localStorage.getItem('vchannel_lang');
+                if (stored && i18n[stored]) savedLang = stored;
+            } catch (e) {}
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

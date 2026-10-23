@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund & Cancellation Policy / Widerrufsbelehrung - DJ V-SCRATCH LIVE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+        :root {
+            --bg-dark: #030305;
+            --bg-card: rgba(18, 18, 24, 0.94);
+            --cyan-glow: #00D4FF;
+            --gold-accent: #beb376;
+            --text-main: #ECEFF1;
+            --text-muted: #94A3B8;
+            --border-color: rgba(157, 146, 87, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px 80px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(157, 146, 87, 0.12);\n            backdrop-filter: blur(16px);
+            position: relative;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #beb376;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+            color: #FFFFFF;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .lang-btn:hover {
+            color: #FFFFFF;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #beb376, #9d9257);
+            color: #030305;
+            box-shadow: 0 0 12px rgba(157, 146, 87, 0.5);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #FFFFFF 30%, #cdc495 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: var(--gold-accent);
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        a {
+            color: #beb376;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-row">
+            <a href="index.html" class="back-link" data-i18n="back_link">&larr; Return to Home / Zurück zur Startseite</a>
+            <div class="lang-switch">
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('de')">EN</button>
+                <button class="lang-btn active" id="btn-de" onclick="setLanguage('de')">DE</button>
+                <button class="lang-btn" id="btn-pl" onclick="setLanguage('pl')">PL</button>
+            </div>
+        </div>
+
+        <h1 data-i18n="title">Refund & Cancellation Policy</h1>
+
+        <h2 data-i18n="sec1_title">1. Try Before You Buy: 14-Day Free Evaluation</h2>
+        <p data-i18n="sec1_content">
+            We believe in complete transparency and product excellence. We provide an unrestricted, fully functional <strong>14-Day Free Trial</strong> of <em>DJ V-SCRATCH LIVE 1.0</em>. We strongly encourage all users to download and evaluate the software on their specific hardware configuration, audio interface (ASIO/WASAPI), and operating system prior to purchasing a lifetime license.
+        </p>
+
+        <h2 data-i18n="sec2_title">2. Merchant of Record & Refund Handling</h2>
+        <p data-i18n="sec2_content">
+            All customer purchases on this website are processed by our authorized Merchant of Record, <strong>Paddle.com Inc. / Paddle Payments Limited</strong>. Consequently, all refund requests and payment disputes are governed by Paddle's Buyer Terms.<br><br>
+            If you encounter unexpected technical incompatibilities, licensing issues, or software defects that our technical support team cannot resolve, you are entitled to request a refund according to <a href="https://www.paddle.com/legal/checkout-buyer-terms" target="_blank" rel="noopener">Paddle's Refund and Buyer Protection Policies</a>.
+        </p>
+
+        <h2 data-i18n="sec3_title">3. How to Request Support or a Refund</h2>
+        <p data-i18n="sec3_content">
+            If you need technical assistance or wish to submit a refund inquiry, please follow these steps:
+        </p>
+        <ul data-i18n="sec3_list">
+            <li><strong>Step 1 (Technical Support):</strong> Contact us directly at <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a> with your order number and a brief description of the issue. We often resolve audio driver or MIDI mapping questions within hours.</li>
+            <li><strong>Step 2 (Paddle Buyer Support):</strong> You can also contact Paddle directly 24/7 at <a href="https://paddle.net" target="_blank" rel="noopener">paddle.net</a> or via email at <a href="mailto:help@paddle.com">help@paddle.com</a> to retrieve receipts, manage licenses, or submit a refund claim.</li>
+        </ul>
+
+        <h2 data-i18n="sec4_title">4. Statutory Rights</h2>
+        <p data-i18n="sec4_content">
+            Nothing in this policy affects your statutory consumer rights under applicable laws in your jurisdiction (including EU consumer rights where applicable).
+        </p>
+
+        <div class="footer-note">
+            &copy; 2026 <strong>vir2oseSOUND Hannover</strong> • Waldemar Krucinski. <span data-i18n="rights">All rights reserved.</span>
+        </div>
+    </div>
+
+    <script>
+        const i18n = {
+            en: {
+                back_link: "← Return to Home",
+                title: "Refund & Cancellation Policy",
+                sec1_title: "1. Try Before You Buy: 14-Day Free Evaluation",
+                sec1_content: "We believe in complete transparency and product excellence. We provide an unrestricted, fully functional <strong>14-Day Free Trial</strong> of <em>DJ V-SCRATCH LIVE 1.0</em>. We strongly encourage all users to download and evaluate the software on their specific hardware configuration, audio interface (ASIO/WASAPI), and operating system prior to purchasing a lifetime license.",
+                sec2_title: "2. Merchant of Record & Refund Handling",
+                sec2_content: "All customer purchases on this website are processed by our authorized Merchant of Record, <strong>Paddle.com Inc. / Paddle Payments Limited</strong>. Consequently, all refund requests and payment disputes are governed by Paddle's Buyer Terms.<br><br>If you encounter unexpected technical incompatibilities, licensing issues, or software defects that our technical support team cannot resolve, you are entitled to request a refund according to <a href='https://www.paddle.com/legal/checkout-buyer-terms' target='_blank' rel='noopener'>Paddle's Refund and Buyer Protection Policies</a>.",
+                sec3_title: "3. How to Request Support or a Refund",
+                sec3_content: "If you need technical assistance or wish to submit a refund inquiry, please follow these steps:",
+                sec3_list: "<li><strong>Step 1 (Technical Support):</strong> Contact us directly at <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a> with your order number and a brief description of the issue. We often resolve audio driver or MIDI mapping questions within hours.</li><li><strong>Step 2 (Paddle Buyer Support):</strong> You can also contact Paddle directly 24/7 at <a href='https://paddle.net' target='_blank' rel='noopener'>paddle.net</a> or via email at <a href='mailto:help@paddle.com'>help@paddle.com</a> to retrieve receipts, manage licenses, or submit a refund claim.</li>",
+                sec4_title: "4. Statutory Rights",
+                sec4_content: "Nothing in this policy affects your statutory consumer rights under applicable laws in your jurisdiction (including EU consumer rights where applicable).",
+                rights: "All rights reserved."
+            },
+            de: {
+                back_link: "← Zurück zur Startseite",
+                title: "Rückgabe- & Erstattungsrichtlinie",
+                sec1_title: "1. Erst testen, dann kaufen: 14-Tage Testversion",
+                sec1_content: "Wir stehen für kompromisslose Qualität und Transparenz. Daher stellen wir eine uneingeschränkte, voll funktionsfähige <strong>14-Tage-Testversion</strong> von <em>DJ V-SCRATCH LIVE 1.0</em> bereit. Wir empfehlen allen Nutzern ausdrücklich, die Software vor dem Kauf auf ihrem System und Audio-Interface (ASIO/WASAPI) ausgiebig zu testen.",
+                sec2_title: "2. Zahlungsabwickler & Erstattungsregelung (Paddle)",
+                sec2_content: "Alle Käufe werden über unseren autorisierten Merchant of Record <strong>Paddle.com Inc. / Paddle Payments Limited</strong> abgewickelt. Erstattungsanfragen richten sich nach den offiziellen Käuferbestimmungen von Paddle.<br><br>Sollten unvorhergesehene technische Inkompatibilitäten oder Lizenzfehler auftreten, die unser Support nicht lösen kann, haben Sie das Recht auf Erstattung gemäß den <a href='https://www.paddle.com/legal/checkout-buyer-terms' target='_blank' rel='noopener'>Paddle Buyer Terms</a>.",
+                sec3_title: "3. Ablauf bei Support- oder Erstattungsanfragen",
+                sec3_content: "Wenn Sie Hilfe benötigen oder eine Rückerstattung beantragen möchten, gehen Sie wie folgt vor:",
+                sec3_list: "<li><strong>Schritt 1 (Technischer Support):</strong> Schreiben Sie an <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a> unter Angabe Ihrer Bestellnummer. Technische Treiber- oder MIDI-Fragen können wir meist umgehend klären.</li><li><strong>Schritt 2 (Paddle Kundenservice):</strong> Sie können sich jederzeit rund um die Uhr direkt an Paddle wenden unter <a href='https://paddle.net' target='_blank' rel='noopener'>paddle.net</a> oder per E-Mail an <a href='mailto:help@paddle.com'>help@paddle.com</a>.</li>",
+                sec4_title: "4. Gesetzliche Rechte",
+                sec4_content: "Ihre gesetzlichen Verbraucherrechte nach geltendem Recht (insbesondere im EU-Raum) bleiben von diesen Bestimmungen unberührt.",
+                rights: "Alle Rechte vorbehalten."
+            },
+            pl: {
+                back_link: "← Powrót do strony głównej",
+                title: "Polityka Zwrotów i Reklamacji",
+                sec1_title: "1. Przetestuj przed zakupem: 14-dniowy okres próbny",
+                sec1_content: "Zapewniamy pełną przejrzystość. Udostępniamy w pełni funkcjonalną, bezpłatną <strong>14-dniową wersję próbną</strong> stacji roboczej <em>DJ V-SCRATCH LIVE 1.0</em>. Zachęcamy każdego użytkownika do przetestowania programu na swoim sprzęcie przed zakupem licencji wieczystej.",
+                sec2_title: "2. Pośrednik płatności & obsługa zwrotów (Paddle)",
+                sec2_content: "Wszystkie transakcje są obsługiwane przez oficjalnego pośrednika handlowego <strong>Paddle.com Inc. / Paddle Payments Limited</strong>. Zasady zwrotów i reklamacji podlegają regulaminowi kupującego Paddle.<br><br>W przypadku nierozwiązanych problemów technicznych lub błędów licencyjnych przysługuje prawo do zwrotu zgodnie z <a href='https://www.paddle.com/legal/checkout-buyer-terms' target='_blank' rel='noopener'>Regulaminem Kupującego Paddle (Buyer Terms)</a>.",
+                sec3_title: "3. Jak zgłosić problem lub wniosek o zwrot",
+                sec3_content: "W celu uzyskania pomocy technicznej lub zgłoszenia zwrotu:",
+                sec3_list: "<li><strong>Krok 1 (Wsparcie techniczne):</strong> Skontaktuj się z nami pod adresem <a href='mailto:vir2ose@gmail.com'>vir2ose@gmail.com</a>, podając numer zamówienia. Zwykle rozwiązujemy problemy konfiguracyjne w ciągu kilku godzin.</li><li><strong>Krok 2 (Obsługa klienta Paddle):</strong> Możesz również skontaktować się bezpośrednio z firmą Paddle 24/7 na stronie <a href='https://paddle.net' target='_blank' rel='noopener'>paddle.net</a> lub e-mailem na <a href='mailto:help@paddle.com'>help@paddle.com</a>.</li>",
+                sec4_title: "4. Prawa ustawowe",
+                sec4_content: "Żadne z postanowień niniejszej polityki nie narusza ustawowych praw konsumenta wynikających z obowiązujących przepisów prawa.",
+                rights: "Wszelkie prawa zastrzeżone."
+            }
+        };
+
+        function setLanguage(lang) {
+            if (!i18n[lang]) lang = 'en';
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) activeBtn.classList.add('active');
+            try { localStorage.setItem('vchannel_lang', lang); } catch (e) {}
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            let savedLang = 'en';
+            try {
+                const stored = localStorage.getItem('vchannel_lang');
+                if (stored && i18n[stored]) savedLang = stored;
+            } catch (e) {}
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

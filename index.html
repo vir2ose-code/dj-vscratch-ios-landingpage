@@ -316,7 +316,7 @@
       text-shadow: 0 0 16px rgba(197, 160, 89, 0.15);
     }
 
-    /* 3D CAROUSEL SECTION: EXACT IPHONE PROPORTIONS (NO CROPPING) */
+    /* 3D CAROUSEL SECTION: EXACT IPHONE PROPORTIONS 2556x1179 (NO CROPPING) */
     .carousel-section {
       position: relative;
       z-index: 10;
@@ -331,7 +331,7 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      height: 380px; /* Refined height so background animation breathes! */
+      height: 380px;
       perspective: 1200px;
       display: flex;
       align-items: center;
@@ -357,7 +357,6 @@
       transform-style: preserve-3d;
     }
 
-    /* EXACT 2556 x 1179 iPhone aspect ratio with no cropping */
     .carousel-slide {
       position: absolute;
       width: 55%;
@@ -379,12 +378,11 @@
     .carousel-slide img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Full width & height, zero side cut! */
+      object-fit: contain;
       display: block;
       pointer-events: none;
     }
 
-    /* 3D Slide States: subtle and laid nicely into the background */
     .carousel-slide.active {
       transform: translateX(0) translateZ(25px) scale(1);
       opacity: 1;
@@ -546,7 +544,132 @@
       transform: translateY(-1px);
     }
 
-    /* ZOOMABLE INTERACTIVE ELEMENTS (Screens 2 + 3) */
+    /* UNIVERSAL EDITION 3D BOX SHOWCASE SECTION (Screen 4) */
+    .box-showcase-section {
+      padding: 75px 6% 35px;
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .box-showcase-container {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 42px 48px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 40px rgba(197, 160, 89, 0.15);
+      backdrop-filter: blur(18px);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    @media (max-width: 960px) {
+      .box-showcase-container {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+        gap: 30px;
+      }
+    }
+
+    .box-showcase-visual {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, rgba(197, 160, 89, 0.12) 0%, rgba(0,0,0,0.8) 75%);
+      padding: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .box-mockup-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.95));
+      transition: transform 0.4s ease;
+    }
+
+    .box-showcase-visual:hover .box-mockup-img {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .box-showcase-content h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.25;
+      letter-spacing: 0.8px;
+    }
+
+    .box-showcase-content p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .box-cta-row {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-appstore-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 24px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1b212f 0%, #0c0f16 100%);
+      border: 1.5px solid var(--gold-primary);
+      color: #fff !important;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px var(--gold-glow);
+      transition: all 0.25s ease;
+    }
+
+    .btn-appstore-hero:hover {
+      background: var(--gold-primary);
+      color: #07080c !important;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 30px var(--gold-glow);
+    }
+
+    .btn-appstore-hero svg {
+      flex-shrink: 0;
+    }
+
+    .btn-appstore-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .btn-appstore-text small {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-appstore-text span {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ZOOMABLE INTERACTIVE ELEMENTS */
     .zoomable {
       cursor: zoom-in;
       position: relative;
@@ -574,6 +697,7 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
       pointer-events: none;
       z-index: 5;
+      font-size: 0.8rem;
     }
 
     .zoomable:hover .zoom-hint {
@@ -675,9 +799,9 @@
       transform: scale(1.1);
     }
 
-    /* FLAGSHIP SHOWCASE SECTION (Screen 4: The Heart of Modern Turntablism) */
+    /* FLAGSHIP SHOWCASE SECTION (Screen 5: All 3 Engines, including V-SPH3RE 3D) */
     .flagship-section {
-      padding: 85px 6% 40px;
+      padding: 70px 6% 40px;
       max-width: 1240px;
       margin: 0 auto;
       position: relative;
@@ -722,14 +846,22 @@
       border: 1px solid var(--border-subtle);
       box-shadow: 0 18px 45px rgba(0,0,0,0.9);
       background: #000;
+      aspect-ratio: 2556 / 1179;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .flagship-img img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.4s ease;
+    }
+
+    .flagship-card:hover .flagship-img img {
+      transform: scale(1.02);
     }
 
     .badge-tag {
@@ -783,7 +915,7 @@
       font-size: 0.75rem;
     }
 
-    /* TOOLS & WORKFLOW SECTION (Screen 5: Engineered for Total Workflow) */
+    /* TOOLS & WORKFLOW SECTION */
     .tools-section {
       padding: 60px 6% 75px;
       max-width: 1240px;
@@ -1066,16 +1198,38 @@
       transform: translateY(-2px);
     }
 
-    /* FOOTER WITH LEGAL LINKS */
+    /* FOOTER WITH COMPREHENSIVE LEGAL & ADDRESS (Screen 1) */
     footer {
-      padding: 40px 6% 30px;
+      padding: 45px 6% 35px;
       text-align: center;
       border-top: 1px solid var(--border-subtle);
-      color: #64748b;
-      font-size: 0.8rem;
+      color: #94a3b8;
+      font-size: 0.82rem;
       position: relative;
       z-index: 2;
       background: #050608;
+    }
+
+    .footer-legal-header {
+      margin-bottom: 14px;
+    }
+
+    .footer-author {
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-author strong {
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    .footer-address {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      letter-spacing: 0.4px;
     }
 
     .footer-links {
@@ -1083,8 +1237,8 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin: 16px 0 14px;
     }
 
     .footer-links a {
@@ -1100,7 +1254,14 @@
 
     .footer-sep {
       color: #334155;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-reseller {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 6px;
+      letter-spacing: 0.2px;
     }
 
     footer a {
@@ -1155,6 +1316,7 @@
     </a>
     <nav>
       <a href="#showcase" data-i18n="nav_showcase">3D Showcase</a>
+      <a href="#edition" data-i18n="nav_edition">Edition</a>
       <a href="#features" data-i18n="nav_features">Funktionen</a>
       <a href="#workflow" data-i18n="nav_workflow">Workflow</a>
       <a href="#specs" data-i18n="nav_specs">Spezifikationen</a>
@@ -1281,7 +1443,41 @@
 
     </section>
 
-    <!-- FLAGSHIP SHOWCASE SECTION (Screen 4: The Heart of Modern Turntablism) -->
+    <!-- UNIVERSAL EDITION 3D BOX SHOWCASE SECTION (Screen 4: Werbe-Schachtel) -->
+    <section class="box-showcase-section" id="edition">
+      <div class="box-showcase-container">
+        <div class="box-showcase-visual zoomable" onclick="openZoomModal('assets/box_3d_edition.jpg', 'DJ V-SCRATCH LIVE | iOS &amp; iPadOS Edition', 'Universal Purchase – Einmal kaufen, uneingeschränkt auf iPad und iPhone nutzen.')">
+          <img src="assets/box_3d_edition.jpg" alt="DJ V-SCRATCH LIVE iOS &amp; iPadOS Box Edition" class="box-mockup-img" loading="lazy">
+          <div class="zoom-hint">🔍</div>
+        </div>
+        <div class="box-showcase-content">
+          <span class="badge-tag" data-i18n="box_badge">UNIVERSAL PURCHASE &middot; NO SUBSCRIPTION</span>
+          <h2 data-i18n="box_title">Einmal kaufen. Für immer besitzen. Auf iPad &amp; iPhone.</h2>
+          <p data-i18n="box_desc">
+            Keine monatlichen Abo-Gebühren. Volle Hardware- und Touch-Freiheit. Mit einem einzigen Kauf im Apple App Store steht Ihnen die komplette DJ V-SCRATCH LIVE Studio-Suite sowohl auf dem iPad als auch auf dem iPhone uneingeschränkt zur Verfügung.
+          </p>
+          <ul class="flagship-bullets">
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="box_b1">Universal Purchase: Ein Lizenz-Erwerb für alle Ihre iOS &amp; iPadOS Geräte</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="box_b2">100% Offline-fähig: Volle Audio-Engine ohne permanente Internetverbindung</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="box_b3">Inklusive aller Performance-Module: Dual-Deck, V-Chopper &amp; V-SPH3RE 3D</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="box_b4">Kostenlose Updates &amp; optimiert für neueste iOS 18 Apple Silicon DSP</span></li>
+          </ul>
+          <div class="box-cta-row">
+            <a href="#download" class="btn-appstore-hero">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.64-.78 1.08-1.86.96-2.95-1 .04-2.16.66-2.83 1.45-.59.68-1.12 1.79-.98 2.85 1.12.09 2.22-.57 2.85-1.35z"/>
+              </svg>
+              <div class="btn-appstore-text">
+                <small data-i18n="appstore_badge_sub">Erhältlich im</small>
+                <span>Apple App Store</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLAGSHIP SHOWCASE SECTION (Screen 5: All 3 Engines, including V-SPH3RE 3D) -->
     <section class="flagship-section" id="features">
       
       <div class="section-header">
@@ -1333,9 +1529,30 @@
         </div>
       </div>
 
+      <!-- Card 3: V-SPH3RE 3D Binaural Matrix (Screen 5: PROMINENTLY BROUGHT TO THE FRONT) -->
+      <div class="flagship-card">
+        <div class="flagship-img zoomable" onclick="openZoomModal('assets/screen_vsph3re.png', 'V-SPH3RE 3D Binaural Matrix', 'Pionierhafte räumliche 3D-Klangpositionierung mit physikalischer HRTF-Echtzeitfilterung.')">
+          <img src="assets/screen_vsph3re.png" alt="V-SPH3RE 3D Binaural Studio Matrix" loading="lazy">
+          <div class="zoom-hint">🔍</div>
+        </div>
+        <div class="flagship-body">
+          <span class="badge-tag" data-i18n="c3_tag">SPATIAL &amp; BINAURAL AUDIO</span>
+          <h3 data-i18n="c3_title">V-SPH3RE 3D Binaural Matrix</h3>
+          <p data-i18n="c3_desc">
+            Pionierhafte räumliche 3D-Klangpositionierung mit physikalischer HRTF-Echtzeitfilterung. Platzieren Sie Ihre virtuellen Turntables und Audioquellen frei im sphärischen 360°-Klangraum für atemberaubende Räumlichkeit über Kopfhörer und Monitore.
+          </p>
+          <ul class="flagship-bullets">
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c3_b1">Echtzeit-HRTF Binaural-Audio-Filterung für alle Kopfhörer</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c3_b2">Interaktive 360° Sphären-Positionierung mit intuitiver Touch-Geste</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c3_b3">Dedizierter Azimuth-, Elevations- &amp; Distanz-Matrix-Controller</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c3_b4">Verlustfreie 64-Bit Float Spatial-Rendering Engine</span></li>
+          </ul>
+        </div>
+      </div>
+
     </section>
 
-    <!-- TOOLS & WORKFLOW SECTION (Screen 5: Engineered for Total Workflow) -->
+    <!-- TOOLS & WORKFLOW SECTION -->
     <section class="tools-section" id="workflow">
       <div class="section-header">
         <span class="section-tag" data-i18n="tools_tag">STUDIO-ERWEITERUNGEN</span>
@@ -1504,17 +1721,27 @@
     </div>
   </div>
 
-  <!-- FOOTER WITH LEGAL LINKS (IMPRESSUM & DATENSCHUTZ AUS SHOP-SEITE) -->
+  <!-- FOOTER WITH LEGAL LINKS & ADDRESS (Screen 1) -->
   <footer>
+    <div class="footer-legal-header">
+      <p class="footer-author">&copy; 2026 <strong>vir2oseSOUND</strong> &middot; Waldemar Krucinski (Dipl. Audio Engineer HOFA)</p>
+      <p class="footer-address">Lippertweg 3 &middot; 30419 Hannover, Germany</p>
+    </div>
     <div class="footer-links">
       <a href="impressum.html" data-i18n="footer_imprint">Impressum</a>
-      <span class="footer-sep">•</span>
+      <span class="footer-sep">&middot;</span>
       <a href="datenschutz.html" data-i18n="footer_privacy">Datenschutzerklärung</a>
-      <span class="footer-sep">•</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="agb.html" data-i18n="footer_terms">Allgemeine Geschäftsbedingungen &amp; Lizenzbestimmungen</a>
+      <span class="footer-sep">&middot;</span>
+      <a href="refund.html" data-i18n="footer_refund">Rückgabe- &amp; Erstattungsrichtlinie</a>
+      <span class="footer-sep">&middot;</span>
       <a href="mailto:studio@waldemar-krucinski.com">studio@waldemar-krucinski.com</a>
     </div>
-    <p data-i18n="footer_copy">&copy; 2026 Waldemar Krucinski | vir2oseSOUND. Alle Rechte vorbehalten.</p>
-    <p style="margin-top: 6px; font-size: 0.76rem; color: #52525b;">
+    <p class="footer-reseller" data-i18n="footer_reseller">
+      Authorized Reseller &amp; Merchant of Record: Paddle.com Market Ltd. &middot; Buy it once, own it forever.
+    </p>
+    <p style="margin-top: 8px; font-size: 0.74rem; color: #475569;">
       Official iOS Subdomain: <a href="https://ios.waldemar-krucinski.com">ios.waldemar-krucinski.com</a>
     </p>
   </footer>
@@ -1525,6 +1752,7 @@
     const translations = {
       de: {
         nav_showcase: '3D-Vorschau',
+        nav_edition: 'Edition',
         nav_features: 'Funktionen',
         nav_workflow: 'Workflow',
         nav_specs: 'Spezifikationen',
@@ -1536,6 +1764,14 @@
         pill_dsp: '< 5MS COREAUDIO DSP',
         pill_hardware: 'STANDALONE HARDWARE-KONSOLE',
         pill_midi: 'USB- & MIDI-CONTROLLER READY',
+        box_badge: 'UNIVERSAL PURCHASE · KEIN ABONNEMENT',
+        box_title: 'Einmal kaufen. Für immer besitzen. Auf iPad & iPhone.',
+        box_desc: 'Keine monatlichen Abo-Gebühren. Volle Hardware- und Touch-Freiheit. Mit einem einzigen Kauf im Apple App Store steht Ihnen die komplette DJ V-SCRATCH LIVE Studio-Suite sowohl auf dem iPad als auch auf dem iPhone uneingeschränkt zur Verfügung.',
+        box_b1: 'Universal Purchase: Ein Lizenz-Erwerb für alle Ihre iOS & iPadOS Geräte',
+        box_b2: '100% Offline-fähig: Volle Audio-Engine ohne permanente Internetverbindung',
+        box_b3: 'Inklusive aller Performance-Module: Dual-Deck, V-Chopper & V-SPH3RE 3D',
+        box_b4: 'Kostenlose Updates & optimiert für neueste iOS 18 Apple Silicon DSP',
+        appstore_badge_sub: 'Erhältlich im',
         flagship_tag: 'VIR2OSESOUND FLAGSHIP',
         flagship_title: 'Das Herzstück modernen Turntablisms',
         flagship_desc: 'Von Grund auf für latenzfreies Vinyl-Scratching, präzises Beat-Matching und unmittelbare taktile Touch-Performance auf iPad und iPhone entwickelt.',
@@ -1552,6 +1788,13 @@
         c2_b1: 'Automatische Transienten- & Grid-Beat-Zerschneidung',
         c2_b2: 'Randomizer & Re-Arranger für spontane Live-Remixe',
         c2_b3: 'Glitchfreies Waveform-Scrubbing & Stereo-Bed-Routing',
+        c3_tag: 'SPATIAL & BINAURAL AUDIO',
+        c3_title: 'V-SPH3RE 3D Binaural Matrix',
+        c3_desc: 'Pionierhafte räumliche 3D-Klangpositionierung mit physikalischer HRTF-Echtzeitfilterung. Platzieren Sie Ihre virtuellen Turntables und Audioquellen frei im sphärischen 360°-Klangraum für atemberaubende Räumlichkeit über Kopfhörer und Monitore.',
+        c3_b1: 'Echtzeit-HRTF Binaural-Audio-Filterung für alle Kopfhörer',
+        c3_b2: 'Interaktive 360° Sphären-Positionierung mit intuitiver Touch-Geste',
+        c3_b3: 'Dedizierter Azimuth-, Elevations- & Distanz-Matrix-Controller',
+        c3_b4: 'Verlustfreie 64-Bit Float Spatial-Rendering Engine',
         tools_tag: 'STUDIO-ERWEITERUNGEN',
         tools_title: 'Entwickelt für den perfekten Workflow',
         tools_desc: 'Jedes Werkzeug der vir2oseSOUND-Suite wurde penibel für Übersicht, blindes Muskelgedächtnis und absolute Zuverlässigkeit auf der Bühne konzipiert.',
@@ -1583,10 +1826,14 @@
         sup_desc: 'Haben Sie Fragen zur Kompatibilität, Controller-Mapping oder Feature-Wünschen? Schreiben Sie direkt an unser Audio-Labor:',
         footer_imprint: 'Impressum',
         footer_privacy: 'Datenschutzerklärung',
+        footer_terms: 'Allgemeine Geschäftsbedingungen & Lizenzbestimmungen',
+        footer_refund: 'Rückgabe- & Erstattungsrichtlinie',
+        footer_reseller: 'Authorized Reseller & Merchant of Record: Paddle.com Market Ltd. · Buy it once, own it forever.',
         footer_copy: '© 2026 Waldemar Krucinski | vir2oseSOUND. Alle Rechte vorbehalten.'
       },
       en: {
         nav_showcase: '3D Showcase',
+        nav_edition: 'Edition',
         nav_features: 'Features',
         nav_workflow: 'Workflow',
         nav_specs: 'Specifications',
@@ -1598,6 +1845,14 @@
         pill_dsp: '< 5MS COREAUDIO DSP',
         pill_hardware: 'STANDALONE HARDWARE CONSOLE',
         pill_midi: 'USB & MIDI CONTROLLER READY',
+        box_badge: 'UNIVERSAL PURCHASE · NO SUBSCRIPTION',
+        box_title: 'Buy once. Own forever. On iPad & iPhone.',
+        box_desc: 'No monthly subscriptions. Full hardware and touch freedom. With a single purchase on the Apple App Store, the entire DJ V-SCRATCH LIVE studio suite is yours across both iPad and iPhone.',
+        box_b1: 'Universal Purchase: One license for all your iOS & iPadOS devices',
+        box_b2: '100% Offline Capable: Full audio engine without mandatory internet connectivity',
+        box_b3: 'Includes all performance suites: Dual-Deck, V-Chopper & V-SPH3RE 3D',
+        box_b4: 'Free lifetime updates & optimized for iOS 18 Apple Silicon DSP',
+        appstore_badge_sub: 'Download on the',
         flagship_tag: 'VIR2OSESOUND FLAGSHIP',
         flagship_title: 'The Heart of Modern Turntablism',
         flagship_desc: 'Engineered from the ground up for zero-latency vinyl scratching, precision beat-matching, and tactile live performance on iPad and iPhone.',
@@ -1614,6 +1869,13 @@
         c2_b1: 'Automatic Transient & Grid Beat Slicing',
         c2_b2: 'Randomizer & Re-Arranger for Instant Remixing',
         c2_b3: 'Zero-Glitch Waveform Scrubbing & Stereo Bed Routing',
+        c3_tag: 'SPATIAL & BINAURAL AUDIO',
+        c3_title: 'V-SPH3RE 3D Binaural Matrix',
+        c3_desc: 'Pioneering 3D spatial audio positioning with real-time HRTF algorithms. Place your virtual turntables anywhere in a 360° spherical acoustic room for breathtaking headphone and monitor imaging.',
+        c3_b1: 'Real-Time HRTF Binaural Spatialization for all headphones',
+        c3_b2: 'Interactive 360° Spherical Positioning with intuitive touch gestures',
+        c3_b3: 'Dedicated Azimuth, Elevation & Distance matrix controls',
+        c3_b4: 'Lossless 64-Bit Float Spatial Soundstage Engine',
         tools_tag: 'SUITE EXTENSIONS',
         tools_title: 'Engineered for Total Workflow',
         tools_desc: 'Every tool in the vir2oseSOUND suite is meticulously crafted for clarity, rapid muscle memory, and flawless performance on stage.',
@@ -1643,8 +1905,11 @@
         spec_val_sub: '100% Perpetual (No Subscription)',
         sup_title: 'Studio Support & Official Inquiries',
         sup_desc: 'Have questions regarding compatibility, controller mapping, or feature requests? Reach out directly to our audio lab:',
-        footer_imprint: 'Imprint',
+        footer_imprint: 'Imprint / Legal Notice',
         footer_privacy: 'Privacy Policy',
+        footer_terms: 'Terms & Conditions',
+        footer_refund: 'Refund Policy',
+        footer_reseller: 'Authorized Reseller & Merchant of Record: Paddle.com Market Ltd. · Buy it once, own it forever.',
         footer_copy: '© 2026 Waldemar Krucinski | vir2oseSOUND. All rights reserved.'
       }
     };
@@ -1732,7 +1997,6 @@
 
     function handleSlideClick(idx) {
       if (idx === currentIndex) {
-        // Zoom active slide into full view!
         const slide = slides[idx];
         const img = slide.querySelector('img');
         const caps = slideCaptions[currentLang] || slideCaptions.de;
@@ -1822,7 +2086,7 @@
       carouselEl.addEventListener('mouseleave', startAutoPlay);
     }
 
-    // DYNAMIC BACKGROUND VIDEO SCROLL CROSSFADE (from turntablism.waldemar-krucinski.com)
+    // DYNAMIC BACKGROUND VIDEO SCROLL CROSSFADE
     const bgVideos = [
       document.getElementById('bgVideo1'),
       document.getElementById('bgVideo2'),
