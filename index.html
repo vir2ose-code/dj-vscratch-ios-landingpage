@@ -2,305 +2,1314 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJ V-SCRATCH LIVE Studio – iOS & iPadOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>DJ V-SCRATCH LIVE Studio | iOS & iPadOS Turntablism Pro</title>
+  <meta name="description" content="Authentic touch turntablism and digital DJ performance powered by custom C++/JUCE CoreAudio DSP for iPad and iPhone. Zero subscription.">
+  <meta name="keywords" content="DJ App, iPad DJ, iPhone DJ, Turntablism, V-Scratch, 3D Immersive Audio, V-SPH3RE, V-Chopper, CoreAudio, JUCE, vir2oseSOUND">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="DJ V-SCRATCH LIVE Studio | iOS & iPadOS">
+  <meta property="og:description" content="Next-Gen Mobile Turntablism. Dual High-Precision Decks, V-Chopper, V-SPH3RE 3D Binaural Matrix & Low Latency CoreAudio DSP.">
+  <meta property="og:image" content="assets/screen_dual_deck.png">
+  <meta property="og:url" content="https://ios.waldemar-krucinski.com">
+  <meta name="theme-color" content="#07080c">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/app_icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #09090b;
-      --card-bg: rgba(18, 18, 24, 0.85);
-      --accent-pink: #d946ef;
-      --accent-cyan: #06b6d4;
-      --accent-gold: #eab308;
-      --text: #f4f4f5;
-      --text-muted: #a1a1aa;
-      --border: rgba(255, 255, 255, 0.1);
+      --bg-dark: #07080c;
+      --bg-panel: rgba(14, 17, 24, 0.78);
+      --bg-card: rgba(16, 20, 29, 0.82);
+      --gold-primary: #c5a059;
+      --gold-bright: #ffe599;
+      --gold-glow: rgba(197, 160, 89, 0.45);
+      --cyan-accent: #00d4ff;
+      --cyan-glow: rgba(0, 212, 255, 0.4);
+      --pink-accent: #ff0077;
+      --text-main: #f5f5f7;
+      --text-muted: #9aa1b2;
+      --border-gold: rgba(197, 160, 89, 0.28);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
       line-height: 1.6;
-      background-image: 
-        radial-gradient(ellipse at 50% -20%, rgba(217, 70, 239, 0.18), transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.12), transparent 50%);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
 
+    /* Ambient Background Auras */
+    .ambient-aurora {
+      position: fixed;
+      top: -10vw;
+      left: 15vw;
+      width: 70vw;
+      height: 40vw;
+      background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.12) 0%, rgba(0, 212, 255, 0.06) 45%, transparent 70%);
+      pointer-events: none;
+      filter: blur(90px);
+      z-index: 0;
+    }
+
+    /* Global Navigation */
     header {
-      padding: 24px 8%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      background: rgba(7, 8, 12, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+      z-index: 1000;
+      transition: all 0.3s ease;
     }
 
-    .brand {
-      font-size: 1.3rem;
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      box-shadow: 0 0 16px var(--gold-glow);
+      border: 1px solid var(--gold-primary);
+      object-fit: cover;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: #fff;
     }
 
-    .brand span {
-      color: var(--accent-cyan);
+    .brand-title span {
+      color: var(--cyan-accent);
+      text-shadow: 0 0 12px var(--cyan-glow);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
     nav a {
       color: var(--text-muted);
       text-decoration: none;
-      margin-left: 24px;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s ease;
     }
 
     nav a:hover {
-      color: #fff;
+      color: var(--gold-bright);
     }
 
-    .hero {
-      padding: 70px 8% 50px;
-      text-align: center;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 16px;
+    .btn-nav-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
       border-radius: 9999px;
-      background: rgba(217, 70, 239, 0.15);
-      border: 1px solid rgba(217, 70, 239, 0.4);
-      color: var(--accent-pink);
-      font-size: 0.85rem;
+      background: linear-gradient(135deg, rgba(197,160,89,0.18), rgba(197,160,89,0.06));
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-bright);
+      text-decoration: none;
+      font-size: 0.88rem;
       font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 14px rgba(197,160,89,0.15);
     }
 
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 900;
-      line-height: 1.15;
+    .btn-nav-appstore:hover {
+      background: var(--gold-primary);
+      color: #07080c;
+      box-shadow: 0 0 22px var(--gold-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section with Video Background */
+    .hero-stage {
+      position: relative;
+      min-height: 100vh;
+      padding: 130px 4% 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Video Background Container */
+    .hero-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.68) contrast(1.15) saturate(1.1);
+      opacity: 0.65;
+      transition: opacity 1.5s ease;
+    }
+
+    /* Video Vignette & Atmospheric Gradients */
+    .hero-video-vignette {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 50% 40%, rgba(7, 8, 12, 0.25) 0%, rgba(7, 8, 12, 0.88) 85%),
+        linear-gradient(to bottom, rgba(7, 8, 12, 0.7) 0%, transparent 20%, transparent 75%, var(--bg-dark) 100%);
+    }
+
+    /* Hero Header Content */
+    .hero-content {
+      text-align: center;
+      max-width: 960px;
+      margin: 0 auto 30px;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      color: var(--gold-bright);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, #fff 40%, var(--accent-pink) 100%);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 18px rgba(197, 160, 89, 0.2);
+    }
+
+    .hero-badge .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 8px var(--cyan-accent);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--gold-bright) 75%, var(--gold-primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 0 0 30px rgba(197, 160, 89, 0.25);
     }
 
-    p.subtitle {
-      font-size: 1.15rem;
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
       color: var(--text-muted);
-      max-width: 720px;
-      margin: 0 auto 36px;
+      max-width: 760px;
+      margin: 0 auto 28px;
+      font-weight: 400;
+      line-height: 1.6;
     }
 
-    .pill-tags {
+    .hero-pills {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 16px;
-      margin-bottom: 40px;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      font-weight: 700;
-      color: #d4d4d8;
+      margin-bottom: 34px;
     }
 
-    .pill-tags span {
+    .hero-pill-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      background: rgba(14, 18, 26, 0.75);
+      border: 1px solid var(--border-gold);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #e4e7ee;
+      backdrop-filter: blur(10px);
     }
 
-    .pill-tags span::before {
-      content: "•";
-      color: var(--accent-cyan);
+    .hero-pill-item svg {
+      color: var(--cyan-accent);
     }
 
-    .app-preview-container {
-      margin: 30px auto 60px;
-      padding: 14px;
-      border-radius: 20px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
-      border: 1px solid var(--border);
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(217, 70, 239, 0.15);
-      max-width: 1040px;
-    }
-
-    .app-preview-container img {
+    /* 3D CAROUSEL STAGE (Photoshop Simulation Made Real) */
+    .carousel-section {
       width: 100%;
-      height: auto;
-      border-radius: 12px;
+      max-width: 1440px;
+      margin: 10px auto 40px;
+      position: relative;
+      perspective: 1600px;
+      z-index: 3;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+    }
+
+    .carousel-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      width: 68%;
+      max-width: 860px;
+      aspect-ratio: 2048 / 960;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.75s cubic-bezier(0.25, 1, 0.35, 1);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      background: #000;
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* Active Slide (Center) */
+    .carousel-slide.active {
+      transform: translate3d(0, 0, 160px) scale(1);
+      opacity: 1;
+      z-index: 10;
+      border-color: var(--gold-primary);
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.95),
+        0 0 45px rgba(197, 160, 89, 0.35),
+        0 0 15px rgba(0, 212, 255, 0.2);
+    }
+
+    /* Left Slide */
+    .carousel-slide.prev {
+      transform: translate3d(-46%, 0, -40px) scale(0.82) rotateY(16deg);
+      opacity: 0.58;
+      z-index: 5;
+      filter: brightness(0.72) contrast(1.05);
+    }
+
+    .carousel-slide.prev:hover {
+      opacity: 0.85;
+      filter: brightness(0.9);
+    }
+
+    /* Right Slide */
+    .carousel-slide.next {
+      transform: translate3d(46%, 0, -40px) scale(0.82) rotateY(-16deg);
+      opacity: 0.58;
+      z-index: 5;
+      filter: brightness(0.72) contrast(1.05);
+    }
+
+    .carousel-slide.next:hover {
+      opacity: 0.85;
+      filter: brightness(0.9);
+    }
+
+    /* Hidden Slides (if expanded) */
+    .carousel-slide.hidden {
+      transform: translate3d(0, 0, -200px) scale(0.5);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Carousel Slide Overlay Caption Bar */
+    .slide-caption-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(to top, rgba(7, 8, 12, 0.92) 0%, rgba(7, 8, 12, 0.3) 70%, transparent 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .carousel-slide.active .slide-caption-bar {
+      opacity: 1;
+    }
+
+    .slide-caption-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--gold-bright);
+    }
+
+    .slide-caption-badge {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(0, 212, 255, 0.15);
+      border: 1px solid var(--cyan-accent);
+      color: var(--cyan-accent);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Carousel Nav Arrows */
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(16, 20, 29, 0.85);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      transition: all 0.25s ease;
+    }
+
+    .carousel-nav-btn:hover {
+      background: var(--gold-primary);
+      color: #07080c;
+      box-shadow: 0 0 25px var(--gold-glow);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .carousel-nav-btn.prev-btn {
+      left: 3%;
+    }
+
+    .carousel-nav-btn.next-btn {
+      right: 3%;
+    }
+
+    /* Carousel Indicator Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .carousel-dot {
+      width: 38px;
+      height: 5px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.18);
+      cursor: pointer;
+      transition: all 0.35s ease;
+    }
+
+    .carousel-dot.active {
+      background: linear-gradient(90deg, var(--gold-primary), var(--cyan-accent));
+      width: 58px;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    /* CTA Apple App Store Download Button */
+    .cta-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 35px auto 10px;
+      z-index: 2;
+    }
+
+    .btn-appstore-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 34px;
+      border-radius: 14px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(197, 160, 89, 0.25);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .btn-appstore-hero:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 45px var(--gold-glow);
+    }
+
+    .appstore-icon {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    .btn-appstore-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+
+    .btn-appstore-text .subtext {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a1a1aa;
+    }
+
+    .btn-appstore-text .maintext {
+      font-size: 1.28rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-hint {
+      margin-top: 14px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-hint strong {
+      color: var(--gold-bright);
+    }
+
+    /* FEATURES GRID SECTION */
+    .features-section {
+      padding: 90px 6%;
+      max-width: 1360px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
+    }
+
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
       display: block;
     }
 
-    .app-store-btn {
-      display: inline-flex;
-      align-items: center;
-      background: #000;
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
       color: #fff;
-      border: 1px solid rgba(255,255,255,0.25);
-      padding: 12px 28px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      line-height: 1.2;
+      margin-bottom: 16px;
     }
 
-    .app-store-btn:hover {
-      border-color: #fff;
-      transform: translateY(-2px);
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.08rem;
     }
 
-    .features {
-      padding: 60px 8%;
-      max-width: 1100px;
-      margin: 0 auto;
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
     }
 
     .feature-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      backdrop-filter: blur(8px);
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 34px 30px;
+      backdrop-filter: blur(14px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold-primary);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(197, 160, 89, 0.15);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      color: var(--gold-bright);
     }
 
     .feature-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
+      font-size: 1.35rem;
+      font-weight: 700;
       color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
     }
 
     .feature-card p {
       color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    /* HARDWARE & COREAUDIO SPEC SECTION */
+    .specs-section {
+      background: linear-gradient(180deg, rgba(14, 18, 26, 0.6) 0%, rgba(7, 8, 12, 0.95) 100%);
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 80px 6%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .specs-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .specs-content h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .specs-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+
+    .specs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+      font-size: 1.02rem;
+      color: #e2e8f0;
+    }
+
+    .specs-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.18);
+      border: 1.5px solid var(--cyan-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan-accent);
+      font-size: 0.7rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .specs-card-visual {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    }
+
+    .spec-item-box {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .spec-item-box:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .spec-label {
+      color: var(--text-muted);
       font-size: 0.95rem;
     }
 
+    .spec-value {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--gold-bright);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* SUPPORT & OFFICIAL INQUIRIES SECTION */
     .support-section {
-      background: rgba(18, 18, 24, 0.6);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 60px 8%;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .support-box {
-      max-width: 600px;
+      padding: 90px 6%;
+      max-width: 900px;
       margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
-    .support-box h2 {
-      font-size: 1.8rem;
-      margin-bottom: 14px;
+    .support-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: var(--radius-lg);
+      padding: 50px 36px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.9), 0 0 40px rgba(197, 160, 89, 0.2);
+      backdrop-filter: blur(16px);
     }
 
-    .contact-email {
-      display: inline-block;
-      margin-top: 18px;
-      font-size: 1.1rem;
-      color: var(--accent-cyan);
+    .support-card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .support-card p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .support-links-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .support-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      border-radius: 10px;
+      background: rgba(197, 160, 89, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-bright);
+      font-weight: 700;
+      font-size: 1rem;
       text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px dashed var(--accent-cyan);
-      padding-bottom: 2px;
+      transition: all 0.25s ease;
     }
 
+    .support-contact-btn:hover {
+      background: var(--gold-primary);
+      color: #07080c;
+      box-shadow: 0 0 20px var(--gold-glow);
+      transform: translateY(-2px);
+    }
+
+    .studio-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      border-radius: 10px;
+      background: rgba(0, 212, 255, 0.12);
+      border: 1px solid var(--cyan-accent);
+      color: var(--cyan-accent);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .studio-link-btn:hover {
+      background: var(--cyan-accent);
+      color: #07080c;
+      box-shadow: 0 0 20px var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
     footer {
-      padding: 30px 8%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 36px 6%;
       text-align: center;
       color: #71717a;
-      font-size: 0.85rem;
-      margin-top: auto;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer a {
+      color: var(--gold-bright);
+      text-decoration: none;
+    }
+
+    /* MOBILE RESPONSIVENESS */
+    @media (max-width: 900px) {
+      .specs-container {
+        grid-template-columns: 1fr;
+      }
+      .carousel-container {
+        height: 380px;
+      }
+      .carousel-slide {
+        width: 82%;
+      }
+      .carousel-slide.prev {
+        transform: translate3d(-35%, 0, -40px) scale(0.85);
+      }
+      .carousel-slide.next {
+        transform: translate3d(35%, 0, -40px) scale(0.85);
+      }
+      nav a {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 14px 4%;
+      }
+      .hero-stage {
+        padding: 100px 3% 60px;
+      }
+      .carousel-container {
+        height: 280px;
+      }
+      .carousel-slide {
+        width: 92%;
+      }
+      .carousel-slide.prev, .carousel-slide.next {
+        opacity: 0.25;
+      }
+      .carousel-nav-btn {
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Ambient Light Bloom -->
+  <div class="ambient-aurora"></div>
+
+  <!-- Header / Navigation -->
   <header>
-    <div class="brand">vir2ose<span>SOUND</span></div>
+    <a href="#" class="brand-wrap">
+      <img src="assets/app_icon.png" alt="DJ V-SCRATCH LIVE Icon" class="brand-logo" onerror="this.style.display='none'">
+      <div class="brand-title">vir2ose<span>SOUND</span></div>
+    </a>
     <nav>
+      <a href="#showcase">3D Showcase</a>
       <a href="#features">Features</a>
-      <a href="#support">Support & Help</a>
-      <a href="https://www.waldemar-krucinski.com" target="_blank" rel="noopener">Main Studio</a>
+      <a href="#specs">Specifications</a>
+      <a href="#support">Support</a>
+      <a href="https://studio.waldemar-krucinski.com" target="_blank" rel="noopener">Studio</a>
+      <a href="#download" class="btn-nav-appstore">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.64-.78 1.08-1.86.96-2.95-1 .04-2.16.66-2.83 1.45-.59.68-1.12 1.79-.98 2.85 1.12.09 2.22-.57 2.85-1.35z"/>
+        </svg>
+        App Store
+      </a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="badge">iOS & iPadOS Edition</div>
-      <h1>DJ V-SCRATCH LIVE Studio</h1>
-      <p class="subtitle">
-        Authentic touch turntablism and digital DJ performance powered by custom C++/JUCE CoreAudio DSP. 
-        Zero subscription — buy once, perform forever.
-      </p>
-
-      <div class="pill-tags">
-        <span>STANDALONE CONSOLE</span>
-        <span>ULTRA-LOW LATENCY</span>
-        <span>NO SUBSCRIPTION</span>
+    <!-- HERO STAGE WITH ANIMATED VIDEO BACKGROUND -->
+    <section class="hero-stage">
+      
+      <!-- Video Background (anima_back.mp4) -->
+      <div class="hero-video-bg">
+        <video autoplay loop muted playsinline preload="auto">
+          <source src="assets/anima_back.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-vignette"></div>
       </div>
 
-      <div class="cta-wrap">
-        <a href="#support" class="app-store-btn">
-          <span>Available soon on the <strong>Apple App Store</strong></span>
+      <!-- Hero Headline Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="pulse-dot"></div>
+          <span>iOS &amp; iPadOS 17+ Edition</span>
+        </div>
+
+        <h1 class="hero-title">DJ V-SCRATCH LIVE</h1>
+
+        <p class="hero-subtitle">
+          Authentic Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer, and V-SPH3RE 3D Binaural Matrix — engineered in native C++ for iPad and iPhone.
+        </p>
+
+        <div class="hero-pills">
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>NO SUBSCRIPTION</span>
+          </div>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>&lt; 5MS COREAUDIO DSP</span>
+          </div>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>STANDALONE HARDWARE CONSOLE</span>
+          </div>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>USB &amp; MIDI CONTROLLER READY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D CAROUSEL (Photoshop Mockup Simulation) -->
+      <div class="carousel-section" id="showcase">
+        <div class="carousel-container" id="carousel">
+          
+          <!-- Prev Button -->
+          <button class="carousel-nav-btn prev-btn" id="prevBtn" aria-label="Previous Slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          <!-- 3D Slide Track -->
+          <div class="carousel-track">
+            
+            <!-- Slide 0: V-Chopper -->
+            <div class="carousel-slide prev" data-index="0">
+              <img src="assets/screen_vchopper.png" alt="DJ V-SCRATCH LIVE - V-Chopper Performance Suite">
+              <div class="slide-caption-bar">
+                <span class="slide-caption-title">V-CHOPPER | Live Loop Slicer &amp; Hot-Cue Juggler</span>
+                <span class="slide-caption-badge">LIVE REMIXING</span>
+              </div>
+            </div>
+
+            <!-- Slide 1: Dual Deck (Active Center) -->
+            <div class="carousel-slide active" data-index="1">
+              <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck HD Turntable Console">
+              <div class="slide-caption-bar">
+                <span class="slide-caption-title">DUAL-DECK CONSOLE | 60 FPS Zoom Waveform &amp; Vinyl Scratch</span>
+                <span class="slide-caption-badge">PIONEER HD DISPLAY</span>
+              </div>
+            </div>
+
+            <!-- Slide 2: V-SPH3RE 3D -->
+            <div class="carousel-slide next" data-index="2">
+              <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Immersive Audio Engine">
+              <div class="slide-caption-bar">
+                <span class="slide-caption-title">V-SPH3RE 3D | Binaural Headphone &amp; Spatial Matrix</span>
+                <span class="slide-caption-badge">IMMERSIVE AUDIO</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Next Button -->
+          <button class="carousel-nav-btn next-btn" id="nextBtn" aria-label="Next Slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="carousel-dots" id="dotsContainer">
+          <div class="carousel-dot" data-index="0"></div>
+          <div class="carousel-dot active" data-index="1"></div>
+          <div class="carousel-dot" data-index="2"></div>
+        </div>
+      </div>
+
+      <!-- App Store Call to Action -->
+      <div class="cta-area" id="download">
+        <a href="#support" class="btn-appstore-hero">
+          <svg class="appstore-icon" viewBox="0 0 24 24">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.64-.78 1.08-1.86.96-2.95-1 .04-2.16.66-2.83 1.45-.59.68-1.12 1.79-.98 2.85 1.12.09 2.22-.57 2.85-1.35z"/>
+          </svg>
+          <div class="btn-appstore-text">
+            <span class="subtext">Download for iPad &amp; iPhone</span>
+            <span class="maintext">Apple App Store</span>
+          </div>
         </a>
+        <p class="pricing-hint">
+          One-time purchase • <strong>No recurring fees</strong> • Lifetime updates included
+        </p>
       </div>
 
-      <div class="app-preview-container">
-        <!-- Ersetze 'preview.jpg' durch den Dateinamen deines Screenshots im Repo -->
-        <img src="preview.jpg" alt="DJ V-SCRATCH LIVE Studio Interface" onerror="this.src='https://placehold.co/1200x600/121218/d946ef?text=DJ+V-SCRATCH+LIVE+iOS+Preview'">
+    </section>
+
+    <!-- CORE FEATURES SECTION -->
+    <section class="features-section" id="features">
+      <div class="section-header">
+        <span class="section-tag">// PRO AUDIO PERFORMANCE</span>
+        <h2 class="section-title">Built Without Compromise for Touch &amp; Stage</h2>
+        <p class="section-desc">
+          Engineered from scratch using high-performance C++ JUCE architecture, delivering the immediate tactile precision of analog turntables directly onto your Apple device.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line></svg>
+          </div>
+          <h3>Analog Platter Physics</h3>
+          <p>Realistic vinyl inertia, backspin momentum, motor drag, and instant scratch tracking optimized specifically for high refresh rate Apple ProMotion displays.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          </div>
+          <h3>V-SPH3RE 3D Binaural Audio</h3>
+          <p>Pioneering 3D sound positioning with real-time HRTF algorithms. Place your decks anywhere in a virtual 360° spherical room for breathtaking headphone spatialization.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <h3>V-Chopper Slicing Suite</h3>
+          <p>Instant transient detection and beat-synchronized rhythmic slicing. Transform tracks on the fly with customizable 1/8, 1/16, and pitch-shaper modulation matrices.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
+          <h3>Pioneer HD Zoom Display</h3>
+          <p>High-resolution dual scrolling waveforms at 60 FPS. Featuring calibrated 1.0x, 2.0x, and 4.0x zoom levels, Camelot harmonic key badges, and precision beatgrids.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+          </div>
+          <h3>Direct Files &amp; iCloud Import</h3>
+          <p>Seamlessly stream and import audio files from your iOS Files app, iCloud Drive, external USB-C thumb drives, or local playlists without cumbersome desktop sync.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+          </div>
+          <h3>Hardware MIDI &amp; USB Audio</h3>
+          <p>Plug &amp; Play support for external USB DJ controllers (Gemini GMX, Pioneer DDJ, etc.), multi-channel soundcards, and Bluetooth MIDI gear with zero driver headaches.</p>
+        </div>
+
       </div>
     </section>
 
-    <section class="features" id="features">
-      <div class="feature-card">
-        <h3>Ultra-Low Latency DSP</h3>
-        <p>Engineered with modern C++ audio routines and Apple CoreAudio for immediate platter touch response, crisp cue reaction, and fluid vinyl scratching.</p>
-      </div>
+    <!-- TECHNICAL SPECIFICATIONS -->
+    <section class="specs-section" id="specs">
+      <div class="specs-container">
+        
+        <div class="specs-content">
+          <h2>Engineered for Studio Quality &amp; Reliability</h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            Whether performing live at clubs or crafting mixes on the road, DJ V-SCRATCH LIVE leverages the full power of Apple Silicon (M1/M2/M3/M4 &amp; A-Series Bionic) with strict 64-bit floating-point audio precision.
+          </p>
 
-      <div class="feature-card">
-        <h3>V-Chopper & Pads</h3>
-        <p>Dynamic loop slicing, hot-cue juggling, and dedicated live performance buttons designed for mobile screens and touch ergonomics.</p>
-      </div>
+          <ul class="specs-list">
+            <li>
+              <div class="specs-bullet">&#10003;</div>
+              <div><strong>CoreAudio DSP:</strong> Ultra-low buffer configurations down to 64 samples (~1.4ms roundtrip).</div>
+            </li>
+            <li>
+              <div class="specs-bullet">&#10003;</div>
+              <div><strong>Dual Ergonomic Layouts:</strong> Full iPad Studio console (2048x1080) and iPhone Pocket Live widescreen.</div>
+            </li>
+            <li>
+              <div class="specs-bullet">&#10003;</div>
+              <div><strong>Audio Format Freedom:</strong> Native playback for WAV, AIFF, FLAC, MP3, and AAC up to 192 kHz / 32-bit float.</div>
+            </li>
+          </ul>
+        </div>
 
-      <div class="feature-card">
-        <h3>CoreAudio & USB Class-Compliant</h3>
-        <p>Effortlessly connect supported USB DJ controllers, class-compliant audio interfaces, or external mixers directly via USB-C or Lightning.</p>
+        <div class="specs-card-visual">
+          <div class="spec-item-box">
+            <span class="spec-label">Target Architecture</span>
+            <span class="spec-value">ARM64 (Apple Silicon &amp; A-Series)</span>
+          </div>
+          <div class="spec-item-box">
+            <span class="spec-label">Audio Framework</span>
+            <span class="spec-value">Apple CoreAudio / JUCE 8</span>
+          </div>
+          <div class="spec-item-box">
+            <span class="spec-label">Supported Devices</span>
+            <span class="spec-value">iPad, iPad Pro, iPad Air, iPhone</span>
+          </div>
+          <div class="spec-item-box">
+            <span class="spec-label">Minimum OS</span>
+            <span class="spec-value">iOS / iPadOS 17.5 or higher</span>
+          </div>
+          <div class="spec-item-box">
+            <span class="spec-label">Subscription Model</span>
+            <span class="spec-value" style="color: var(--cyan-accent);">100% Perpetual (No Subscription)</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
+    <!-- SUPPORT & CONTACT SECTION -->
     <section class="support-section" id="support">
-      <div class="support-box">
-        <h2>App Support & Inquiries</h2>
-        <p>Have questions about compatibility, controller mapping, or feedback for upcoming versions? Our audio lab is here to assist.</p>
-        <a href="mailto:support@waldemar-krucinski.com" class="contact-email">support@waldemar-krucinski.com</a>
+      <div class="support-card">
+        <h2>Studio Support &amp; Official Inquiries</h2>
+        <p>
+          Have questions regarding compatibility, controller mapping, feature requests, or press inquiries? Reach out directly to our audio lab:
+        </p>
+
+        <div class="support-links-box">
+          <a href="mailto:studio@waldemar-krucinski.com" class="support-contact-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            studio@waldemar-krucinski.com
+          </a>
+
+          <a href="https://studio.waldemar-krucinski.com" target="_blank" rel="noopener" class="studio-link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            studio.waldemar-krucinski.com
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Waldemar Krucinski | vir2oseSOUND. All rights reserved.</p>
+    <p>&copy; 2026 Waldemar Krucinski | vir2oseSOUND. All rights reserved.</p>
+    <p style="margin-top: 6px; font-size: 0.8rem; color: #52525b;">
+      Official iOS Subdomain: <a href="https://ios.waldemar-krucinski.com">ios.waldemar-krucinski.com</a>
+    </p>
   </footer>
+
+  <!-- 3D CAROUSEL SCRIPT -->
+  <script>
+    (function () {
+      const carousel = document.getElementById('carousel');
+      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+      const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      let currentIndex = 1; // Start with center slide (Dual Deck)
+      const totalSlides = slides.length;
+      let autoPlayTimer = null;
+
+      function updateCarousel(newIndex) {
+        currentIndex = (newIndex + totalSlides) % totalSlides;
+
+        slides.forEach((slide, idx) => {
+          slide.classList.remove('active', 'prev', 'next', 'hidden');
+
+          if (idx === currentIndex) {
+            slide.classList.add('active');
+          } else if (idx === (currentIndex - 1 + totalSlides) % totalSlides) {
+            slide.classList.add('prev');
+          } else if (idx === (currentIndex + 1) % totalSlides) {
+            slide.classList.add('next');
+          } else {
+            slide.classList.add('hidden');
+          }
+        });
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+        });
+      }
+
+      function nextSlide() {
+        updateCarousel(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        updateCarousel(currentIndex - 1);
+      }
+
+      function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(nextSlide, 5500);
+      }
+
+      function stopAutoPlay() {
+        if (autoPlayTimer) {
+          clearInterval(autoPlayTimer);
+          autoPlayTimer = null;
+        }
+      }
+
+      // Event Listeners
+      if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+
+      slides.forEach((slide, idx) => {
+        slide.addEventListener('click', () => {
+          if (idx !== currentIndex) {
+            updateCarousel(idx);
+            startAutoPlay();
+          }
+        });
+      });
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          updateCarousel(idx);
+          startAutoPlay();
+        });
+      });
+
+      // Pause autoplay on mouse hover
+      carousel.addEventListener('mouseenter', stopAutoPlay);
+      carousel.addEventListener('mouseleave', startAutoPlay);
+
+      // Touch / Swipe support for iPad & iPhone
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoPlay();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const threshold = 40;
+        if (touchEndX < touchStartX - threshold) {
+          nextSlide();
+        } else if (touchEndX > touchStartX + threshold) {
+          prevSlide();
+        }
+      }
+
+      // Initialize
+      updateCarousel(1);
+      startAutoPlay();
+    })();
+  </script>
 
 </body>
 </html>
