@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>DJ V-SCRATCH LIVE | Pro iOS &amp; iPadOS DJ Workstation</title>
-  <meta name="description" content="DJ V-SCRATCH LIVE – Authentisches Dual-Deck Turntablism, Pioneer HD Waveforms, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix für iPad &amp; iPhone.">
+  <meta name="description" content="DJ V-SCRATCH LIVE – Authentisches Dual-Deck Turntablism, Spektral-HD Waveforms, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix für iPad &amp; iPhone.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,8 @@
     :root {
       --bg-dark: #07080c;
       --bg-surface: #0e121a;
-      --bg-card: rgba(18, 22, 32, 0.75);
+      --bg-card: rgba(14, 18, 26, 0.78);
+      --bg-card-hover: rgba(22, 28, 40, 0.9);
       --gold-primary: #c5a059;
       --gold-bright: #dfba73;
       --gold-glow: rgba(197, 160, 89, 0.35);
@@ -53,6 +54,49 @@
       overflow-x: hidden;
     }
 
+    /* FIXED DYNAMIC VIDEO BACKGROUND CROSSFADE LAYER */
+    .video-bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-video-layer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%) scale(1.05);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.48) contrast(1.15) saturate(1.1);
+      will-change: opacity;
+    }
+
+    .bg-video-layer.active {
+      opacity: 0.55;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(7, 8, 12, 0.22) 0%, rgba(7, 8, 12, 0.78) 75%, #07080c 100%),
+                  linear-gradient(180deg, rgba(7,8,12,0.35) 0%, transparent 40%, rgba(7,8,12,0.95) 100%);
+      z-index: 1;
+    }
+
     /* HEADER & NAVIGATION */
     header {
       position: fixed;
@@ -78,7 +122,6 @@
       text-decoration: none;
     }
 
-    /* Custom logo from Screen 4 */
     .brand-logo-custom {
       height: 34px;
       width: auto;
@@ -171,16 +214,17 @@
     .hero-stage {
       position: relative;
       min-height: 100vh;
-      padding: 100px 4% 50px;
+      padding: 100px 4% 45px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       overflow: hidden;
       text-align: center;
+      z-index: 2;
     }
 
-    /* Hero Background Video (anima_back.mp4) */
+    /* Hero Dedicated Animation (anima_back.mp4) */
     .hero-video-bg {
       position: absolute;
       top: 0;
@@ -196,7 +240,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.55;
+      opacity: 0.58;
       filter: contrast(1.1) brightness(0.9);
     }
 
@@ -206,8 +250,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(7, 8, 12, 0.25) 0%, rgba(7, 8, 12, 0.82) 75%, #07080c 100%),
-                  linear-gradient(180deg, rgba(7,8,12,0.4) 0%, transparent 40%, rgba(7,8,12,0.95) 100%);
+      background: radial-gradient(circle at center, rgba(7, 8, 12, 0.2) 0%, rgba(7, 8, 12, 0.82) 75%, #07080c 100%),
+                  linear-gradient(180deg, rgba(7,8,12,0.3) 0%, transparent 40%, rgba(7,8,12,0.95) 100%);
     }
 
     .hero-content {
@@ -299,15 +343,11 @@
     }
 
     @media (max-width: 900px) {
-      .carousel-container {
-        height: 360px;
-      }
+      .carousel-container { height: 360px; }
     }
 
     @media (max-width: 600px) {
-      .carousel-container {
-        height: 260px;
-      }
+      .carousel-container { height: 260px; }
     }
 
     .carousel-track {
@@ -376,7 +416,6 @@
       z-index: 0;
     }
 
-    /* Carousel Nav Buttons */
     .carousel-nav-btn {
       position: absolute;
       top: 50%;
@@ -407,7 +446,6 @@
     .carousel-nav-btn.prev-btn { left: 4%; }
     .carousel-nav-btn.next-btn { right: 4%; }
 
-    /* Carousel Caption */
     .carousel-caption {
       margin-top: 14px;
       text-align: center;
@@ -430,7 +468,6 @@
       line-height: 1.5;
     }
 
-    /* Carousel Dots */
     .carousel-dots {
       display: flex;
       gap: 10px;
@@ -472,9 +509,7 @@
       scrollbar-width: none;
     }
 
-    .hero-pills::-webkit-scrollbar {
-      display: none;
-    }
+    .hero-pills::-webkit-scrollbar { display: none; }
 
     @media (max-width: 860px) {
       .hero-pills {
@@ -512,9 +547,121 @@
       transform: translateY(-1px);
     }
 
-    /* FEATURES SECTION */
-    .features-section {
-      padding: 80px 6%;
+    /* SHOWCASE SECTION (Screen 4: The Heart of Modern Turntablism) */
+    .flagship-section {
+      padding: 85px 6% 40px;
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .flagship-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 36px;
+      align-items: center;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .flagship-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    .flagship-card.reverse {
+      grid-template-columns: 1fr 1.15fr;
+    }
+
+    @media (max-width: 960px) {
+      .flagship-card, .flagship-card.reverse {
+        grid-template-columns: 1fr;
+        padding: 28px 24px;
+        gap: 24px;
+      }
+    }
+
+    .flagship-img {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.9);
+      background: #000;
+    }
+
+    .flagship-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .flagship-card:hover .flagship-img img {
+      transform: scale(1.02);
+    }
+
+    .badge-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid var(--border-gold);
+      padding: 3px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .flagship-body h3 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 0.8px;
+    }
+
+    .flagship-body p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .flagship-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .flagship-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: 0.84rem;
+    }
+
+    .bullet-diamond {
+      color: var(--gold-bright);
+      font-size: 0.75rem;
+    }
+
+    /* TOOLS & WORKFLOW SECTION (Screen 5: Engineered for Total Workflow) */
+    .tools-section {
+      padding: 60px 6% 75px;
       max-width: 1240px;
       margin: 0 auto;
       position: relative;
@@ -524,26 +671,26 @@
     .section-header {
       text-align: center;
       max-width: 720px;
-      margin: 0 auto 50px;
+      margin: 0 auto 45px;
     }
 
     .section-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
       letter-spacing: 2px;
       color: var(--cyan-accent);
       text-transform: uppercase;
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-size: clamp(1.4rem, 2.3vw, 1.9rem);
       font-weight: 800;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       letter-spacing: 1px;
     }
 
@@ -553,56 +700,72 @@
       line-height: 1.6;
     }
 
-    .features-grid {
+    .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 22px;
+      gap: 24px;
     }
 
-    .feature-card {
+    .tool-box {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 26px 22px;
+      overflow: hidden;
       transition: all 0.3s ease;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
       backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
     }
 
-    .feature-card:hover {
+    .tool-box:hover {
       border-color: var(--gold-primary);
       transform: translateY(-3px);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.7), 0 0 20px rgba(197, 160, 89, 0.15);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.8), 0 0 22px rgba(197, 160, 89, 0.16);
     }
 
-    .feature-icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(197, 160, 89, 0.12);
-      border: 1px solid var(--border-gold);
-      color: var(--gold-bright);
+    .tool-img {
+      width: 100%;
+      height: 180px;
+      background: #020305;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .feature-card h3 {
+    .tool-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .tool-box:hover .tool-img img {
+      transform: scale(1.04);
+    }
+
+    .tool-body {
+      padding: 22px 20px 24px;
+      flex-grow: 1;
+    }
+
+    .tool-body h4 {
       font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 8px;
     }
 
-    .feature-card p {
+    .tool-body p {
       color: var(--text-muted);
       font-size: 0.82rem;
       line-height: 1.6;
     }
 
-    /* SPECS SECTION: SUBTLE AND REFINED AS REQUESTED (screen 5) */
+    /* SPECS SECTION: SUBTLE & REFINED */
     .specs-section {
       background: linear-gradient(180deg, rgba(14, 18, 26, 0.6) 0%, rgba(7, 8, 12, 0.95) 100%);
       border-top: 1px solid var(--border-gold);
@@ -816,6 +979,23 @@
 </head>
 <body>
 
+  <!-- DYNAMIC SCROLL VIDEO CROSSFADE LAYER -->
+  <div class="video-bg-container">
+    <video class="bg-video-layer active" id="bgVideo1" autoplay loop muted playsinline preload="auto">
+      <source src="assets/video1.mp4" type="video/mp4">
+    </video>
+    <video class="bg-video-layer" id="bgVideo2" autoplay loop muted playsinline preload="auto">
+      <source src="assets/vide2.mp4" type="video/mp4">
+    </video>
+    <video class="bg-video-layer" id="bgVideo3" autoplay loop muted playsinline preload="auto">
+      <source src="assets/video3.mp4" type="video/mp4">
+    </video>
+    <video class="bg-video-layer" id="bgVideo4" autoplay loop muted playsinline preload="auto">
+      <source src="assets/video4.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+  </div>
+
   <!-- HEADER -->
   <header>
     <a href="#" class="brand-wrap">
@@ -824,6 +1004,7 @@
     <nav>
       <a href="#showcase" data-i18n="nav_showcase">3D Showcase</a>
       <a href="#features" data-i18n="nav_features">Funktionen</a>
+      <a href="#workflow" data-i18n="nav_workflow">Workflow</a>
       <a href="#specs" data-i18n="nav_specs">Spezifikationen</a>
       <a href="#support" data-i18n="nav_support">Support</a>
       <a href="https://studio.waldemar-krucinski.com" target="_blank" rel="noopener" data-i18n="nav_studio">Studio</a>
@@ -866,13 +1047,13 @@
         <!-- 50% smaller headline as requested -->
         <h1 class="hero-title">DJ V-SCRATCH LIVE</h1>
 
-        <!-- Subtitle: smaller, finer, and in GOLD as requested (screen 2) -->
+        <!-- Subtitle: smaller, finer, in GOLD, ZERO PIONEER MENTION -->
         <p class="hero-subtitle" data-i18n="hero_subtitle">
-          Authentisches Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix — entwickelt in nativem C++ für iPad und iPhone.
+          Authentisches Dual-Deck Turntablism, Spektral-HD-Waveforms, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix — entwickelt in nativem C++ für iPad und iPhone.
         </p>
       </div>
 
-      <!-- 3D CAROUSEL (Photoshop Mockup Simulation) -->
+      <!-- 3D CAROUSEL (NEW RETINA IPAD / IPHONE SCREENS) -->
       <div class="carousel-section" id="showcase">
         <div class="carousel-container" id="carousel">
           
@@ -881,22 +1062,22 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
 
-          <!-- 3D Slide Track -->
+          <!-- 3D Slide Track with NEW Graphics from Assets_iOS_iPhone/Graphic -->
           <div class="carousel-track">
             
             <!-- Slide 0: V-Chopper -->
             <div class="carousel-slide prev" data-index="0">
-              <img src="assets/screen_vchopper.png" alt="DJ V-SCRATCH LIVE - V-Chopper Performance Suite">
+              <img src="assets/screen_vchopper.png" alt="DJ V-SCRATCH LIVE - V-Chopper iOS Performance Suite">
             </div>
 
             <!-- Slide 1: Dual Deck (Center / Default) -->
             <div class="carousel-slide active" data-index="1">
-              <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck Turntable Console">
+              <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck iOS Turntable Console">
             </div>
 
             <!-- Slide 2: V-Sph3re 3D -->
             <div class="carousel-slide next" data-index="2">
-              <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Binaural Studio Matrix">
+              <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Binaural iOS Studio Matrix">
             </div>
 
           </div>
@@ -911,7 +1092,7 @@
         <!-- Carousel Caption -->
         <div class="carousel-caption">
           <div class="carousel-caption-title" id="captionTitle">DUAL-DECK TURNTABLISM</div>
-          <div class="carousel-caption-desc" id="captionDesc">Pioneer-inspiriertes HD Waveform Display, Ultra-Low Latency Jogwheels und 64-Bit DSP-Mixer.</div>
+          <div class="carousel-caption-desc" id="captionDesc">Spektral-HD Waveform Display, Ultra-Low Latency Jogwheels und 64-Bit DSP-Mixer.</div>
         </div>
 
         <!-- Pagination Dots -->
@@ -945,70 +1126,134 @@
 
     </section>
 
-    <!-- PRO AUDIO FEATURES SECTION -->
-    <section class="features-section" id="features">
+    <!-- FLAGSHIP SHOWCASE SECTION (Screen 4: The Heart of Modern Turntablism) -->
+    <section class="flagship-section" id="features">
+      
       <div class="section-header">
-        <span class="section-tag" data-i18n="feat_tag">// PRO AUDIO PERFORMANCE</span>
-        <h2 class="section-title" data-i18n="feat_title">Konzipiert für maximale Club- &amp; Touch-Präzision</h2>
-        <p class="section-desc" data-i18n="feat_desc">
-          Von Grund auf in nativer C++ JUCE-Architektur entwickelt. Bringt die unmittelbare Haptik und Reaktionsfreude analoger Plattenspieler direkt auf iPad und iPhone.
+        <span class="section-tag" data-i18n="flagship_tag">VIR2OSESOUND FLAGSHIP</span>
+        <h2 class="section-title" data-i18n="flagship_title">Das Herzstück modernen Turntablisms</h2>
+        <p class="section-desc" data-i18n="flagship_desc">
+          Von Grund auf für latenzfreies Vinyl-Scratching, präzises Beat-Matching und unmittelbare taktile Touch-Performance auf iPad und iPhone entwickelt.
         </p>
       </div>
 
-      <div class="features-grid">
+      <!-- Card 1: Dual Deck Engine -->
+      <div class="flagship-card">
+        <div class="flagship-img">
+          <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE Dual Deck Engine" loading="lazy">
+        </div>
+        <div class="flagship-body">
+          <span class="badge-tag" data-i18n="c1_tag">DUAL DECK ENGINE</span>
+          <h3 data-i18n="c1_title">DJ V-SCRATCH LIVE 1.0</h3>
+          <p data-i18n="c1_desc">
+            Ultra-realistische Vinyl-Emulation mit interaktivem Needle-Drop, Mehrpunkt-Cueing, Echtzeit-BPM-Erkennung, 3-Band Studio-Isolator-EQ und kompromissloser Touch-Steuerung für iPad und iPhone.
+          </p>
+          <ul class="flagship-bullets">
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c1_b1">Hochauflösende physikalische Vinyl- &amp; Scratch-Engine</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c1_b2">Performance Pads: Hot Cue, Loop, Roll, Slicer</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c1_b3">Dedizierter Tablet- &amp; Smartphone-Touchmodus mit skalierten Hit-Boxen</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c1_b4">CoreAudio Ultra Low Latency Processing (&lt; 1,4 ms)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2: V-Chopper Sample Engine -->
+      <div class="flagship-card reverse">
+        <div class="flagship-body">
+          <span class="badge-tag" data-i18n="c2_tag">SAMPLE &amp; SLICE</span>
+          <h3 data-i18n="c2_title">V-CHOPPER Sample Engine</h3>
+          <p data-i18n="c2_desc">
+            Slicen, randomisieren und re-triggern von Breaks und Vocal-Drops im Handumdrehen. Die Echtzeit-Transientenerkennung verankert jeden Chop punktgenau im Master-Groove.
+          </p>
+          <ul class="flagship-bullets">
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c2_b1">Automatische Transienten- &amp; Grid-Beat-Zerschneidung</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c2_b2">Randomizer &amp; Re-Arranger für spontane Live-Remixe</span></li>
+            <li><span class="bullet-diamond">◆</span> <span data-i18n="c2_b3">Glitchfreies Waveform-Scrubbing &amp; Stereo-Bed-Routing</span></li>
+          </ul>
+        </div>
+        <div class="flagship-img">
+          <img src="assets/screen_vchopper.png" alt="V-CHOPPER Sample Engine" loading="lazy">
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TOOLS & WORKFLOW SECTION (Screen 5: Engineered for Total Workflow) -->
+    <section class="tools-section" id="workflow">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="tools_tag">STUDIO-ERWEITERUNGEN</span>
+        <h2 class="section-title" data-i18n="tools_title">Entwickelt für den perfekten Workflow</h2>
+        <p class="section-desc" data-i18n="tools_desc">
+          Jedes Werkzeug der vir2oseSOUND-Suite wurde penibel für Übersicht, blindes Muskelgedächtnis und absolute Zuverlässigkeit auf der Bühne konzipiert.
+        </p>
+      </div>
+
+      <div class="tools-grid">
         
-        <!-- Feature 1 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line></svg>
+        <!-- Tool 1: Center Mixer -->
+        <div class="tool-box">
+          <div class="tool-img">
+            <img src="assets/screen_dual_deck.png" alt="Präzisions-Mischpult" loading="lazy">
           </div>
-          <h3 data-i18n="f1_title">Analoge Platter-Physik</h3>
-          <p data-i18n="f1_desc">Reale Vinyl-Trägheit, authentisches Backspin-Momentum und lückenloses Scratch-Tracking, präzise optimiert für Apple 120Hz ProMotion Displays.</p>
+          <div class="tool-body">
+            <h4 data-i18n="t1_title">Präzisions-Mischpult</h4>
+            <p data-i18n="t1_desc">Optische Crossfader-Kurven, Dual-LED-Peakmeter, Vorhör-Routing und dedizierte Studio-Gain-Regler.</p>
+          </div>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        <!-- Tool 2: Spectral Waveform Zoom (NO PIONEER!) -->
+        <div class="tool-box">
+          <div class="tool-img">
+            <img src="assets/Audio_Wave-Window.png" alt="Spektral-Wellenform-Zoom" loading="lazy">
           </div>
-          <h3 data-i18n="f2_title">V-SPH3RE 3D Binaural Audio</h3>
-          <p data-i18n="f2_desc">Räumliche 3D-Klangpositionierung mit Echtzeit-HRTF-Filtern. Platzieren Sie Decks frei im virtuellen 360°-Raum für atemberaubende Kopfhörer-Mixes.</p>
+          <div class="tool-body">
+            <h4 data-i18n="t2_title">Spektral-Wellenform-Zoom</h4>
+            <p data-i18n="t2_desc">Mehrfarbige frequenzgetrennte Wellenformen für Kick, Snare und Vocals mit Zoom bis auf Einzelsample-Ebene.</p>
+          </div>
         </div>
 
-        <!-- Feature 3 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        <!-- Tool 3: Playlists & Crates -->
+        <div class="tool-box">
+          <div class="tool-img">
+            <img src="assets/PlayLists.png" alt="High-Speed Playlisten & Crates" loading="lazy">
           </div>
-          <h3 data-i18n="f3_title">V-Chopper Slicing Suite</h3>
-          <p data-i18n="f3_desc">Sofortige Transienten-Erkennung und Beat-synchronisiertes rhythmisches Zerschneiden. Live-Remixe im Handumdrehen mit 1/8-, 1/16- und Pitch-Shaper-Matrizen.</p>
+          <div class="tool-body">
+            <h4 data-i18n="t3_title">High-Speed Playlisten &amp; Crates</h4>
+            <p data-i18n="t3_desc">Blitzschnelle Datenbanksuche, intelligente Ordner, BPM-Sortierung, Key-Matching und Drag-and-Drop auf die Decks.</p>
+          </div>
         </div>
 
-        <!-- Feature 4 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <!-- Tool 4: Video Window -->
+        <div class="tool-box">
+          <div class="tool-img">
+            <img src="assets/Video_Screen.png" alt="Zweitmonitor-Videofenster" loading="lazy">
           </div>
-          <h3 data-i18n="f4_title">Pioneer HD Zoom Display</h3>
-          <p data-i18n="f4_desc">Hochauflösende Dual-Scroll-Waveforms bei flüssigen 60 FPS. Mit kalibrierten 1.0x, 2.0x und 4.0x Zoomstufen, Camelot-Tonart-Badges und Beatgrid-Justierung.</p>
+          <div class="tool-body">
+            <h4 data-i18n="t4_title">Zweitmonitor-Videofenster</h4>
+            <p data-i18n="t4_desc">Auskoppelbares Vollbildfenster für Club-Beamer, externe Displays via HDMI/USB-C und Live-Visuals.</p>
+          </div>
         </div>
 
-        <!-- Feature 5 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+        <!-- Tool 5: Signature vir2ose Design -->
+        <div class="tool-box">
+          <div class="tool-img">
+            <img src="assets/screen_vsph3re.png" alt="vir2ose Signature-Design" loading="lazy">
           </div>
-          <h3 data-i18n="f5_title">Direkter Datei- &amp; iCloud-Import</h3>
-          <p data-i18n="f5_desc">Nahtloses Laden von Tracks aus der iOS Dateien-App, iCloud Drive, USB-C-Speichersticks oder lokalen Playlists – ganz ohne umständlichen Desktop-Sync.</p>
+          <div class="tool-body">
+            <h4 data-i18n="t5_title">vir2ose Signature-Design</h4>
+            <p data-i18n="t5_desc">Handgefertigt von Waldemar Krucinski. Goldene Akzente, dunkles Obsidian-Layout und präzise deutsche Audio-Ingenieurskunst.</p>
+          </div>
         </div>
 
-        <!-- Feature 6 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+        <!-- Tool 6: V-STREAM Cloud & Local Hub -->
+        <div class="tool-box">
+          <div class="tool-img">
+            <img src="assets/V-STREAM LIVE.png" alt="V-STREAM Cloud & Lokale Tracks" loading="lazy">
           </div>
-          <h3 data-i18n="f6_title">Hardware-MIDI &amp; USB Audio</h3>
-          <p data-i18n="f6_desc">Plug &amp; Play Unterstützung für externe USB-DJ-Controller (Gemini GMX, Pioneer DDJ etc.), Mehrkanal-Soundkarten und Bluetooth-MIDI ohne Treiberprobleme.</p>
+          <div class="tool-body">
+            <h4 data-i18n="t6_title">V-STREAM Cloud &amp; Lokale Tracks</h4>
+            <p data-i18n="t6_desc">Pufferung lokaler Soundtracks und nahtloser Cloud-Stream. Schnelles Laden von Tracks direkt in Deck A &amp; B mit automatischer BPM- und Tonarterkennung.</p>
+          </div>
         </div>
 
       </div>
@@ -1092,37 +1337,54 @@
     </p>
   </footer>
 
-  <!-- 3D CAROUSEL & BILINGUAL SCRIPT -->
+  <!-- 3D CAROUSEL, VIDEO SCROLL CROSSFADE & BILINGUAL SCRIPT -->
   <script>
-    // TRANSLATIONS DICTIONARY (DE is Primary)
+    // TRANSLATIONS DICTIONARY (DE is Primary, ZERO PIONEER)
     const translations = {
       de: {
         nav_showcase: '3D-Vorschau',
         nav_features: 'Funktionen',
+        nav_workflow: 'Workflow',
         nav_specs: 'Spezifikationen',
         nav_support: 'Support',
         nav_studio: 'Studio',
         hero_badge: 'iOS & iPadOS 17+ Edition',
-        hero_subtitle: 'Authentisches Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix — entwickelt in nativem C++ für iPad und iPhone.',
+        hero_subtitle: 'Authentisches Dual-Deck Turntablism, Spektral-HD-Waveforms, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix — entwickelt in nativem C++ für iPad und iPhone.',
         pill_no_sub: 'KEIN ABONNEMENT',
         pill_dsp: '< 5MS COREAUDIO DSP',
         pill_hardware: 'STANDALONE HARDWARE-KONSOLE',
         pill_midi: 'USB- & MIDI-CONTROLLER READY',
-        feat_tag: '// PRO AUDIO PERFORMANCE',
-        feat_title: 'Konzipiert für maximale Club- & Touch-Präzision',
-        feat_desc: 'Von Grund auf in nativer C++ JUCE-Architektur entwickelt. Bringt die unmittelbare Haptik und Reaktionsfreude analoger Plattenspieler direkt auf iPad und iPhone.',
-        f1_title: 'Analoge Platter-Physik',
-        f1_desc: 'Reale Vinyl-Trägheit, authentisches Backspin-Momentum und lückenloses Scratch-Tracking, präzise optimiert für Apple 120Hz ProMotion Displays.',
-        f2_title: 'V-SPH3RE 3D Binaural Audio',
-        f2_desc: 'Räumliche 3D-Klangpositionierung mit Echtzeit-HRTF-Filtern. Platzieren Sie Decks frei im virtuellen 360°-Raum für atemberaubende Kopfhörer-Mixes.',
-        f3_title: 'V-Chopper Slicing Suite',
-        f3_desc: 'Sofortige Transienten-Erkennung und Beat-synchronisiertes rhythmisches Zerschneiden. Live-Remixe im Handumdrehen mit 1/8-, 1/16- und Pitch-Shaper-Matrizen.',
-        f4_title: 'Pioneer HD Zoom Display',
-        f4_desc: 'Hochauflösende Dual-Scroll-Waveforms bei flüssigen 60 FPS. Mit kalibrierten 1.0x, 2.0x und 4.0x Zoomstufen, Camelot-Tonart-Badges und Beatgrid-Justierung.',
-        f5_title: 'Direkter Datei- & iCloud-Import',
-        f5_desc: 'Nahtloses Laden von Tracks aus der iOS Dateien-App, iCloud Drive, USB-C-Speichersticks oder lokalen Playlists – ganz ohne umständlichen Desktop-Sync.',
-        f6_title: 'Hardware-MIDI & USB Audio',
-        f6_desc: 'Plug & Play Unterstützung für externe USB-DJ-Controller (Gemini GMX, Pioneer DDJ etc.), Mehrkanal-Soundkarten und Bluetooth-MIDI ohne Treiberprobleme.',
+        flagship_tag: 'VIR2OSESOUND FLAGSHIP',
+        flagship_title: 'Das Herzstück modernen Turntablisms',
+        flagship_desc: 'Von Grund auf für latenzfreies Vinyl-Scratching, präzises Beat-Matching und unmittelbare taktile Touch-Performance auf iPad und iPhone entwickelt.',
+        c1_tag: 'DUAL DECK ENGINE',
+        c1_title: 'DJ V-SCRATCH LIVE 1.0',
+        c1_desc: 'Ultra-realistische Vinyl-Emulation mit interaktivem Needle-Drop, Mehrpunkt-Cueing, Echtzeit-BPM-Erkennung, 3-Band Studio-Isolator-EQ und kompromissloser Touch-Steuerung für iPad und iPhone.',
+        c1_b1: 'Hochauflösende physikalische Vinyl- & Scratch-Engine',
+        c1_b2: 'Performance Pads: Hot Cue, Loop, Roll, Slicer',
+        c1_b3: 'Dedizierter Tablet- & Smartphone-Touchmodus mit skalierten Hit-Boxen',
+        c1_b4: 'CoreAudio Ultra Low Latency Processing (< 1,4 ms)',
+        c2_tag: 'SAMPLE & SLICE',
+        c2_title: 'V-CHOPPER Sample Engine',
+        c2_desc: 'Slicen, randomisieren und re-triggern von Breaks und Vocal-Drops im Handumdrehen. Die Echtzeit-Transientenerkennung verankert jeden Chop punktgenau im Master-Groove.',
+        c2_b1: 'Automatische Transienten- & Grid-Beat-Zerschneidung',
+        c2_b2: 'Randomizer & Re-Arranger für spontane Live-Remixe',
+        c2_b3: 'Glitchfreies Waveform-Scrubbing & Stereo-Bed-Routing',
+        tools_tag: 'STUDIO-ERWEITERUNGEN',
+        tools_title: 'Entwickelt für den perfekten Workflow',
+        tools_desc: 'Jedes Werkzeug der vir2oseSOUND-Suite wurde penibel für Übersicht, blindes Muskelgedächtnis und absolute Zuverlässigkeit auf der Bühne konzipiert.',
+        t1_title: 'Präzisions-Mischpult',
+        t1_desc: 'Optische Crossfader-Kurven, Dual-LED-Peakmeter, Vorhör-Routing und dedizierte Studio-Gain-Regler.',
+        t2_title: 'Spektral-Wellenform-Zoom',
+        t2_desc: 'Mehrfarbige frequenzgetrennte Wellenformen für Kick, Snare und Vocals mit Zoom bis auf Einzelsample-Ebene.',
+        t3_title: 'High-Speed Playlisten & Crates',
+        t3_desc: 'Blitzschnelle Datenbanksuche, intelligente Ordner, BPM-Sortierung, Key-Matching und Drag-and-Drop auf die Decks.',
+        t4_title: 'Zweitmonitor-Videofenster',
+        t4_desc: 'Auskoppelbares Vollbildfenster für Club-Beamer, externe Displays via HDMI/USB-C und Live-Visuals.',
+        t5_title: 'vir2ose Signature-Design',
+        t5_desc: 'Handgefertigt von Waldemar Krucinski. Goldene Akzente, dunkles Obsidian-Layout und präzise deutsche Audio-Ingenieurskunst.',
+        t6_title: 'V-STREAM Cloud & Lokale Tracks',
+        t6_desc: 'Pufferung lokaler Soundtracks und nahtloser Cloud-Stream. Schnelles Laden von Tracks direkt in Deck A & B mit automatischer BPM- und Tonarterkennung.',
         specs_title: 'Entwickelt für höchste Studio-Qualität & Zuverlässigkeit',
         specs_desc: 'Ob live im Club oder unterwegs beim Mixen: DJ V-SCRATCH LIVE schöpft die volle Rechenleistung von Apple Silicon (M1/M2/M3/M4 & A-Serie Bionic) mit kompromissloser 64-Bit-Fließkomma-Präzision aus.',
         specs_b1: '<strong>CoreAudio DSP:</strong> Extrem niedrige Puffergrößen bis hinunter zu 64 Samples (~1,4 ms Roundtrip).',
@@ -1142,30 +1404,47 @@
       en: {
         nav_showcase: '3D Showcase',
         nav_features: 'Features',
+        nav_workflow: 'Workflow',
         nav_specs: 'Specifications',
         nav_support: 'Support',
         nav_studio: 'Studio',
         hero_badge: 'iOS & iPadOS 17+ Edition',
-        hero_subtitle: 'Authentic Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer, and V-SPH3RE 3D Binaural Matrix — engineered in native C++ for iPad and iPhone.',
+        hero_subtitle: 'Authentic Dual-Deck Turntablism, Spectral HD Waveforms, V-Chopper Loop Slicer, and V-SPH3RE 3D Binaural Matrix — engineered in native C++ for iPad and iPhone.',
         pill_no_sub: 'NO SUBSCRIPTION',
         pill_dsp: '< 5MS COREAUDIO DSP',
         pill_hardware: 'STANDALONE HARDWARE CONSOLE',
         pill_midi: 'USB & MIDI CONTROLLER READY',
-        feat_tag: '// PRO AUDIO PERFORMANCE',
-        feat_title: 'Built Without Compromise for Touch & Stage',
-        feat_desc: 'Engineered from scratch using high-performance C++ JUCE architecture, delivering the immediate tactile precision of analog turntables directly onto your Apple device.',
-        f1_title: 'Analog Platter Physics',
-        f1_desc: 'Realistic vinyl inertia, backspin momentum, motor drag, and instant scratch tracking optimized specifically for high refresh rate Apple ProMotion displays.',
-        f2_title: 'V-SPH3RE 3D Binaural Audio',
-        f2_desc: 'Pioneering 3D sound positioning with real-time HRTF algorithms. Place your decks anywhere in a virtual 360° spherical room for breathtaking headphone spatialization.',
-        f3_title: 'V-Chopper Slicing Suite',
-        f3_desc: 'Instant transient detection and beat-synchronized rhythmic slicing. Transform tracks on the fly with customizable 1/8, 1/16, and pitch-shaper modulation matrices.',
-        f4_title: 'Pioneer HD Zoom Display',
-        f4_desc: 'High-resolution dual scrolling waveforms at 60 FPS. Featuring calibrated 1.0x, 2.0x, and 4.0x zoom levels, Camelot harmonic key badges, and precision beatgrids.',
-        f5_title: 'Direct Files & iCloud Import',
-        f5_desc: 'Seamlessly stream and import audio files from your iOS Files app, iCloud Drive, external USB-C thumb drives, or local playlists without cumbersome desktop sync.',
-        f6_title: 'Hardware MIDI & USB Audio',
-        f6_desc: 'Plug & Play support for external USB DJ controllers (Gemini GMX, Pioneer DDJ, etc.), multi-channel soundcards, and Bluetooth MIDI gear with zero driver headaches.',
+        flagship_tag: 'VIR2OSESOUND FLAGSHIP',
+        flagship_title: 'The Heart of Modern Turntablism',
+        flagship_desc: 'Engineered from the ground up for zero-latency vinyl scratching, precision beat-matching, and tactile live performance on iPad and iPhone.',
+        c1_tag: 'DUAL DECK ENGINE',
+        c1_title: 'DJ V-SCRATCH LIVE 1.0',
+        c1_desc: 'Ultra-realistic vinyl emulation with interactive needle drops, multi-point cueing, real-time BPM detection, 3-band studio isolator EQ, and full tactile touch mode for iPad and iPhone.',
+        c1_b1: 'High-Resolution Physical Vinyl & Scratch Engine',
+        c1_b2: 'Performance Pads: Hot Cue, Loop, Roll, Slicer',
+        c1_b3: 'Dedicated Tablet & Smartphone Touch Mode with Scaled Hit-Boxes',
+        c1_b4: 'CoreAudio Ultra Low Latency Processing (< 1.4ms)',
+        c2_tag: 'SAMPLE & SLICE',
+        c2_title: 'V-CHOPPER Sample Engine',
+        c2_desc: 'Slice, randomize, and re-trigger breaks and vocal drops on the fly. Real-time transient detection locks every chop tightly onto the master groove.',
+        c2_b1: 'Automatic Transient & Grid Beat Slicing',
+        c2_b2: 'Randomizer & Re-Arranger for Instant Remixing',
+        c2_b3: 'Zero-Glitch Waveform Scrubbing & Stereo Bed Routing',
+        tools_tag: 'SUITE EXTENSIONS',
+        tools_title: 'Engineered for Total Workflow',
+        tools_desc: 'Every tool in the vir2oseSOUND suite is meticulously crafted for clarity, rapid muscle memory, and flawless performance on stage.',
+        t1_title: 'Precision Center Mixer',
+        t1_desc: 'High-precision optical crossfader curves, dual LED VU meters, headphone pre-cue routing, and dedicated studio gain trims.',
+        t2_title: 'Spectral Waveform Zoom',
+        t2_desc: 'Multi-color frequency-split audio waveforms showing bass kicks, snare transients, and vocal lines with sample-level zooming.',
+        t3_title: 'High-Speed Crate & Playlist Library',
+        t3_desc: 'Lightning-fast audio database search, smart folders, instant BPM sorting, key matching, and drag-and-drop deck loading.',
+        t4_title: 'Dual-Monitor Video Window',
+        t4_desc: 'Detachable full-screen projector window for club visuals, external HDMI/USB-C displays, and video mixing.',
+        t5_title: 'Signature vir2ose Design',
+        t5_desc: 'Master-crafted by Waldemar Krucinski. Handcrafted gold bezels, dark obsidian layout, and bespoke German audio engineering.',
+        t6_title: 'V-STREAM Cloud & Local Hub',
+        t6_desc: 'Buffer your local soundtrack library or stream cloud tracks with instant deck load, live BPM calculation, and Camelot harmonic mixing.',
         specs_title: 'Engineered for Studio Quality & Reliability',
         specs_desc: 'Whether performing live at clubs or crafting mixes on the road, DJ V-SCRATCH LIVE leverages the full power of Apple Silicon (M1/M2/M3/M4 & A-Series Bionic) with strict 64-bit floating-point audio precision.',
         specs_b1: '<strong>CoreAudio DSP:</strong> Ultra-low buffer configurations down to 64 samples (~1.4ms roundtrip).',
@@ -1187,12 +1466,12 @@
     const slideCaptions = {
       de: [
         { title: 'V-CHOPPER LOOP SLICER', desc: 'Echtzeit-Slicing, Beat-Jumps und Instant Stutter FX für dynamische Live-Remixe.' },
-        { title: 'DUAL-DECK TURNTABLISM', desc: 'Pioneer-inspiriertes HD Waveform Display, Ultra-Low Latency Jogwheels und 64-Bit DSP-Mixer.' },
+        { title: 'DUAL-DECK TURNTABLISM', desc: 'Spektral-HD Waveform Display, Ultra-Low Latency Jogwheels und 64-Bit DSP-Mixer.' },
         { title: 'V-SPH3RE 3D BINAURAL MATRIX', desc: 'Immersive räumliche 3D-Klangbühne mit Echtzeit-Binaural-Filterung für Kopfhörer und Monitore.' }
       ],
       en: [
         { title: 'V-CHOPPER LOOP SLICER', desc: 'Real-time slicing, instant beat jumps, and stutter FX for dynamic live remixing.' },
-        { title: 'DUAL-DECK TURNTABLISM', desc: 'Pioneer-inspired HD Waveform Display, ultra-low latency jogwheels, and 64-bit DSP mixer.' },
+        { title: 'DUAL-DECK TURNTABLISM', desc: 'Spectral HD Waveform Display, ultra-low latency jogwheels, and 64-bit DSP mixer.' },
         { title: 'V-SPH3RE 3D BINAURAL MATRIX', desc: 'Immersive 3D spatial soundstage with real-time binaural filtering for headphones and monitors.' }
       ]
     };
@@ -1298,10 +1577,10 @@
     });
 
     // Touch Swipe Gestures
-    let touchStartX = 0;
-    let touchEndX = 0;
     const carouselEl = document.getElementById('carousel');
     if (carouselEl) {
+      let touchStartX = 0;
+      let touchEndX = 0;
       carouselEl.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
         stopAutoPlay();
@@ -1318,10 +1597,76 @@
       carouselEl.addEventListener('mouseleave', startAutoPlay);
     }
 
-    // Initialize Language & Carousel
+    // DYNAMIC BACKGROUND VIDEO SCROLL CROSSFADE (from turntablism.waldemar-krucinski.com)
+    const bgVideos = [
+      document.getElementById('bgVideo1'),
+      document.getElementById('bgVideo2'),
+      document.getElementById('bgVideo3'),
+      document.getElementById('bgVideo4')
+    ];
+
+    bgVideos.forEach(vid => {
+      if (vid) {
+        vid.playbackRate = 0.85;
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            window.addEventListener('touchstart', () => vid.play(), { once: true });
+            window.addEventListener('scroll', () => vid.play(), { once: true });
+          });
+        }
+      }
+    });
+
+    let currentActiveVideo = 0;
+    function updateBackgroundVideoOnScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+
+      const progress = Math.min(Math.max(scrollY / docHeight, 0), 1);
+
+      let targetIndex = 0;
+      if (progress < 0.25) {
+        targetIndex = 0;
+      } else if (progress < 0.52) {
+        targetIndex = 1;
+      } else if (progress < 0.78) {
+        targetIndex = 2;
+      } else {
+        targetIndex = 3;
+      }
+
+      if (targetIndex !== currentActiveVideo) {
+        currentActiveVideo = targetIndex;
+        bgVideos.forEach((vid, idx) => {
+          if (vid) {
+            if (idx === targetIndex) {
+              vid.classList.add('active');
+            } else {
+              vid.classList.remove('active');
+            }
+          }
+        });
+      }
+    }
+
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          updateBackgroundVideoOnScroll();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    // Initialize
     setLang(currentLang);
     updateCarousel(1);
     startAutoPlay();
+    updateBackgroundVideoOnScroll();
   </script>
 </body>
 </html>
