@@ -1,139 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>DJ V-SCRATCH LIVE Studio | iOS & iPadOS Turntablism Pro</title>
-  <meta name="description" content="Authentic touch turntablism and digital DJ performance powered by custom C++/JUCE CoreAudio DSP for iPad and iPhone. Zero subscription.">
-  <meta name="keywords" content="DJ App, iPad DJ, iPhone DJ, Turntablism, V-Scratch, 3D Immersive Audio, V-SPH3RE, V-Chopper, CoreAudio, JUCE, vir2oseSOUND">
-
-  <!-- Open Graph / Meta -->
-  <meta property="og:title" content="DJ V-SCRATCH LIVE Studio | iOS & iPadOS">
-  <meta property="og:description" content="Next-Gen Mobile Turntablism. Dual High-Precision Decks, V-Chopper, V-SPH3RE 3D Binaural Matrix & Low Latency CoreAudio DSP.">
-  <meta property="og:image" content="assets/screen_dual_deck.png">
-  <meta property="og:url" content="https://ios.waldemar-krucinski.com">
-  <meta name="theme-color" content="#07080c">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/app_icon.png">
-
-  <!-- Google Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DJ V-SCRATCH LIVE | Pro iOS &amp; iPadOS DJ Workstation</title>
+  <meta name="description" content="DJ V-SCRATCH LIVE – Authentisches Dual-Deck Turntablism, Pioneer HD Waveforms, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix für iPad &amp; iPhone.">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/app_icon.png">
 
   <style>
     :root {
       --bg-dark: #07080c;
-      --bg-panel: rgba(14, 17, 24, 0.78);
-      --bg-card: rgba(16, 20, 29, 0.82);
+      --bg-surface: #0e121a;
+      --bg-card: rgba(18, 22, 32, 0.75);
       --gold-primary: #c5a059;
-      --gold-bright: #ffe599;
-      --gold-glow: rgba(197, 160, 89, 0.45);
-      --cyan-accent: #00d4ff;
-      --cyan-glow: rgba(0, 212, 255, 0.4);
-      --pink-accent: #ff0077;
-      --text-main: #f5f5f7;
-      --text-muted: #9aa1b2;
+      --gold-bright: #dfba73;
+      --gold-glow: rgba(197, 160, 89, 0.35);
+      --cyan-accent: #00e5ff;
+      --cyan-glow: rgba(0, 229, 255, 0.35);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
       --border-gold: rgba(197, 160, 89, 0.28);
-      --border-card: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --radius-sm: 8px;
       --radius-md: 14px;
-      --radius-lg: 22px;
+      --radius-lg: 20px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
       scroll-behavior: smooth;
       background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      background: #07080c;
+      position: relative;
       overflow-x: hidden;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* Ambient Background Auras */
-    .ambient-aurora {
-      position: fixed;
-      top: -10vw;
-      left: 15vw;
-      width: 70vw;
-      height: 40vw;
-      background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.12) 0%, rgba(0, 212, 255, 0.06) 45%, transparent 70%);
-      pointer-events: none;
-      filter: blur(90px);
-      z-index: 0;
-    }
-
-    /* Global Navigation */
+    /* HEADER & NAVIGATION */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 16px 6%;
+      height: 72px;
+      padding: 0 4%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(7, 8, 12, 0.72);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+      background: rgba(7, 8, 12, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-gold);
       z-index: 1000;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease;
     }
 
     .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 14px;
       text-decoration: none;
     }
 
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      box-shadow: 0 0 16px var(--gold-glow);
-      border: 1px solid var(--gold-primary);
-      object-fit: cover;
+    /* Custom logo from Screen 4 */
+    .brand-logo-custom {
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.3));
+      transition: transform 0.2s ease;
     }
 
-    .brand-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      color: #fff;
-    }
-
-    .brand-title span {
-      color: var(--cyan-accent);
-      text-shadow: 0 0 12px var(--cyan-glow);
+    .brand-logo-custom:hover {
+      transform: scale(1.03);
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 22px;
     }
 
     nav a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       transition: color 0.2s ease;
     }
 
@@ -141,52 +110,85 @@
       color: var(--gold-bright);
     }
 
+    /* LANGUAGE SWITCHER (DE is Primary) */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(14, 18, 26, 0.85);
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 4px 10px;
+      margin-left: 6px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      padding: 2px 4px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .lang-btn.active {
+      color: var(--gold-bright);
+      text-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    .lang-sep {
+      color: #334155;
+      font-size: 0.72rem;
+    }
+
     .btn-nav-appstore {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 8px 18px;
-      border-radius: 9999px;
-      background: linear-gradient(135deg, rgba(197,160,89,0.18), rgba(197,160,89,0.06));
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1e2536 0%, #10141d 100%);
       border: 1px solid var(--gold-primary);
-      color: var(--gold-bright);
-      text-decoration: none;
-      font-size: 0.88rem;
+      color: var(--gold-bright) !important;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      font-size: 0.82rem;
+      box-shadow: 0 0 16px rgba(197, 160, 89, 0.15);
       transition: all 0.25s ease;
-      box-shadow: 0 0 14px rgba(197,160,89,0.15);
     }
 
     .btn-nav-appstore:hover {
       background: var(--gold-primary);
-      color: #07080c;
-      box-shadow: 0 0 22px var(--gold-glow);
+      color: #07080c !important;
+      box-shadow: 0 0 24px var(--gold-glow);
       transform: translateY(-1px);
     }
 
-    /* Hero Section with Video Background */
+    /* HERO STAGE */
     .hero-stage {
       position: relative;
       min-height: 100vh;
-      padding: 130px 4% 80px;
+      padding: 100px 4% 50px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       overflow: hidden;
-      z-index: 1;
+      text-align: center;
     }
 
-    /* Video Background Container */
+    /* Hero Background Video (anima_back.mp4) */
     .hero-video-bg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 1;
       overflow: hidden;
-      z-index: -1;
       pointer-events: none;
     }
 
@@ -194,131 +196,118 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      filter: brightness(0.68) contrast(1.15) saturate(1.1);
-      opacity: 0.65;
-      transition: opacity 1.5s ease;
+      opacity: 0.55;
+      filter: contrast(1.1) brightness(0.9);
     }
 
-    /* Video Vignette & Atmospheric Gradients */
     .hero-video-vignette {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 50% 40%, rgba(7, 8, 12, 0.25) 0%, rgba(7, 8, 12, 0.88) 85%),
-        linear-gradient(to bottom, rgba(7, 8, 12, 0.7) 0%, transparent 20%, transparent 75%, var(--bg-dark) 100%);
+      background: radial-gradient(circle at center, rgba(7, 8, 12, 0.25) 0%, rgba(7, 8, 12, 0.82) 75%, #07080c 100%),
+                  linear-gradient(180deg, rgba(7,8,12,0.4) 0%, transparent 40%, rgba(7,8,12,0.95) 100%);
     }
 
-    /* Hero Header Content */
     .hero-content {
-      text-align: center;
-      max-width: 960px;
-      margin: 0 auto 30px;
-      z-index: 2;
+      position: relative;
+      z-index: 10;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 6px 16px 0;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 18px;
-      border-radius: 9999px;
-      background: rgba(197, 160, 89, 0.12);
-      border: 1px solid rgba(197, 160, 89, 0.45);
-      color: var(--gold-bright);
-      font-size: 0.82rem;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(14, 18, 26, 0.85);
+      border: 1px solid var(--border-gold);
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 18px rgba(197, 160, 89, 0.2);
+      color: var(--gold-bright);
+      margin-bottom: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.6);
     }
 
-    .hero-badge .pulse-dot {
-      width: 7px;
-      height: 7px;
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--cyan-accent);
-      box-shadow: 0 0 8px var(--cyan-accent);
-      animation: pulse 1.8s infinite;
+      box-shadow: 0 0 10px var(--cyan-accent);
+      animation: pulseAnim 2s infinite;
     }
 
-    @keyframes pulse {
+    @keyframes pulseAnim {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.8); }
     }
 
+    /* Refined Title: ~50% of previous size as requested */
     .hero-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2.4rem, 6vw, 4.4rem);
-      font-weight: 900;
-      line-height: 1.08;
-      margin-bottom: 18px;
+      font-size: clamp(1.4rem, 2.7vw, 2.15rem);
+      font-weight: 800;
+      line-height: 1.18;
+      margin-bottom: 12px;
       background: linear-gradient(135deg, #ffffff 40%, var(--gold-bright) 75%, var(--gold-primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: 2px;
-      text-shadow: 0 0 30px rgba(197, 160, 89, 0.25);
+      text-shadow: 0 0 24px rgba(197, 160, 89, 0.25);
     }
 
+    /* Refined Subtitle: smaller, finer font, in GOLD as requested (screen 2) */
     .hero-subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      color: var(--text-muted);
-      max-width: 760px;
-      margin: 0 auto 28px;
-      font-weight: 400;
-      line-height: 1.6;
+      font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+      color: var(--gold-bright);
+      max-width: 680px;
+      margin: 0 auto 16px;
+      font-weight: 300;
+      line-height: 1.65;
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 16px rgba(197, 160, 89, 0.15);
     }
 
-    .hero-pills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 34px;
-    }
-
-    .hero-pill-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(14, 18, 26, 0.75);
-      border: 1px solid var(--border-gold);
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #e4e7ee;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-pill-item svg {
-      color: var(--cyan-accent);
-    }
-
-    /* 3D CAROUSEL STAGE (Photoshop Simulation Made Real) */
+    /* 3D CAROUSEL SECTION */
     .carousel-section {
-      width: 100%;
-      max-width: 1440px;
-      margin: 10px auto 40px;
       position: relative;
-      perspective: 1600px;
-      z-index: 3;
+      z-index: 10;
+      width: 100%;
+      max-width: 1320px;
+      margin: 6px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .carousel-container {
       position: relative;
       width: 100%;
-      height: 520px;
+      height: 480px;
+      perspective: 1300px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      transform-style: preserve-3d;
+      justify-content: center;
+      user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      .carousel-container {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .carousel-container {
+        height: 260px;
+      }
     }
 
     .carousel-track {
@@ -326,23 +315,26 @@
       width: 100%;
       height: 100%;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
     }
 
     .carousel-slide {
       position: absolute;
-      width: 68%;
-      max-width: 860px;
-      aspect-ratio: 2048 / 960;
-      border-radius: 16px;
+      width: 72%;
+      max-width: 820px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
       overflow: hidden;
       cursor: pointer;
-      user-select: none;
-      transition: all 0.75s cubic-bezier(0.25, 1, 0.35, 1);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      transition: transform 0.65s cubic-bezier(0.2, 0.9, 0.3, 1),
+                  opacity 0.65s ease,
+                  filter 0.65s ease,
+                  box-shadow 0.65s ease;
       background: #000;
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .carousel-slide img {
@@ -353,219 +345,177 @@
       pointer-events: none;
     }
 
-    /* Active Slide (Center) */
+    /* 3D Slide States */
     .carousel-slide.active {
-      transform: translate3d(0, 0, 160px) scale(1);
+      transform: translateX(0) translateZ(80px) scale(1);
       opacity: 1;
-      z-index: 10;
+      filter: brightness(1);
+      z-index: 20;
       border-color: var(--gold-primary);
-      box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.95),
-        0 0 45px rgba(197, 160, 89, 0.35),
-        0 0 15px rgba(0, 212, 255, 0.2);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 35px var(--gold-glow);
     }
 
-    /* Left Slide */
     .carousel-slide.prev {
-      transform: translate3d(-46%, 0, -40px) scale(0.82) rotateY(16deg);
-      opacity: 0.58;
-      z-index: 5;
-      filter: brightness(0.72) contrast(1.05);
+      transform: translateX(-48%) translateZ(-90px) rotateY(24deg) scale(0.85);
+      opacity: 0.55;
+      filter: brightness(0.65) blur(1px);
+      z-index: 10;
     }
 
-    .carousel-slide.prev:hover {
-      opacity: 0.85;
-      filter: brightness(0.9);
-    }
-
-    /* Right Slide */
     .carousel-slide.next {
-      transform: translate3d(46%, 0, -40px) scale(0.82) rotateY(-16deg);
-      opacity: 0.58;
-      z-index: 5;
-      filter: brightness(0.72) contrast(1.05);
+      transform: translateX(48%) translateZ(-90px) rotateY(-24deg) scale(0.85);
+      opacity: 0.55;
+      filter: brightness(0.65) blur(1px);
+      z-index: 10;
     }
 
-    .carousel-slide.next:hover {
-      opacity: 0.85;
-      filter: brightness(0.9);
-    }
-
-    /* Hidden Slides (if expanded) */
     .carousel-slide.hidden {
-      transform: translate3d(0, 0, -200px) scale(0.5);
+      transform: translateX(0) translateZ(-250px) scale(0.6);
       opacity: 0;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Carousel Slide Overlay Caption Bar */
-    .slide-caption-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 12px 20px;
-      background: linear-gradient(to top, rgba(7, 8, 12, 0.92) 0%, rgba(7, 8, 12, 0.3) 70%, transparent 100%);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .carousel-slide.active .slide-caption-bar {
-      opacity: 1;
-    }
-
-    .slide-caption-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--gold-bright);
-    }
-
-    .slide-caption-badge {
-      font-size: 0.75rem;
-      padding: 3px 10px;
-      border-radius: 4px;
-      background: rgba(0, 212, 255, 0.15);
-      border: 1px solid var(--cyan-accent);
-      color: var(--cyan-accent);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    /* Carousel Nav Arrows */
+    /* Carousel Nav Buttons */
     .carousel-nav-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 52px;
-      height: 52px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: rgba(16, 20, 29, 0.85);
-      border: 1px solid var(--gold-primary);
+      background: rgba(14, 18, 26, 0.85);
+      border: 1.5px solid var(--border-gold);
       color: var(--gold-bright);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 20;
+      z-index: 30;
       backdrop-filter: blur(12px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
       transition: all 0.25s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
     }
 
     .carousel-nav-btn:hover {
       background: var(--gold-primary);
       color: #07080c;
-      box-shadow: 0 0 25px var(--gold-glow);
+      box-shadow: 0 0 20px var(--gold-glow);
       transform: translateY(-50%) scale(1.08);
     }
 
-    .carousel-nav-btn.prev-btn {
-      left: 3%;
+    .carousel-nav-btn.prev-btn { left: 4%; }
+    .carousel-nav-btn.next-btn { right: 4%; }
+
+    /* Carousel Caption */
+    .carousel-caption {
+      margin-top: 14px;
+      text-align: center;
+      max-width: 600px;
+      min-height: 52px;
     }
 
-    .carousel-nav-btn.next-btn {
-      right: 3%;
+    .carousel-caption-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
     }
 
-    /* Carousel Indicator Dots */
+    .carousel-caption-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Carousel Dots */
     .carousel-dots {
       display: flex;
+      gap: 10px;
+      margin-top: 12px;
       justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin-top: 15px;
     }
 
     .carousel-dot {
-      width: 38px;
-      height: 5px;
-      border-radius: 9999px;
+      width: 28px;
+      height: 4px;
+      border-radius: 2px;
       background: rgba(255, 255, 255, 0.18);
+      border: none;
       cursor: pointer;
-      transition: all 0.35s ease;
+      transition: all 0.3s ease;
     }
 
     .carousel-dot.active {
-      background: linear-gradient(90deg, var(--gold-primary), var(--cyan-accent));
-      width: 58px;
-      box-shadow: 0 0 12px var(--gold-glow);
+      background: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-glow);
+      width: 44px;
     }
 
-    /* CTA Apple App Store Download Button */
-    .cta-area {
+    /* PILLS / ARGUMENTS IN ONE HORIZONTAL ROW UNDER CAROUSEL (screen 3) */
+    .hero-pills {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      margin: 35px auto 10px;
-      z-index: 2;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 12px;
+      margin: 24px auto 10px;
+      position: relative;
+      z-index: 10;
+      max-width: 100%;
+      overflow-x: auto;
+      padding: 6px 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
 
-    .btn-appstore-hero {
+    .hero-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (max-width: 860px) {
+      .hero-pills {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    .hero-pill-item {
       display: inline-flex;
       align-items: center;
-      gap: 16px;
-      padding: 14px 34px;
-      border-radius: 14px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      border: 1.5px solid rgba(255, 255, 255, 0.28);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(197, 160, 89, 0.25);
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .btn-appstore-hero:hover {
-      border-color: var(--gold-primary);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 45px var(--gold-glow);
-    }
-
-    .appstore-icon {
-      width: 32px;
-      height: 32px;
-      fill: #fff;
-    }
-
-    .btn-appstore-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      line-height: 1.2;
-    }
-
-    .btn-appstore-text .subtext {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #a1a1aa;
-    }
-
-    .btn-appstore-text .maintext {
-      font-size: 1.28rem;
+      gap: 7px;
+      background: rgba(10, 14, 22, 0.85);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
+      color: #e2e8f0;
+      white-space: nowrap;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
     }
 
-    .pricing-hint {
-      margin-top: 14px;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
+    .hero-pill-item svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
     }
 
-    .pricing-hint strong {
-      color: var(--gold-bright);
+    .hero-pill-item:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 16px var(--gold-glow);
+      transform: translateY(-1px);
     }
 
-    /* FEATURES GRID SECTION */
+    /* FEATURES SECTION */
     .features-section {
-      padding: 90px 6%;
-      max-width: 1360px;
+      padding: 80px 6%;
+      max-width: 1240px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
@@ -573,173 +523,177 @@
 
     .section-header {
       text-align: center;
-      max-width: 800px;
-      margin: 0 auto 60px;
+      max-width: 720px;
+      margin: 0 auto 50px;
     }
 
     .section-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.84rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      color: var(--cyan-accent);
       letter-spacing: 2px;
+      color: var(--cyan-accent);
       text-transform: uppercase;
-      margin-bottom: 12px;
       display: block;
+      margin-bottom: 10px;
     }
 
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
       font-weight: 800;
       color: #fff;
-      line-height: 1.2;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
     }
 
     .section-desc {
       color: var(--text-muted);
-      font-size: 1.08rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
     }
 
     .feature-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      padding: 34px 30px;
-      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 26px 22px;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      backdrop-filter: blur(14px);
     }
 
     .feature-card:hover {
-      transform: translateY(-6px);
       border-color: var(--gold-primary);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(197, 160, 89, 0.15);
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.7), 0 0 20px rgba(197, 160, 89, 0.15);
     }
 
     .feature-icon-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
       background: rgba(197, 160, 89, 0.12);
-      border: 1px solid var(--gold-primary);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-bright);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
-      color: var(--gold-bright);
+      margin-bottom: 16px;
     }
 
     .feature-card h3 {
-      font-size: 1.35rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 14px;
-      letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
 
     .feature-card p {
       color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.7;
+      font-size: 0.82rem;
+      line-height: 1.6;
     }
 
-    /* HARDWARE & COREAUDIO SPEC SECTION */
+    /* SPECS SECTION: SUBTLE AND REFINED AS REQUESTED (screen 5) */
     .specs-section {
       background: linear-gradient(180deg, rgba(14, 18, 26, 0.6) 0%, rgba(7, 8, 12, 0.95) 100%);
       border-top: 1px solid var(--border-gold);
       border-bottom: 1px solid var(--border-gold);
-      padding: 80px 6%;
+      padding: 65px 6%;
       position: relative;
       z-index: 2;
     }
 
     .specs-container {
-      max-width: 1200px;
+      max-width: 1140px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      gap: 45px;
       align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .specs-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
     }
 
     .specs-content h2 {
       font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
       font-weight: 800;
       color: #fff;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+      letter-spacing: 0.8px;
+      line-height: 1.25;
+    }
+
+    .specs-content p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.65;
     }
 
     .specs-list {
       list-style: none;
-      margin-top: 24px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .specs-list li {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 18px;
-      font-size: 1.02rem;
-      color: #e2e8f0;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      line-height: 1.5;
     }
 
     .specs-bullet {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: rgba(0, 212, 255, 0.18);
-      border: 1.5px solid var(--cyan-accent);
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid var(--cyan-accent);
+      color: var(--cyan-accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--cyan-accent);
-      font-size: 0.7rem;
-      font-weight: 900;
+      font-size: 0.68rem;
+      font-weight: bold;
       flex-shrink: 0;
-      margin-top: 3px;
+      margin-top: 1px;
     }
 
     .specs-card-visual {
       background: var(--bg-card);
       border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      border-radius: var(--radius-md);
+      padding: 26px 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      backdrop-filter: blur(12px);
     }
 
     .spec-item-box {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 16px;
-      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 13px;
+      margin-bottom: 13px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
     }
 
     .spec-item-box:last-child {
@@ -750,20 +704,22 @@
 
     .spec-label {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
     .spec-value {
       font-family: 'JetBrains Mono', monospace;
       color: var(--gold-bright);
-      font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: right;
     }
 
-    /* SUPPORT & OFFICIAL INQUIRIES SECTION */
+    /* SUPPORT SECTION: ONLY EMAIL AS REQUESTED */
     .support-section {
-      padding: 90px 6%;
-      max-width: 900px;
+      padding: 70px 6%;
+      max-width: 820px;
       margin: 0 auto;
       text-align: center;
       position: relative;
@@ -774,86 +730,65 @@
       background: var(--bg-card);
       border: 1.5px solid var(--gold-primary);
       border-radius: var(--radius-lg);
-      padding: 50px 36px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.9), 0 0 40px rgba(197, 160, 89, 0.2);
+      padding: 42px 30px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 35px rgba(197, 160, 89, 0.18);
       backdrop-filter: blur(16px);
     }
 
     .support-card h2 {
       font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
-      margin-bottom: 16px;
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      margin-bottom: 12px;
       color: #fff;
     }
 
     .support-card p {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 680px;
-      margin: 0 auto 28px;
-      line-height: 1.7;
+      font-size: 0.88rem;
+      max-width: 620px;
+      margin: 0 auto 24px;
+      line-height: 1.65;
     }
 
     .support-links-box {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      align-items: center;
     }
 
     .support-contact-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 26px;
+      padding: 12px 28px;
       border-radius: 10px;
       background: rgba(197, 160, 89, 0.15);
       border: 1px solid var(--gold-primary);
       color: var(--gold-bright);
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.92rem;
       text-decoration: none;
       transition: all 0.25s ease;
+      letter-spacing: 0.4px;
     }
 
     .support-contact-btn:hover {
       background: var(--gold-primary);
       color: #07080c;
-      box-shadow: 0 0 20px var(--gold-glow);
-      transform: translateY(-2px);
-    }
-
-    .studio-link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 26px;
-      border-radius: 10px;
-      background: rgba(0, 212, 255, 0.12);
-      border: 1px solid var(--cyan-accent);
-      color: var(--cyan-accent);
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-
-    .studio-link-btn:hover {
-      background: var(--cyan-accent);
-      color: #07080c;
-      box-shadow: 0 0 20px var(--cyan-glow);
+      box-shadow: 0 0 24px var(--gold-glow);
       transform: translateY(-2px);
     }
 
     /* FOOTER */
     footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 36px 6%;
+      padding: 35px 6%;
       text-align: center;
-      color: #71717a;
-      font-size: 0.9rem;
+      border-top: 1px solid var(--border-subtle);
+      color: #64748b;
+      font-size: 0.8rem;
       position: relative;
       z-index: 2;
+      background: #050608;
     }
 
     footer a {
@@ -861,73 +796,50 @@
       text-decoration: none;
     }
 
-    /* MOBILE RESPONSIVENESS */
-    @media (max-width: 900px) {
-      .specs-container {
-        grid-template-columns: 1fr;
-      }
-      .carousel-container {
-        height: 380px;
-      }
-      .carousel-slide {
-        width: 82%;
-      }
-      .carousel-slide.prev {
-        transform: translate3d(-35%, 0, -40px) scale(0.85);
-      }
-      .carousel-slide.next {
-        transform: translate3d(35%, 0, -40px) scale(0.85);
-      }
-      nav a {
-        display: none;
-      }
+    footer a:hover {
+      text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       header {
-        padding: 14px 4%;
+        height: 64px;
+        padding: 0 5%;
       }
-      .hero-stage {
-        padding: 100px 3% 60px;
+      nav a:not(.btn-nav-appstore) {
+        display: none;
       }
-      .carousel-container {
-        height: 280px;
-      }
-      .carousel-slide {
-        width: 92%;
-      }
-      .carousel-slide.prev, .carousel-slide.next {
-        opacity: 0.25;
-      }
-      .carousel-nav-btn {
-        width: 40px;
-        height: 40px;
+      .brand-logo-custom {
+        height: 28px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Light Bloom -->
-  <div class="ambient-aurora"></div>
-
-  <!-- Header / Navigation -->
+  <!-- HEADER -->
   <header>
     <a href="#" class="brand-wrap">
-      <img src="assets/app_icon.png" alt="DJ V-SCRATCH LIVE Icon" class="brand-logo" onerror="this.style.display='none'">
-      <div class="brand-title">vir2ose<span>SOUND</span></div>
+      <img src="assets/vir2ose_sound_logo.png" alt="vir2oseSOUND" class="brand-logo-custom">
     </a>
     <nav>
-      <a href="#showcase">3D Showcase</a>
-      <a href="#features">Features</a>
-      <a href="#specs">Specifications</a>
-      <a href="#support">Support</a>
-      <a href="https://studio.waldemar-krucinski.com" target="_blank" rel="noopener">Studio</a>
+      <a href="#showcase" data-i18n="nav_showcase">3D Showcase</a>
+      <a href="#features" data-i18n="nav_features">Funktionen</a>
+      <a href="#specs" data-i18n="nav_specs">Spezifikationen</a>
+      <a href="#support" data-i18n="nav_support">Support</a>
+      <a href="https://studio.waldemar-krucinski.com" target="_blank" rel="noopener" data-i18n="nav_studio">Studio</a>
+      
+      <!-- LANGUAGE SWITCHER (DE is Primary) -->
+      <div class="lang-switch" role="group" aria-label="Sprache auswählen">
+        <button type="button" class="lang-btn active" id="btnLangDe" onclick="setLang('de')">DE</button>
+        <span class="lang-sep">|</span>
+        <button type="button" class="lang-btn" id="btnLangEn" onclick="setLang('en')">EN</button>
+      </div>
+
       <a href="#download" class="btn-nav-appstore">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.64-.78 1.08-1.86.96-2.95-1 .04-2.16.66-2.83 1.45-.59.68-1.12 1.79-.98 2.85 1.12.09 2.22-.57 2.85-1.35z"/>
         </svg>
-        App Store
+        <span>App Store</span>
       </a>
     </nav>
   </header>
@@ -948,33 +860,16 @@
       <div class="hero-content">
         <div class="hero-badge">
           <div class="pulse-dot"></div>
-          <span>iOS &amp; iPadOS 17+ Edition</span>
+          <span data-i18n="hero_badge">iOS &amp; iPadOS 17+ Edition</span>
         </div>
 
+        <!-- 50% smaller headline as requested -->
         <h1 class="hero-title">DJ V-SCRATCH LIVE</h1>
 
-        <p class="hero-subtitle">
-          Authentic Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer, and V-SPH3RE 3D Binaural Matrix — engineered in native C++ for iPad and iPhone.
+        <!-- Subtitle: smaller, finer, and in GOLD as requested (screen 2) -->
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Authentisches Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix — entwickelt in nativem C++ für iPad und iPhone.
         </p>
-
-        <div class="hero-pills">
-          <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>NO SUBSCRIPTION</span>
-          </div>
-          <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>&lt; 5MS COREAUDIO DSP</span>
-          </div>
-          <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>STANDALONE HARDWARE CONSOLE</span>
-          </div>
-          <div class="hero-pill-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>USB &amp; MIDI CONTROLLER READY</span>
-          </div>
-        </div>
       </div>
 
       <!-- 3D CAROUSEL (Photoshop Mockup Simulation) -->
@@ -983,7 +878,7 @@
           
           <!-- Prev Button -->
           <button class="carousel-nav-btn prev-btn" id="prevBtn" aria-label="Previous Slide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
 
           <!-- 3D Slide Track -->
@@ -992,71 +887,71 @@
             <!-- Slide 0: V-Chopper -->
             <div class="carousel-slide prev" data-index="0">
               <img src="assets/screen_vchopper.png" alt="DJ V-SCRATCH LIVE - V-Chopper Performance Suite">
-              <div class="slide-caption-bar">
-                <span class="slide-caption-title">V-CHOPPER | Live Loop Slicer &amp; Hot-Cue Juggler</span>
-                <span class="slide-caption-badge">LIVE REMIXING</span>
-              </div>
             </div>
 
-            <!-- Slide 1: Dual Deck (Active Center) -->
+            <!-- Slide 1: Dual Deck (Center / Default) -->
             <div class="carousel-slide active" data-index="1">
-              <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck HD Turntable Console">
-              <div class="slide-caption-bar">
-                <span class="slide-caption-title">DUAL-DECK CONSOLE | 60 FPS Zoom Waveform &amp; Vinyl Scratch</span>
-                <span class="slide-caption-badge">PIONEER HD DISPLAY</span>
-              </div>
+              <img src="assets/screen_dual_deck.png" alt="DJ V-SCRATCH LIVE - Dual Deck Turntable Console">
             </div>
 
-            <!-- Slide 2: V-SPH3RE 3D -->
+            <!-- Slide 2: V-Sph3re 3D -->
             <div class="carousel-slide next" data-index="2">
-              <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Immersive Audio Engine">
-              <div class="slide-caption-bar">
-                <span class="slide-caption-title">V-SPH3RE 3D | Binaural Headphone &amp; Spatial Matrix</span>
-                <span class="slide-caption-badge">IMMERSIVE AUDIO</span>
-              </div>
+              <img src="assets/screen_vsph3re.png" alt="DJ V-SCRATCH LIVE - V-SPH3RE 3D Binaural Studio Matrix">
             </div>
 
           </div>
 
           <!-- Next Button -->
           <button class="carousel-nav-btn next-btn" id="nextBtn" aria-label="Next Slide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
+
+        </div>
+
+        <!-- Carousel Caption -->
+        <div class="carousel-caption">
+          <div class="carousel-caption-title" id="captionTitle">DUAL-DECK TURNTABLISM</div>
+          <div class="carousel-caption-desc" id="captionDesc">Pioneer-inspiriertes HD Waveform Display, Ultra-Low Latency Jogwheels und 64-Bit DSP-Mixer.</div>
         </div>
 
         <!-- Pagination Dots -->
-        <div class="carousel-dots" id="dotsContainer">
-          <div class="carousel-dot" data-index="0"></div>
-          <div class="carousel-dot active" data-index="1"></div>
-          <div class="carousel-dot" data-index="2"></div>
+        <div class="carousel-dots">
+          <button class="carousel-dot" data-dot="0" aria-label="Slide 1"></button>
+          <button class="carousel-dot active" data-dot="1" aria-label="Slide 2"></button>
+          <button class="carousel-dot" data-dot="2" aria-label="Slide 3"></button>
         </div>
-      </div>
 
-      <!-- App Store Call to Action -->
-      <div class="cta-area" id="download">
-        <a href="#support" class="btn-appstore-hero">
-          <svg class="appstore-icon" viewBox="0 0 24 24">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.64-.78 1.08-1.86.96-2.95-1 .04-2.16.66-2.83 1.45-.59.68-1.12 1.79-.98 2.85 1.12.09 2.22-.57 2.85-1.35z"/>
-          </svg>
-          <div class="btn-appstore-text">
-            <span class="subtext">Download for iPad &amp; iPhone</span>
-            <span class="maintext">Apple App Store</span>
+        <!-- PILLS / ARGUMENTS IN ONE HORIZONTAL ROW UNDER CAROUSEL (screen 3) -->
+        <div class="hero-pills">
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-i18n="pill_no_sub">KEIN ABONNEMENT</span>
           </div>
-        </a>
-        <p class="pricing-hint">
-          One-time purchase • <strong>No recurring fees</strong> • Lifetime updates included
-        </p>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-i18n="pill_dsp">&lt; 5MS COREAUDIO DSP</span>
+          </div>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-i18n="pill_hardware">STANDALONE HARDWARE-KONSOLE</span>
+          </div>
+          <div class="hero-pill-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-i18n="pill_midi">USB- &amp; MIDI-CONTROLLER READY</span>
+          </div>
+        </div>
+
       </div>
 
     </section>
 
-    <!-- CORE FEATURES SECTION -->
+    <!-- PRO AUDIO FEATURES SECTION -->
     <section class="features-section" id="features">
       <div class="section-header">
-        <span class="section-tag">// PRO AUDIO PERFORMANCE</span>
-        <h2 class="section-title">Built Without Compromise for Touch &amp; Stage</h2>
-        <p class="section-desc">
-          Engineered from scratch using high-performance C++ JUCE architecture, delivering the immediate tactile precision of analog turntables directly onto your Apple device.
+        <span class="section-tag" data-i18n="feat_tag">// PRO AUDIO PERFORMANCE</span>
+        <h2 class="section-title" data-i18n="feat_title">Konzipiert für maximale Club- &amp; Touch-Präzision</h2>
+        <p class="section-desc" data-i18n="feat_desc">
+          Von Grund auf in nativer C++ JUCE-Architektur entwickelt. Bringt die unmittelbare Haptik und Reaktionsfreude analoger Plattenspieler direkt auf iPad und iPhone.
         </p>
       </div>
 
@@ -1065,129 +960,124 @@
         <!-- Feature 1 -->
         <div class="feature-card">
           <div class="feature-icon-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line></svg>
           </div>
-          <h3>Analog Platter Physics</h3>
-          <p>Realistic vinyl inertia, backspin momentum, motor drag, and instant scratch tracking optimized specifically for high refresh rate Apple ProMotion displays.</p>
+          <h3 data-i18n="f1_title">Analoge Platter-Physik</h3>
+          <p data-i18n="f1_desc">Reale Vinyl-Trägheit, authentisches Backspin-Momentum und lückenloses Scratch-Tracking, präzise optimiert für Apple 120Hz ProMotion Displays.</p>
         </div>
 
         <!-- Feature 2 -->
         <div class="feature-card">
           <div class="feature-icon-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
           </div>
-          <h3>V-SPH3RE 3D Binaural Audio</h3>
-          <p>Pioneering 3D sound positioning with real-time HRTF algorithms. Place your decks anywhere in a virtual 360° spherical room for breathtaking headphone spatialization.</p>
+          <h3 data-i18n="f2_title">V-SPH3RE 3D Binaural Audio</h3>
+          <p data-i18n="f2_desc">Räumliche 3D-Klangpositionierung mit Echtzeit-HRTF-Filtern. Platzieren Sie Decks frei im virtuellen 360°-Raum für atemberaubende Kopfhörer-Mixes.</p>
         </div>
 
         <!-- Feature 3 -->
         <div class="feature-card">
           <div class="feature-icon-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
           </div>
-          <h3>V-Chopper Slicing Suite</h3>
-          <p>Instant transient detection and beat-synchronized rhythmic slicing. Transform tracks on the fly with customizable 1/8, 1/16, and pitch-shaper modulation matrices.</p>
+          <h3 data-i18n="f3_title">V-Chopper Slicing Suite</h3>
+          <p data-i18n="f3_desc">Sofortige Transienten-Erkennung und Beat-synchronisiertes rhythmisches Zerschneiden. Live-Remixe im Handumdrehen mit 1/8-, 1/16- und Pitch-Shaper-Matrizen.</p>
         </div>
 
         <!-- Feature 4 -->
         <div class="feature-card">
           <div class="feature-icon-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
           </div>
-          <h3>Pioneer HD Zoom Display</h3>
-          <p>High-resolution dual scrolling waveforms at 60 FPS. Featuring calibrated 1.0x, 2.0x, and 4.0x zoom levels, Camelot harmonic key badges, and precision beatgrids.</p>
+          <h3 data-i18n="f4_title">Pioneer HD Zoom Display</h3>
+          <p data-i18n="f4_desc">Hochauflösende Dual-Scroll-Waveforms bei flüssigen 60 FPS. Mit kalibrierten 1.0x, 2.0x und 4.0x Zoomstufen, Camelot-Tonart-Badges und Beatgrid-Justierung.</p>
         </div>
 
         <!-- Feature 5 -->
         <div class="feature-card">
           <div class="feature-icon-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
           </div>
-          <h3>Direct Files &amp; iCloud Import</h3>
-          <p>Seamlessly stream and import audio files from your iOS Files app, iCloud Drive, external USB-C thumb drives, or local playlists without cumbersome desktop sync.</p>
+          <h3 data-i18n="f5_title">Direkter Datei- &amp; iCloud-Import</h3>
+          <p data-i18n="f5_desc">Nahtloses Laden von Tracks aus der iOS Dateien-App, iCloud Drive, USB-C-Speichersticks oder lokalen Playlists – ganz ohne umständlichen Desktop-Sync.</p>
         </div>
 
         <!-- Feature 6 -->
         <div class="feature-card">
           <div class="feature-icon-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
           </div>
-          <h3>Hardware MIDI &amp; USB Audio</h3>
-          <p>Plug &amp; Play support for external USB DJ controllers (Gemini GMX, Pioneer DDJ, etc.), multi-channel soundcards, and Bluetooth MIDI gear with zero driver headaches.</p>
+          <h3 data-i18n="f6_title">Hardware-MIDI &amp; USB Audio</h3>
+          <p data-i18n="f6_desc">Plug &amp; Play Unterstützung für externe USB-DJ-Controller (Gemini GMX, Pioneer DDJ etc.), Mehrkanal-Soundkarten und Bluetooth-MIDI ohne Treiberprobleme.</p>
         </div>
 
       </div>
     </section>
 
-    <!-- TECHNICAL SPECIFICATIONS -->
+    <!-- TECHNICAL SPECIFICATIONS (SUBTLE & REFINED AS REQUESTED) -->
     <section class="specs-section" id="specs">
       <div class="specs-container">
         
         <div class="specs-content">
-          <h2>Engineered for Studio Quality &amp; Reliability</h2>
-          <p style="color: var(--text-muted); font-size: 1.05rem;">
-            Whether performing live at clubs or crafting mixes on the road, DJ V-SCRATCH LIVE leverages the full power of Apple Silicon (M1/M2/M3/M4 &amp; A-Series Bionic) with strict 64-bit floating-point audio precision.
+          <h2 data-i18n="specs_title">Entwickelt für höchste Studio-Qualität &amp; Zuverlässigkeit</h2>
+          <p data-i18n="specs_desc">
+            Ob live im Club oder unterwegs beim Mixen: DJ V-SCRATCH LIVE schöpft die volle Rechenleistung von Apple Silicon (M1/M2/M3/M4 &amp; A-Serie Bionic) mit kompromissloser 64-Bit-Fließkomma-Präzision aus.
           </p>
 
           <ul class="specs-list">
             <li>
-              <div class="specs-bullet">&#10003;</div>
-              <div><strong>CoreAudio DSP:</strong> Ultra-low buffer configurations down to 64 samples (~1.4ms roundtrip).</div>
+              <div class="specs-bullet">✓</div>
+              <div data-i18n="specs_b1"><strong>CoreAudio DSP:</strong> Extrem niedrige Puffergrößen bis hinunter zu 64 Samples (~1,4 ms Roundtrip).</div>
             </li>
             <li>
-              <div class="specs-bullet">&#10003;</div>
-              <div><strong>Dual Ergonomic Layouts:</strong> Full iPad Studio console (2048x1080) and iPhone Pocket Live widescreen.</div>
+              <div class="specs-bullet">✓</div>
+              <div data-i18n="specs_b2"><strong>Zwei ergonomische Layouts:</strong> Volle iPad Studio-Konsole (2048x1080) und iPhone Pocket Live Widescreen.</div>
             </li>
             <li>
-              <div class="specs-bullet">&#10003;</div>
-              <div><strong>Audio Format Freedom:</strong> Native playback for WAV, AIFF, FLAC, MP3, and AAC up to 192 kHz / 32-bit float.</div>
+              <div class="specs-bullet">✓</div>
+              <div data-i18n="specs_b3"><strong>Volle Audio-Formatfreiheit:</strong> Native Wiedergabe von WAV, AIFF, FLAC, MP3 und AAC bis zu 192 kHz / 32-Bit Float.</div>
             </li>
           </ul>
         </div>
 
         <div class="specs-card-visual">
           <div class="spec-item-box">
-            <span class="spec-label">Target Architecture</span>
-            <span class="spec-value">ARM64 (Apple Silicon &amp; A-Series)</span>
+            <span class="spec-label" data-i18n="spec_lbl_arch">Zielarchitektur</span>
+            <span class="spec-value">ARM64 (Apple Silicon &amp; A-Serie)</span>
           </div>
           <div class="spec-item-box">
-            <span class="spec-label">Audio Framework</span>
+            <span class="spec-label" data-i18n="spec_lbl_audio">Audio-Framework</span>
             <span class="spec-value">Apple CoreAudio / JUCE 8</span>
           </div>
           <div class="spec-item-box">
-            <span class="spec-label">Supported Devices</span>
+            <span class="spec-label" data-i18n="spec_lbl_dev">Unterstützte Geräte</span>
             <span class="spec-value">iPad, iPad Pro, iPad Air, iPhone</span>
           </div>
           <div class="spec-item-box">
-            <span class="spec-label">Minimum OS</span>
-            <span class="spec-value">iOS / iPadOS 17.5 or higher</span>
+            <span class="spec-label" data-i18n="spec_lbl_os">Mindestanforderung OS</span>
+            <span class="spec-value" data-i18n="spec_val_os">iOS / iPadOS 17.5 oder höher</span>
           </div>
           <div class="spec-item-box">
-            <span class="spec-label">Subscription Model</span>
-            <span class="spec-value" style="color: var(--cyan-accent);">100% Perpetual (No Subscription)</span>
+            <span class="spec-label" data-i18n="spec_lbl_sub">Lizenzmodell</span>
+            <span class="spec-value" style="color: var(--cyan-accent);" data-i18n="spec_val_sub">100% Dauerlizenz (Kein Abo)</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- SUPPORT & CONTACT SECTION -->
+    <!-- SUPPORT & CONTACT SECTION (ONLY EMAIL AS REQUESTED) -->
     <section class="support-section" id="support">
       <div class="support-card">
-        <h2>Studio Support &amp; Official Inquiries</h2>
-        <p>
-          Have questions regarding compatibility, controller mapping, feature requests, or press inquiries? Reach out directly to our audio lab:
+        <h2 data-i18n="sup_title">Studio Support &amp; Offizielle Anfragen</h2>
+        <p data-i18n="sup_desc">
+          Haben Sie Fragen zur Kompatibilität, Controller-Mapping oder Feature-Wünschen? Schreiben Sie direkt an unser Audio-Labor:
         </p>
 
         <div class="support-links-box">
           <a href="mailto:studio@waldemar-krucinski.com" class="support-contact-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             studio@waldemar-krucinski.com
-          </a>
-
-          <a href="https://studio.waldemar-krucinski.com" target="_blank" rel="noopener" class="studio-link-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            studio.waldemar-krucinski.com
           </a>
         </div>
       </div>
@@ -1196,120 +1086,242 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Waldemar Krucinski | vir2oseSOUND. All rights reserved.</p>
-    <p style="margin-top: 6px; font-size: 0.8rem; color: #52525b;">
+    <p data-i18n="footer_copy">&copy; 2026 Waldemar Krucinski | vir2oseSOUND. Alle Rechte vorbehalten.</p>
+    <p style="margin-top: 6px; font-size: 0.78rem; color: #52525b;">
       Official iOS Subdomain: <a href="https://ios.waldemar-krucinski.com">ios.waldemar-krucinski.com</a>
     </p>
   </footer>
 
-  <!-- 3D CAROUSEL SCRIPT -->
+  <!-- 3D CAROUSEL & BILINGUAL SCRIPT -->
   <script>
-    (function () {
-      const carousel = document.getElementById('carousel');
-      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-      const dots = Array.from(document.querySelectorAll('.carousel-dot'));
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      
-      let currentIndex = 1; // Start with center slide (Dual Deck)
-      const totalSlides = slides.length;
-      let autoPlayTimer = null;
-
-      function updateCarousel(newIndex) {
-        currentIndex = (newIndex + totalSlides) % totalSlides;
-
-        slides.forEach((slide, idx) => {
-          slide.classList.remove('active', 'prev', 'next', 'hidden');
-
-          if (idx === currentIndex) {
-            slide.classList.add('active');
-          } else if (idx === (currentIndex - 1 + totalSlides) % totalSlides) {
-            slide.classList.add('prev');
-          } else if (idx === (currentIndex + 1) % totalSlides) {
-            slide.classList.add('next');
-          } else {
-            slide.classList.add('hidden');
-          }
-        });
-
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle('active', idx === currentIndex);
-        });
+    // TRANSLATIONS DICTIONARY (DE is Primary)
+    const translations = {
+      de: {
+        nav_showcase: '3D-Vorschau',
+        nav_features: 'Funktionen',
+        nav_specs: 'Spezifikationen',
+        nav_support: 'Support',
+        nav_studio: 'Studio',
+        hero_badge: 'iOS & iPadOS 17+ Edition',
+        hero_subtitle: 'Authentisches Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer und V-SPH3RE 3D Binaural Matrix — entwickelt in nativem C++ für iPad und iPhone.',
+        pill_no_sub: 'KEIN ABONNEMENT',
+        pill_dsp: '< 5MS COREAUDIO DSP',
+        pill_hardware: 'STANDALONE HARDWARE-KONSOLE',
+        pill_midi: 'USB- & MIDI-CONTROLLER READY',
+        feat_tag: '// PRO AUDIO PERFORMANCE',
+        feat_title: 'Konzipiert für maximale Club- & Touch-Präzision',
+        feat_desc: 'Von Grund auf in nativer C++ JUCE-Architektur entwickelt. Bringt die unmittelbare Haptik und Reaktionsfreude analoger Plattenspieler direkt auf iPad und iPhone.',
+        f1_title: 'Analoge Platter-Physik',
+        f1_desc: 'Reale Vinyl-Trägheit, authentisches Backspin-Momentum und lückenloses Scratch-Tracking, präzise optimiert für Apple 120Hz ProMotion Displays.',
+        f2_title: 'V-SPH3RE 3D Binaural Audio',
+        f2_desc: 'Räumliche 3D-Klangpositionierung mit Echtzeit-HRTF-Filtern. Platzieren Sie Decks frei im virtuellen 360°-Raum für atemberaubende Kopfhörer-Mixes.',
+        f3_title: 'V-Chopper Slicing Suite',
+        f3_desc: 'Sofortige Transienten-Erkennung und Beat-synchronisiertes rhythmisches Zerschneiden. Live-Remixe im Handumdrehen mit 1/8-, 1/16- und Pitch-Shaper-Matrizen.',
+        f4_title: 'Pioneer HD Zoom Display',
+        f4_desc: 'Hochauflösende Dual-Scroll-Waveforms bei flüssigen 60 FPS. Mit kalibrierten 1.0x, 2.0x und 4.0x Zoomstufen, Camelot-Tonart-Badges und Beatgrid-Justierung.',
+        f5_title: 'Direkter Datei- & iCloud-Import',
+        f5_desc: 'Nahtloses Laden von Tracks aus der iOS Dateien-App, iCloud Drive, USB-C-Speichersticks oder lokalen Playlists – ganz ohne umständlichen Desktop-Sync.',
+        f6_title: 'Hardware-MIDI & USB Audio',
+        f6_desc: 'Plug & Play Unterstützung für externe USB-DJ-Controller (Gemini GMX, Pioneer DDJ etc.), Mehrkanal-Soundkarten und Bluetooth-MIDI ohne Treiberprobleme.',
+        specs_title: 'Entwickelt für höchste Studio-Qualität & Zuverlässigkeit',
+        specs_desc: 'Ob live im Club oder unterwegs beim Mixen: DJ V-SCRATCH LIVE schöpft die volle Rechenleistung von Apple Silicon (M1/M2/M3/M4 & A-Serie Bionic) mit kompromissloser 64-Bit-Fließkomma-Präzision aus.',
+        specs_b1: '<strong>CoreAudio DSP:</strong> Extrem niedrige Puffergrößen bis hinunter zu 64 Samples (~1,4 ms Roundtrip).',
+        specs_b2: '<strong>Zwei ergonomische Layouts:</strong> Volle iPad Studio-Konsole (2048x1080) und iPhone Pocket Live Widescreen.',
+        specs_b3: '<strong>Volle Audio-Formatfreiheit:</strong> Native Wiedergabe von WAV, AIFF, FLAC, MP3 und AAC bis zu 192 kHz / 32-Bit Float.',
+        spec_lbl_arch: 'Zielarchitektur',
+        spec_lbl_audio: 'Audio-Framework',
+        spec_lbl_dev: 'Unterstützte Geräte',
+        spec_lbl_os: 'Mindestanforderung OS',
+        spec_val_os: 'iOS / iPadOS 17.5 oder höher',
+        spec_lbl_sub: 'Lizenzmodell',
+        spec_val_sub: '100% Dauerlizenz (Kein Abo)',
+        sup_title: 'Studio Support & Offizielle Anfragen',
+        sup_desc: 'Haben Sie Fragen zur Kompatibilität, Controller-Mapping oder Feature-Wünschen? Schreiben Sie direkt an unser Audio-Labor:',
+        footer_copy: '© 2026 Waldemar Krucinski | vir2oseSOUND. Alle Rechte vorbehalten.'
+      },
+      en: {
+        nav_showcase: '3D Showcase',
+        nav_features: 'Features',
+        nav_specs: 'Specifications',
+        nav_support: 'Support',
+        nav_studio: 'Studio',
+        hero_badge: 'iOS & iPadOS 17+ Edition',
+        hero_subtitle: 'Authentic Dual-Deck Turntablism, Pioneer HD Controller Display, V-Chopper Loop Slicer, and V-SPH3RE 3D Binaural Matrix — engineered in native C++ for iPad and iPhone.',
+        pill_no_sub: 'NO SUBSCRIPTION',
+        pill_dsp: '< 5MS COREAUDIO DSP',
+        pill_hardware: 'STANDALONE HARDWARE CONSOLE',
+        pill_midi: 'USB & MIDI CONTROLLER READY',
+        feat_tag: '// PRO AUDIO PERFORMANCE',
+        feat_title: 'Built Without Compromise for Touch & Stage',
+        feat_desc: 'Engineered from scratch using high-performance C++ JUCE architecture, delivering the immediate tactile precision of analog turntables directly onto your Apple device.',
+        f1_title: 'Analog Platter Physics',
+        f1_desc: 'Realistic vinyl inertia, backspin momentum, motor drag, and instant scratch tracking optimized specifically for high refresh rate Apple ProMotion displays.',
+        f2_title: 'V-SPH3RE 3D Binaural Audio',
+        f2_desc: 'Pioneering 3D sound positioning with real-time HRTF algorithms. Place your decks anywhere in a virtual 360° spherical room for breathtaking headphone spatialization.',
+        f3_title: 'V-Chopper Slicing Suite',
+        f3_desc: 'Instant transient detection and beat-synchronized rhythmic slicing. Transform tracks on the fly with customizable 1/8, 1/16, and pitch-shaper modulation matrices.',
+        f4_title: 'Pioneer HD Zoom Display',
+        f4_desc: 'High-resolution dual scrolling waveforms at 60 FPS. Featuring calibrated 1.0x, 2.0x, and 4.0x zoom levels, Camelot harmonic key badges, and precision beatgrids.',
+        f5_title: 'Direct Files & iCloud Import',
+        f5_desc: 'Seamlessly stream and import audio files from your iOS Files app, iCloud Drive, external USB-C thumb drives, or local playlists without cumbersome desktop sync.',
+        f6_title: 'Hardware MIDI & USB Audio',
+        f6_desc: 'Plug & Play support for external USB DJ controllers (Gemini GMX, Pioneer DDJ, etc.), multi-channel soundcards, and Bluetooth MIDI gear with zero driver headaches.',
+        specs_title: 'Engineered for Studio Quality & Reliability',
+        specs_desc: 'Whether performing live at clubs or crafting mixes on the road, DJ V-SCRATCH LIVE leverages the full power of Apple Silicon (M1/M2/M3/M4 & A-Series Bionic) with strict 64-bit floating-point audio precision.',
+        specs_b1: '<strong>CoreAudio DSP:</strong> Ultra-low buffer configurations down to 64 samples (~1.4ms roundtrip).',
+        specs_b2: '<strong>Dual Ergonomic Layouts:</strong> Full iPad Studio console (2048x1080) and iPhone Pocket Live widescreen.',
+        specs_b3: '<strong>Audio Format Freedom:</strong> Native playback for WAV, AIFF, FLAC, MP3, and AAC up to 192 kHz / 32-bit float.',
+        spec_lbl_arch: 'Target Architecture',
+        spec_lbl_audio: 'Audio Framework',
+        spec_lbl_dev: 'Supported Devices',
+        spec_lbl_os: 'Minimum OS',
+        spec_val_os: 'iOS / iPadOS 17.5 or higher',
+        spec_lbl_sub: 'Subscription Model',
+        spec_val_sub: '100% Perpetual (No Subscription)',
+        sup_title: 'Studio Support & Official Inquiries',
+        sup_desc: 'Have questions regarding compatibility, controller mapping, or feature requests? Reach out directly to our audio lab:',
+        footer_copy: '© 2026 Waldemar Krucinski | vir2oseSOUND. All rights reserved.'
       }
+    };
 
-      function nextSlide() {
-        updateCarousel(currentIndex + 1);
-      }
+    const slideCaptions = {
+      de: [
+        { title: 'V-CHOPPER LOOP SLICER', desc: 'Echtzeit-Slicing, Beat-Jumps und Instant Stutter FX für dynamische Live-Remixe.' },
+        { title: 'DUAL-DECK TURNTABLISM', desc: 'Pioneer-inspiriertes HD Waveform Display, Ultra-Low Latency Jogwheels und 64-Bit DSP-Mixer.' },
+        { title: 'V-SPH3RE 3D BINAURAL MATRIX', desc: 'Immersive räumliche 3D-Klangbühne mit Echtzeit-Binaural-Filterung für Kopfhörer und Monitore.' }
+      ],
+      en: [
+        { title: 'V-CHOPPER LOOP SLICER', desc: 'Real-time slicing, instant beat jumps, and stutter FX for dynamic live remixing.' },
+        { title: 'DUAL-DECK TURNTABLISM', desc: 'Pioneer-inspired HD Waveform Display, ultra-low latency jogwheels, and 64-bit DSP mixer.' },
+        { title: 'V-SPH3RE 3D BINAURAL MATRIX', desc: 'Immersive 3D spatial soundstage with real-time binaural filtering for headphones and monitors.' }
+      ]
+    };
 
-      function prevSlide() {
-        updateCarousel(currentIndex - 1);
-      }
+    let currentLang = localStorage.getItem('vscratch_lang') || 'de';
 
-      function startAutoPlay() {
-        stopAutoPlay();
-        autoPlayTimer = setInterval(nextSlide, 5500);
-      }
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('vscratch_lang', lang);
 
-      function stopAutoPlay() {
-        if (autoPlayTimer) {
-          clearInterval(autoPlayTimer);
-          autoPlayTimer = null;
+      document.documentElement.lang = lang;
+      const btnDe = document.getElementById('btnLangDe');
+      const btnEn = document.getElementById('btnLangEn');
+      if (btnDe) btnDe.classList.toggle('active', lang === 'de');
+      if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+
+      const dict = translations[lang] || translations.de;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
         }
-      }
+      });
 
-      // Event Listeners
-      if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
-      if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+      updateCaption();
+    }
+
+    // 3D CAROUSEL CONTROLLER
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const captionTitle = document.getElementById('captionTitle');
+    const captionDesc = document.getElementById('captionDesc');
+
+    let currentIndex = 1; // Center Dual Deck
+    let autoPlayTimer = null;
+
+    function updateCaption() {
+      const caps = slideCaptions[currentLang] || slideCaptions.de;
+      if (caps && caps[currentIndex]) {
+        if (captionTitle) captionTitle.textContent = caps[currentIndex].title;
+        if (captionDesc) captionDesc.textContent = caps[currentIndex].desc;
+      }
+    }
+
+    function updateCarousel(newIndex) {
+      const total = slides.length;
+      currentIndex = (newIndex + total) % total;
 
       slides.forEach((slide, idx) => {
-        slide.addEventListener('click', () => {
-          if (idx !== currentIndex) {
-            updateCarousel(idx);
-            startAutoPlay();
-          }
-        });
+        slide.classList.remove('active', 'prev', 'next', 'hidden');
+        if (idx === currentIndex) {
+          slide.classList.add('active');
+        } else if (idx === (currentIndex - 1 + total) % total) {
+          slide.classList.add('prev');
+        } else if (idx === (currentIndex + 1) % total) {
+          slide.classList.add('next');
+        } else {
+          slide.classList.add('hidden');
+        }
       });
 
       dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-          updateCarousel(idx);
-          startAutoPlay();
-        });
+        dot.classList.toggle('active', idx === currentIndex);
       });
 
-      // Pause autoplay on mouse hover
-      carousel.addEventListener('mouseenter', stopAutoPlay);
-      carousel.addEventListener('mouseleave', startAutoPlay);
+      updateCaption();
+    }
 
-      // Touch / Swipe support for iPad & iPhone
-      let touchStartX = 0;
-      let touchEndX = 0;
+    function nextSlide() { updateCarousel(currentIndex + 1); }
+    function prevSlide() { updateCarousel(currentIndex - 1); }
 
-      carousel.addEventListener('touchstart', (e) => {
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(nextSlide, 5500);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        updateCarousel(idx);
+        startAutoPlay();
+      });
+    });
+
+    slides.forEach((slide, idx) => {
+      slide.addEventListener('click', () => {
+        if (idx !== currentIndex) {
+          updateCarousel(idx);
+          startAutoPlay();
+        }
+      });
+    });
+
+    // Touch Swipe Gestures
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const carouselEl = document.getElementById('carousel');
+    if (carouselEl) {
+      carouselEl.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
         stopAutoPlay();
       }, { passive: true });
 
-      carousel.addEventListener('touchend', (e) => {
+      carouselEl.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        if (touchStartX - touchEndX > 50) nextSlide();
+        if (touchEndX - touchStartX > 50) prevSlide();
         startAutoPlay();
       }, { passive: true });
 
-      function handleSwipe() {
-        const threshold = 40;
-        if (touchEndX < touchStartX - threshold) {
-          nextSlide();
-        } else if (touchEndX > touchStartX + threshold) {
-          prevSlide();
-        }
-      }
+      carouselEl.addEventListener('mouseenter', stopAutoPlay);
+      carouselEl.addEventListener('mouseleave', startAutoPlay);
+    }
 
-      // Initialize
-      updateCarousel(1);
-      startAutoPlay();
-    })();
+    // Initialize Language & Carousel
+    setLang(currentLang);
+    updateCarousel(1);
+    startAutoPlay();
   </script>
-
 </body>
 </html>
